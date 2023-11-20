@@ -26,11 +26,20 @@ file(GLOB SRC_SOURCES
      "src/*.h"
 )
 
+# GLOB komutu ile 'lib' klasöründeki tüm .cpp ve .h dosyalarını bul
+file(GLOB CAT_MESSAGES
+     "CATMessages/*.cpp"
+     "CATMessages/*.h"
+     "CATMessages/034*.cpp"
+     "CATMessages/034*.h"
+)
+
 add_executable(pAsterix 
 main.cpp
 ${LIB_SOURCES}
 ${INC_SOURCES}
-${SRC_SOURCES}  
+${SRC_SOURCES} 
+${CAT_MESSAGES} 
 )
 
 include_directories(inc)
