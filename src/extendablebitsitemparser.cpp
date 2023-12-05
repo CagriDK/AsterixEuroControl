@@ -26,18 +26,18 @@ ExtendableBitsItemParser::ExtendableBitsItemParser(const nlohmann::json& item_de
                                                    const std::string& long_name_prefix)
     : ItemParserBase(item_definition, long_name_prefix)
 {
-    //assert(type_ == "extendable_bits");
+    assert(type_ == "extendable_bits");
 
-    // if (!item_definition.contains("data_type"))
-    //     throw runtime_error("extendable bits item '" + name_ + "' parsing without data type");
+    if (!item_definition.contains("data_type"))
+        throw runtime_error("extendable bits item '" + name_ + "' parsing without data type");
 
-    // data_type_ = item_definition.at("data_type");
+    data_type_ = item_definition.at("data_type");
 
-    // reverse_bits_ =
-    //     (item_definition.contains("reverse_bits") && item_definition.at("reverse_bits") == true);
+    reverse_bits_ =
+        (item_definition.contains("reverse_bits") && item_definition.at("reverse_bits") == true);
 
-    // reverse_order_ =
-    //     (item_definition.contains("reverse_order") && item_definition.at("reverse_order") == true);
+    reverse_order_ =
+        (item_definition.contains("reverse_order") && item_definition.at("reverse_order") == true);
 }
 
 size_t ExtendableBitsItemParser::parseItem(const char* data, size_t index, size_t size,

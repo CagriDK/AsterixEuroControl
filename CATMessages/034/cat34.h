@@ -24,53 +24,43 @@ public:
         for (auto decodeBytes : header_info.uap_list)
         {
             if (decodeBytes == "000")
-            {
-                FixedBytesItemParser cat34_Field2(m_cat_definition, std::string("000 - Message Type"));
-                cat34_Field2.length_ = 1;
-                cat34_Field2.data_type_ = "uint";
+            {                
+                FixedBytesItemParser cat34_Field2(m_cat_definition["items"][0]["data_fields"][0], std::string("000 - Message Type"));
                 cat34_Field2.parseItem(m_data, parsedBytes, 0, 0, m_cat_definition, 0);
                 parsedBytes += cat34_Field2.length_; // 1 byte parsed
                 std::cout << "000 value = " << cat34_Field2.data_uint << "\n";
             }
             else if (decodeBytes == "010")
             {
-                FixedBytesItemParser cat34_Field1(m_cat_definition, std::string("010 - Data Source Identifier"));
-                cat34_Field1.length_ = 2;
-                cat34_Field1.data_type_ = "uint";
+                FixedBytesItemParser cat34_Field1(m_cat_definition["items"][1]["data_fields"][0], std::string("010 - Data Source Identifier SAC"));
                 cat34_Field1.parseItem(m_data, parsedBytes, 0, 0, m_cat_definition, 0);
-                parsedBytes += cat34_Field1.length_; // 2 byte parsed
-                std::cout << "010 value = " << cat34_Field1.data_uint << "\n";
+                parsedBytes += cat34_Field1.length_; // 1 byte parsed
+                std::cout << "010 SAC value = " << cat34_Field1.data_uint << " ";
+
+                FixedBytesItemParser cat34_Field1_1(m_cat_definition["items"][1]["data_fields"][1], std::string("010 - Data Source Identifier SIC"));
+                cat34_Field1_1.parseItem(m_data, parsedBytes, 0, 0, m_cat_definition, 0);
+                parsedBytes += cat34_Field1_1.length_; // 1 byte parsed
+                std::cout << "010 SIC value = " << cat34_Field1_1.data_uint << "\n";
             }
             else if (decodeBytes == "020")
             {
-                FixedBytesItemParser cat34_Field4(m_cat_definition, std::string("020 - Sector Number"));
-                cat34_Field4.length_ = 1;
-                cat34_Field4.data_type_ = "uint";
-                cat34_Field4.has_lsb_ = true;
-                cat34_Field4.lsb_ = 1.40625;
+                FixedBytesItemParser cat34_Field4(m_cat_definition["items"][2]["data_fields"][0], std::string("020 - Sector Number"));
                 cat34_Field4.parseItem(m_data, parsedBytes, 0, 0, m_cat_definition, 0);
                 parsedBytes += cat34_Field4.length_; // 1 byte parsed
                 std::cout << "020 value = " << cat34_Field4.data_uint * cat34_Field4.lsb_ << "\n";
             }
             else if (decodeBytes == "030")
             {
-                FixedBytesItemParser cat34_Field3(m_cat_definition, std::string("030 - Time of Day"));
-                cat34_Field3.length_ = 3;
-                cat34_Field3.data_type_ = "uint";
-                cat34_Field3.has_lsb_ = true;
-                cat34_Field3.lsb_ = 0.0078125;
+                FixedBytesItemParser cat34_Field3(m_cat_definition["items"][3]["data_fields"][0], std::string("030 - Time of Day"));
                 cat34_Field3.parseItem(m_data, parsedBytes, 0, 0, m_cat_definition, 0);
                 parsedBytes += cat34_Field3.length_; // 3 byte parsed
                 std::cout << "030 value = " << cat34_Field3.data_uint * cat34_Field3.lsb_ << "\n";
             }
             else if (decodeBytes == "050")
             {
-                ExtendableBitsItemParser cat34_Field5_1(m_cat_definition, std::string("050 - System Configuration and Status"));
-                cat34_Field5_1.data_type_ = "bitfield";
-                cat34_Field5_1.reverse_bits_ = true;
+                ExtendableBitsItemParser cat34_Field5_1(m_cat_definition["items"][5]["data_fields"][0]["field_specification"], std::string("050 - System Configuration and Status"));
                 cat34_Field5_1.parseItem(m_data, parsedBytes, 0, 0, m_cat_definition, 0);
-                parsedBytes += 1; // 1 byte parsed
-                // Burası birleşik mesaj için available bölümleri gösterir.
+                parsedBytes += 1; // 1 byte parsedD
 
                 std::vector<nlohmann::json> bitfield_Map; // 050 mesajı için alanlar
                 bitfield_Map.push_back(m_cat_definition["items"][5]["data_fields"][0]["items"][0]);

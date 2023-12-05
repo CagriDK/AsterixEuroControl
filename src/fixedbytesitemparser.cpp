@@ -16,40 +16,39 @@
  */
 
 #include "fixedbytesitemparser.h"
-
+#include <iostream>
 #include "string_conv.h"
-
 
 using namespace nlohmann;
 
 FixedBytesItemParser::FixedBytesItemParser(const nlohmann::json& item_definition, const std::string& long_name_prefix)
     : ItemParserBase(item_definition, long_name_prefix)
 {
-    //assert(type_ == "fixed_bytes");
+    assert(type_ == "fixed_bytes");
 
-    // if (!item_definition.contains("length"))
-    //     throw runtime_error("fixed bytes item '" + name_ + "' parsing without length");
+    if (!item_definition.contains("length"))
+        std::cerr<<"fixed bytes item '" + name_ + "' parsing without length\n";
 
-    // length_ = item_definition.at("length");
+    length_ = item_definition.at("length");
 
-    // if (!item_definition.contains("data_type"))
-    //     throw runtime_error("fixed bytes item '" + name_ + "' parsing without data type");
+    if (!item_definition.contains("data_type"))
+        std::cerr<<"fixed bytes item '" + name_ + "' parsing without data type\n";
 
-    // data_type_ = item_definition.at("data_type");
+    data_type_ = item_definition.at("data_type");
 
-    // reverse_bits_ =
-    //     (item_definition.contains("reverse_bits") && item_definition.at("reverse_bits") == true);
+    reverse_bits_ =
+        (item_definition.contains("reverse_bits") && item_definition.at("reverse_bits") == true);
 
-    // reverse_bytes_ =
-    //     (item_definition.contains("reverse_bytes") && item_definition.at("reverse_bytes") == true);
+    reverse_bytes_ =
+        (item_definition.contains("reverse_bytes") && item_definition.at("reverse_bytes") == true);
 
-    // negative_bit_pos_ = length_ * 8 - 1;
+    negative_bit_pos_ = length_ * 8 - 1;
 
-    // if (item_definition.contains("lsb"))
-    // {
-    //     has_lsb_ = true;
-    //     lsb_ = item_definition.at("lsb");
-    // }
+    if (item_definition.contains("lsb"))
+    {
+        has_lsb_ = true;
+        lsb_ = item_definition.at("lsb");
+    }
 };
 
 size_t FixedBytesItemParser::parseItem(const char* data, size_t index, size_t size,
