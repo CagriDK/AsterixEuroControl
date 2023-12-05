@@ -34,9 +34,6 @@ class FixedBitFieldItemParser : public ItemParserBase
                              size_t current_parsed_bytes, nlohmann::json& target,
                              bool debug) override;
 
-    virtual void addInfo (const std::string& edition, CategoryItemInfo& info) const override;
-  
-  std::string stringfield;
   std::vector<int> bitfield;
   protected:
     bool optional_{false};

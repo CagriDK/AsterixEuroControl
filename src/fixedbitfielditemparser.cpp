@@ -85,7 +85,6 @@ size_t FixedBitFieldItemParser::parseItem(const char *data, size_t index, size_t
         return 0; // no parse
     }
     bitfield.clear();
-    stringfield.clear();
 
     for (auto &sub_item_it : items_)
     {
@@ -93,29 +92,8 @@ size_t FixedBitFieldItemParser::parseItem(const char *data, size_t index, size_t
 
         auto data_type = sub_item_it.get()->item_definition_["data_type"];
 
-        if (data_type == "uint")
-        {
-            bitfield.push_back(static_cast<FixedBitsItemParser *>(sub_item_it.get())->parsedChar);
-        }
-        else if (data_type == "int")
-        {
-            bitfield.push_back(static_cast<FixedBitsItemParser *>(sub_item_it.get())->parsedInt);
-        }
-        else if (data_type == "digits")
-        {
-            bitfield.push_back(static_cast<FixedBitsItemParser *>(sub_item_it.get())->parsedDigits);
-        }
-        else if (data_type == "icao_characters" || data_type == "ascii_characters")
-        {
-            stringfield = static_cast<FixedBitsItemParser *>(sub_item_it.get())->parsedString;
-        }
+        bitfield.push_back(static_cast<FixedBitsItemParser *>(sub_item_it.get())->parsedChar);
     }
 
     return length_;
-}
-
-void FixedBitFieldItemParser::addInfo(const std::string &edition, CategoryItemInfo &info) const
-{
-    for (auto &item_it : items_)
-        item_it->addInfo(edition, info);
 }

@@ -126,24 +126,6 @@ std::string ItemParserBase::name() const { return name_; }
 
 std::string ItemParserBase::type() const { return type_; }
 
-void ItemParserBase::addInfo (const std::string& edition, CategoryItemInfo& info) const
-{
-    string comment;
-
-    if (item_definition_.contains("comment"))
-    {
-        comment = item_definition_.at("comment");
-    }
-
-    if (!info.count(long_name_))
-        info[long_name_].description_ = comment;
-
-    info.at(long_name_).editions_.insert(edition);
-
-    // TODO edition
-
-}
-
 std::string ItemParserBase::longName() const
 {
     return long_name_;
