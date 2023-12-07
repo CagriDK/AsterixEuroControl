@@ -58,7 +58,7 @@ size_t FixedBytesItemParser::parseItem(const char* data, size_t index, size_t si
 
     unsigned char tmp{0};
     // size_t data_uint{0};
-    int data_int{0};
+    //int data_int{0};
 
     const char* current_data = &data[index];
 

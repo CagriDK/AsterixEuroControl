@@ -39,6 +39,7 @@ class FixedBytesItemParser : public ItemParserBase
     bool has_lsb_{false};
     double lsb_{1.0};
     size_t data_uint{0};
+    int data_int{0};
 };
 
 #endif  // FIXEDBYTESITEMPARSER_H
