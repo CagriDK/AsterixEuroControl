@@ -16,29 +16,10 @@
     },
     "050": {
         "COM": {
-            "NOGO": "system.status.nogo",
-            "RDPC": "system.status.rdpc",
-            "RDPR": "system.status.rdpr",
-            "OVL RDP": "system.status.ovl_rdp",
-            "OVL XMT": "system.status.ovl_xmt",
-            "MSC": "system.status.msc",
-            "TSV": "system.status.tsv"
         },
         "PSR": {
-            "ANT": "system.psr.ant",
-            "CH-A/B": "system.psr.ch_ab",
-            "OVL": "system.psr.ovl",
-            "MSC": "system.psr.msc"
         },
         "MDS": {
-            "ANT": "system.mds.ant",
-            "CH-A/B": "system.mds.ch_ab",
-            "OVL SUR": "system.mds.ovl_sur",
-            "MSC": "system.mds.msc",
-            "SCF": "system.mds.scf",
-            "DLF": "system.mds.dlf",
-            "OVL SCF": "system.mds.ovl_scf",
-            "OVL DLF": "system.mds.ovl_dlf"
         }
     },
     "060": {
