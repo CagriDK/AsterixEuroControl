@@ -1,5 +1,5 @@
 #include "../CATMessageBase.h"
-
+#include "cat34Messages.h"
 struct MessageHeader
 {
     int cat_type;
@@ -28,6 +28,7 @@ public:
                 FixedBytesItemParser parser(m_cat_definition["items"][0]["data_fields"][0], std::string("000 - Message Type"));
                 parser.parseItem(m_data, parsedBytes, 0, 0, m_cat_definition, 0);
                 parsedBytes += parser.length_; // 1 byte parsed
+                cat34_message.messageType.messageType = parser.data_uint; //Yada Buna pass by reference çekilecek.
                 std::cout << "000 value = " << parser.data_uint << "\n";
             }
             else if (decodeBytes == "010")
@@ -292,4 +293,5 @@ private:
 private:
     nlohmann::json m_cat_definition{""};
     std::vector<std::string> CAT34_uap_order{"010", "000", "030", "020", "041", "050", "060", "FX", "070", "100", "110", "120", "090", "RE", "SP", "FX"};
+    Cat34Record cat34_message;
 };
