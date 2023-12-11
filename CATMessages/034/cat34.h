@@ -10,9 +10,11 @@ struct MessageHeader
 class CAT34 : public CATMessageBase
 {
 public:
-    CAT34(nlohmann::json cat_def, const char *data)
+    CAT34(nlohmann::json cat_def,nlohmann::json cat_map,const char *data)
     {
         m_cat_definition = cat_def;
+        mapping = cat_map;
+        
         m_data = data;
     };
 
@@ -26,17 +28,16 @@ public:
             if (decodeBytes == "000")
             {
                 FixedBytesItemParser parser(m_cat_definition["items"][0]["data_fields"][0], std::string("000 - Message Type"));
-                parser.parseItem(m_data, parsedBytes, 0, 0, m_cat_definition, 0);
-                parsedBytes += parser.length_; // 1 byte parsed
-                cat34_message.messageType.messageType = parser.data_uint; //Yada Buna pass by reference çekilecek.
-                std::cout << "000 value = " << parser.data_uint << "\n";
+                parser.parseItem(m_data, parsedBytes, 0, 0, mapping["000"], 0);
+                parsedBytes += parser.length_; // 1 byte parsed 
+                std::cout << "000 Mapping value = " << toString(mapping[decodeBytes]["Message Type"]) << "\n";//parser.data_uint
             }
             else if (decodeBytes == "010")
             {
                 FixedBytesItemParser parser1(m_cat_definition["items"][1]["data_fields"][0], std::string("010 - Data Source Identifier SAC"));
                 parser1.parseItem(m_data, parsedBytes, 0, 0, m_cat_definition, 0);
                 parsedBytes += parser1.length_; // 1 byte parsed
-                std::cout << "010 SAC value = " << parser1.data_uint << " ";
+                std::cout << "010 SAC value = " << parser1.data_uint << "\n";
 
                 FixedBytesItemParser parser2(m_cat_definition["items"][1]["data_fields"][1], std::string("010 - Data Source Identifier SIC"));
                 parser2.parseItem(m_data, parsedBytes, 0, 0, m_cat_definition, 0);
@@ -292,6 +293,7 @@ private:
 
 private:
     nlohmann::json m_cat_definition{""};
+    nlohmann::json mapping{""};
     std::vector<std::string> CAT34_uap_order{"010", "000", "030", "020", "041", "050", "060", "FX", "070", "100", "110", "120", "090", "RE", "SP", "FX"};
     Cat34Record cat34_message;
 };

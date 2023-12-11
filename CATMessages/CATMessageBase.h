@@ -4,6 +4,7 @@
 #include"../lib/json.hpp"
 #include <fstream>
 #include <vector>
+#include "../src/string_conv.h"
 
 
 class CATMessageBase

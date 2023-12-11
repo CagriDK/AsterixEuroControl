@@ -57,8 +57,6 @@ size_t FixedBytesItemParser::parseItem(const char* data, size_t index, size_t si
 {
 
     unsigned char tmp{0};
-    // size_t data_uint{0};
-    //int data_int{0};
 
     const char* current_data = &data[index];
 
@@ -67,20 +65,13 @@ size_t FixedBytesItemParser::parseItem(const char* data, size_t index, size_t si
         std::string data_str(reinterpret_cast<char const*>(current_data),
                              length_ - 1);  // -1 to account for end 0
 
-        // if (!isASCII(data_str))
-        //     throw runtime_error("fixed bytes item '" + name_ + "' string contains non-ascii chars");
-
-        assert(!target.contains(name_));
+        //assert(!target.contains(name_));
         target.emplace(name_, std::move(data_str));
 
         return length_;
     }
     else if (data_type_ == "uint")
     {
-        // if (length_ > sizeof(size_t))
-        //     throw runtime_error("fixed bytes item '" + name_ + "' length larger than " +
-        //                         to_string(sizeof(size_t)));
-
         if (reverse_bytes_)
         {
             for (int cnt = length_ - 1; cnt >= 0; --cnt)
@@ -106,8 +97,6 @@ size_t FixedBytesItemParser::parseItem(const char* data, size_t index, size_t si
             }
         }
 
-        //assert(!target.contains(name_));
-
         if (has_lsb_)
             target.emplace(name_, lsb_ * data_uint);
         else
@@ -117,10 +106,6 @@ size_t FixedBytesItemParser::parseItem(const char* data, size_t index, size_t si
     }
     else if (data_type_ == "int")
     {
-        // if (length_ > sizeof(size_t))
-        //     throw runtime_error("fixed bytes item '" + name_ + "' length larger than " +
-        //                         to_string(sizeof(size_t)));
-
         if (reverse_bytes_)
         {
             for (int cnt = length_ - 1; cnt >= 0; --cnt)
@@ -151,8 +136,6 @@ size_t FixedBytesItemParser::parseItem(const char* data, size_t index, size_t si
         else
             data_int = data_uint;
 
-        //assert(!target.contains(name_));
-
         if (has_lsb_)
             target.emplace(name_, lsb_ * data_int);
         else
@@ -165,14 +148,10 @@ size_t FixedBytesItemParser::parseItem(const char* data, size_t index, size_t si
         std::string data_str =
             binary2hex(reinterpret_cast<const unsigned char*>(current_data), length_);
 
-
-        //assert(!target.contains(name_));
         target.emplace(name_, std::move(data_str));
 
         return length_;
     }
-    // else
-    //     throw runtime_error("fixed bytes item '" + name_ + "' parsing with unknown data type '" +
-    //                         data_type_ + "'");
+
     return 0;
 };
