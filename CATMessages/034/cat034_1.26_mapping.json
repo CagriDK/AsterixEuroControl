@@ -1,18 +1,13 @@
 {
     "000": {
-
     },
     "010": {
-
     },
     "020": {
-
     },
     "030": {
-
     },
     "041": {
-
     },
     "050": {
         "COM": {
@@ -24,45 +19,24 @@
     },
     "060": {
         "COM": {
-            "RED-RDP": "processing.mode.com.red_rdp",
-            "RED-XMT": "processing.mode.com.red_xmt"
         },
         "PSR": {
-            "POL": "processing.mode.psr.pol",
-            "RED-RAD": "processing.mode.psr.red_rad",
-            "STC": "processing.mode.psr.stc"
         },
         "SSR": {
-            "RED-RAD": "processing.mode.ssr.red_rad"
         },
         "MDS": {
-            "RED-RAD": "processing.mode.mds.red_rad",
-            "CLU": "processing.mode.mds.clu"
         }
     },
     "070": {
         "plot_count_values": {
-            "REP": "message_count.rep",
-            "TYP": "message_count.typ",
-            "COUNTER": "message_count.counter"
         }
     },
     "090": {
-        "RANGE ERROR": "collimation_error.range_error",
-        "AZIMUTH ERROR": "collimation_error.azimuth_error"
     },
     "100": {
-        "RHO-START": "generic_polar_window.rho_start",
-        "RHO-END": "generic_polar_window.rho_end",
-        "THETA-START": "generic_polar_window.theta_start",
-        "THETA-END": "generic_polar_window.theta_end"
     },
     "110": {
-        "TYP": "data_filter.typ"
     },
     "120": {
-        "Height of Data Source": "position_of_data_source.height",
-        "Latitude": "position_of_data_source.latitude",
-        "Longitude": "position_of_data_source.longitude"
     }
 }

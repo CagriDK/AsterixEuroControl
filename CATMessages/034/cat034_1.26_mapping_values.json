@@ -1,6 +1,6 @@
 {
     "000": {
-        //"Message Type": " "
+        "Message Type": "message.type"
     },
     "010": {
         "SAC": "source.sac",

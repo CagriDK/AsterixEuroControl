@@ -71,14 +71,7 @@ public:
                 parser.parseItem(m_data, parsedBytes, 0, 0, mapping["050"], 0);
                 parsedBytes += 1; // 1 byte parsed
 
-                std::cout << "****************************************************************\n";
-
                 std::cout << "050 Available = " << toString(mapping[decodeBytes]["available"]) << "\n";
-                std::cout << "050 value = " << toString(mapping[decodeBytes]["COM"]) << "\n";
-                std::cout << "050 value = " << toString(mapping[decodeBytes]["PSR"]) << "\n";
-                std::cout << "050 value = " << toString(mapping[decodeBytes]["MDS"]) << "\n";
-
-                std::cout << "****************************************************************\n";
 
                 std::vector<nlohmann::json> bitfield_Map; // 050 mesajı için alanlar
                 bitfield_Map.push_back(m_cat_definition["items"][5]["data_fields"][0]["items"][0]);
@@ -90,74 +83,40 @@ public:
                 {
                     if (parser.bitfield[i] == true) // Available Map for compound vector(extandablebitsitem)
                     {                               //[1,0,0,1,0,1,0,0] // [COM,0,0,PSR,0,MDS,0,0]
-                            if (i == 0)
-                            {
-                                FixedBitFieldItemParser parser(bitfield_Map[0]["data_fields"][0], "");
-                                parsedBytes = parsedBytes + parser.parseItem(m_data, parsedBytes, 0, 0, mapping[decodeBytes]["COM"], 0);
-                                std::cout << "050 - COM  value =" << toString(mapping[decodeBytes]["COM"]) <<"\n";
-                            }
-                            else if (i == 3)
-                            {
-                                FixedBitFieldItemParser parser(bitfield_Map[1]["data_fields"][0], "");
-                                parsedBytes = parsedBytes + parser.parseItem(m_data, parsedBytes, 0, 0, mapping[decodeBytes]["PSR"], 0);
-                                std::cout << "050 - PSR  value =" << toString(mapping[decodeBytes]["PSR"]) <<"\n";
-                            }
-                            else if (i == 4)
-                            {
-                                FixedBitFieldItemParser parser(bitfield_Map[2]["data_fields"][0], "");
-                                parsedBytes = parsedBytes + parser.parseItem(m_data, parsedBytes, 0, 0, mapping[decodeBytes]["SSR"], 0);
-                                std::cout << "050 - SSR  value =" << toString(mapping[decodeBytes]["SSR"]) <<"\n";
-                            }
-                            else if (i == 5)
-                            {
-                                FixedBitFieldItemParser parser(bitfield_Map[3]["data_fields"][0], "");
-                                parsedBytes = parsedBytes + parser.parseItem(m_data, parsedBytes, 0, 0, mapping[decodeBytes]["MDS"], 0);
-                                std::cout << "050 - MDS  value =" << toString(mapping[decodeBytes]["MDS"]) <<"\n";
-                            }
+                        if (i == 0)
+                        {
+                            FixedBitFieldItemParser parser(bitfield_Map[0]["data_fields"][0], "");
+                            parsedBytes = parsedBytes + parser.parseItem(m_data, parsedBytes, 0, 0, mapping[decodeBytes]["COM"], 0);
+                            std::cout << "050 - COM  value =" << toString(mapping[decodeBytes]["COM"]) << "\n";
+                        }
+                        else if (i == 3)
+                        {
+                            FixedBitFieldItemParser parser(bitfield_Map[1]["data_fields"][0], "");
+                            parsedBytes = parsedBytes + parser.parseItem(m_data, parsedBytes, 0, 0, mapping[decodeBytes]["PSR"], 0);
+                            std::cout << "050 - PSR  value =" << toString(mapping[decodeBytes]["PSR"]) << "\n";
+                        }
+                        else if (i == 4)
+                        {
+                            FixedBitFieldItemParser parser(bitfield_Map[2]["data_fields"][0], "");
+                            parsedBytes = parsedBytes + parser.parseItem(m_data, parsedBytes, 0, 0, mapping[decodeBytes]["SSR"], 0);
+                            std::cout << "050 - SSR  value =" << toString(mapping[decodeBytes]["SSR"]) << "\n";
+                        }
+                        else if (i == 5)
+                        {
+                            FixedBitFieldItemParser parser(bitfield_Map[3]["data_fields"][0], "");
+                            parsedBytes = parsedBytes + parser.parseItem(m_data, parsedBytes, 0, 0, mapping[decodeBytes]["MDS"], 0);
+                            std::cout << "050 - MDS  value =" << toString(mapping[decodeBytes]["MDS"]) << "\n";
+                        }
                     }
                 }
-
-                // for (auto i = 0; i < parser.bitfield.size(); i++)
-                // {
-                //     if (parser.bitfield[i] == true) // Available Map for compound vector(extandablebitsitem)
-                //     {                               //[1,0,0,1,0,1,0,0] // [COM,0,0,PSR,0,MDS,0,0]
-                //         for (auto j = 0; j < bitfield_Map.size(); j++)
-                //         {
-                //             if (bitfield_Map[j]["optional_bitfield_index"] == i)
-                //             {
-                //                 if (j == 0)
-                //                 {
-                //                     std::cout << "050 - COM  value = [NOGO RDPC RDPR OVLRDP OVLXMT MSC TSV] \n";
-                //                 }
-                //                 else if (j == 1)
-                //                 {
-                //                     std::cout << "050 - PSR value = [ANT CH-A/B OVL MSC]  \n";
-                //                 }
-                //                 else if (j == 2)
-                //                 {
-                //                 }
-                //                 else if (j == 3)
-                //                 {
-                //                     std::cout << "050 - MDS value = [ANT CH-A/B OVLSUR MSC SCF DLF OVLSCF OVLDLF] \n";
-                //                 }
-                //                 FixedBitFieldItemParser parser(bitfield_Map[j]["data_fields"][0], "");
-                //                 parsedBytes = parsedBytes + parser.parseItem(m_data, parsedBytes, 0, 0, m_cat_definition, 0);
-                //                 std::cout << "050 -" << bitfield_Map[j]["name"] << " value = [";
-                //                 for (auto val : parser.bitfield)
-                //                 {
-                //                     std::cout << val << " ";
-                //                 }
-                //                 std::cout << "]\n";
-                //             }
-                //         }
-                //     }
-                // }
             }
             else if (decodeBytes == "060")
             {
-                ExtendableBitsItemParser parser(m_cat_definition["items"][6]["data_fields"][0]["field_specification"], std::string("050 - System Configuration and Status"));
-                parser.parseItem(m_data, parsedBytes, 0, 0, m_cat_definition, 0);
+                ExtendableBitsItemParser parser(m_cat_definition["items"][6]["data_fields"][0]["field_specification"], std::string("060 - System Processing Mode"));
+                parser.parseItem(m_data, parsedBytes, 0, 0, mapping["060"], 0);
                 parsedBytes += 1; // 1 byte parsed
+
+                std::cout << "060 Available = " << toString(mapping[decodeBytes]["available"]) << "\n";
 
                 std::vector<nlohmann::json> bitfield_Map; // 050 mesajı için alanlar
                 bitfield_Map.push_back(m_cat_definition["items"][6]["data_fields"][0]["items"][0]);
@@ -169,35 +128,29 @@ public:
                 {
                     if (parser.bitfield[i] == true) // Available Map for compound vector(extandablebitsitem)
                     {                               //[1,0,0,1,0,1,0,0] // [COM,0,0,PSR,0,MDS,0,0]
-                        for (auto j = 0; j < bitfield_Map.size(); j++)
+                        if (i == 0)
                         {
-                            if (bitfield_Map[j]["optional_bitfield_index"] == i)
-                            {
-                                if (j == 0)
-                                {
-                                    std::cout << "060 - COM  value = [RED-RDP RED-XMT] \n";
-                                }
-                                else if (j == 1)
-                                {
-                                    std::cout << "060 - PSR value = [POL RED-RAD STC]  \n";
-                                }
-                                else if (j == 2)
-                                {
-                                    std::cout << "060 - SSR value = [RED-RAD]  \n";
-                                }
-                                else if (j == 3)
-                                {
-                                    std::cout << "060 - MDS value = [RED-RAD CLU] \n";
-                                }
-                                FixedBitFieldItemParser parser(bitfield_Map[j]["data_fields"][0], "");
-                                parsedBytes = parsedBytes + parser.parseItem(m_data, parsedBytes, 0, 0, m_cat_definition, 0);
-                                std::cout << "060 -" << bitfield_Map[j]["name"] << " value = [";
-                                for (auto val : parser.bitfield)
-                                {
-                                    std::cout << val << " ";
-                                }
-                                std::cout << "]\n";
-                            }
+                            FixedBitFieldItemParser parser(bitfield_Map[0]["data_fields"][0], "");
+                            parsedBytes = parsedBytes + parser.parseItem(m_data, parsedBytes, 0, 0, mapping[decodeBytes]["COM"], 0);
+                            std::cout << "060 - COM  value =" << toString(mapping[decodeBytes]["COM"]) << "\n";
+                        }
+                        else if (i == 3)
+                        {
+                            FixedBitFieldItemParser parser(bitfield_Map[1]["data_fields"][0], "");
+                            parsedBytes = parsedBytes + parser.parseItem(m_data, parsedBytes, 0, 0, mapping[decodeBytes]["PSR"], 0);
+                            std::cout << "060 - PSR  value =" << toString(mapping[decodeBytes]["PSR"]) << "\n";
+                        }
+                        else if (i == 4)
+                        {
+                            FixedBitFieldItemParser parser(bitfield_Map[2]["data_fields"][0], "");
+                            parsedBytes = parsedBytes + parser.parseItem(m_data, parsedBytes, 0, 0, mapping[decodeBytes]["SSR"], 0);
+                            std::cout << "060 - SSR  value =" << toString(mapping[decodeBytes]["SSR"]) << "\n";
+                        }
+                        else if (i == 5)
+                        {
+                            FixedBitFieldItemParser parser(bitfield_Map[3]["data_fields"][0], "");
+                            parsedBytes = parsedBytes + parser.parseItem(m_data, parsedBytes, 0, 0, mapping[decodeBytes]["MDS"], 0);
+                            std::cout << "060 - MDS  value =" << toString(mapping[decodeBytes]["MDS"]) << "\n";
                         }
                     }
                 }
@@ -236,29 +189,29 @@ public:
                 FixedBytesItemParser parser2(m_cat_definition["items"][8]["data_fields"][1], std::string("090 - Collimation Error AZIMUTH ERROR"));
                 parser2.parseItem(m_data, parsedBytes, 0, 0, m_cat_definition, 0);
                 parsedBytes += parser2.length_; // 1 byte parsed
-                std::cout << "010 AZIMUTH ERROR value = " << parser2.data_int * parser2.lsb_ << "\n";
+                std::cout << "090 AZIMUTH ERROR value = " << parser2.data_int * parser2.lsb_ << "\n";
             }
             else if (decodeBytes == "100")
             {
                 FixedBytesItemParser parser1(m_cat_definition["items"][9]["data_fields"][0], std::string("100 - Generic Polar Window"));
                 parser1.parseItem(m_data, parsedBytes, 0, 0, m_cat_definition, 0);
                 parsedBytes += parser1.length_; // 1 byte parsed
-                std::cout << "090 RHO-START value = " << parser1.data_int * parser1.lsb_ << " ";
+                std::cout << "100 RHO-START value = " << parser1.data_int * parser1.lsb_ << " ";
 
                 FixedBytesItemParser parser2(m_cat_definition["items"][9]["data_fields"][1], std::string("100 - Generic Polar Window"));
                 parser2.parseItem(m_data, parsedBytes, 0, 0, m_cat_definition, 0);
                 parsedBytes += parser2.length_; // 1 byte parsed
-                std::cout << "010 RHO-END value = " << parser2.data_int * parser2.lsb_ << "\n";
+                std::cout << "100 RHO-END value = " << parser2.data_int * parser2.lsb_ << "\n";
 
                 FixedBytesItemParser parser3(m_cat_definition["items"][9]["data_fields"][2], std::string("100 - Generic Polar Window"));
                 parser3.parseItem(m_data, parsedBytes, 0, 0, m_cat_definition, 0);
                 parsedBytes += parser3.length_; // 1 byte parsed
-                std::cout << "090 THETA-START value = " << parser3.data_int * parser3.lsb_ << " ";
+                std::cout << "100 THETA-START value = " << parser3.data_int * parser3.lsb_ << " ";
 
                 FixedBytesItemParser parser4(m_cat_definition["items"][9]["data_fields"][3], std::string("100 - Generic Polar Window"));
                 parser4.parseItem(m_data, parsedBytes, 0, 0, m_cat_definition, 0);
                 parsedBytes += parser4.length_; // 1 byte parsed
-                std::cout << "010 THETA-END value = " << parser4.data_int * parser4.lsb_ << "\n";
+                std::cout << "100 THETA-END value = " << parser4.data_int * parser4.lsb_ << "\n";
             }
             else if (decodeBytes == "110")
             {
@@ -272,17 +225,17 @@ public:
                 FixedBytesItemParser parser1(m_cat_definition["items"][11]["data_fields"][0], std::string("100 - 3D-Position Of Data Source"));
                 parser1.parseItem(m_data, parsedBytes, 0, 0, m_cat_definition, 0);
                 parsedBytes += parser1.length_; // 1 byte parsed
-                std::cout << "090 Height of Data Source value = " << parser1.data_int * parser1.lsb_ << " ";
+                std::cout << "120 Height of Data Source value = " << parser1.data_int * parser1.lsb_ << " ";
 
                 FixedBytesItemParser parser2(m_cat_definition["items"][11]["data_fields"][1], std::string("100 - 3D-Position Of Data Source"));
                 parser2.parseItem(m_data, parsedBytes, 0, 0, m_cat_definition, 0);
                 parsedBytes += parser2.length_; // 1 byte parsed
-                std::cout << "010 Latitude value = " << parser2.data_int * parser2.lsb_ << "\n";
+                std::cout << "120 Latitude value = " << parser2.data_int * parser2.lsb_ << "\n";
 
                 FixedBytesItemParser parser3(m_cat_definition["items"][11]["data_fields"][2], std::string("100 - 3D-Position Of Data Source"));
                 parser3.parseItem(m_data, parsedBytes, 0, 0, m_cat_definition, 0);
                 parsedBytes += parser3.length_; // 1 byte parsed
-                std::cout << "090 Longitude value = " << parser3.data_int * parser3.lsb_ << " ";
+                std::cout << "120 Longitude value = " << parser3.data_int * parser3.lsb_ << " ";
             }
         }
 
