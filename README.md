@@ -72,7 +72,7 @@ Use the `BLANK_README.md` to get started.
 - [x] Create a Test Message for CAT34
 - [x] Create a Test Environment
 - [x] Create a Manual Test Message Parser
-- [ ] Add generic template model for message parsing
+- [x] Add generic template model for message parsing
 - [ ] Add a json handler for data storage and json writer for logging
 - [ ] Add CAT21 Message
 - [ ] Add CAT48 Message
