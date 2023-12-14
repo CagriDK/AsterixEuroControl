@@ -28,7 +28,7 @@ public:
 
         for (auto decodeBytes : header_info.uap_list)
         {
-            ItemParser testParser(m_cat_definition["items"][CAT34_map.at(decodeBytes)]);
+            ItemParser testParser(m_cat_definition["items"][CAT34_items_order.at(decodeBytes)]);
             parsedBytes += testParser.parseItem(m_data, parsedBytes, 0, 0, mapping, 0);
             std::cout << mapping[decodeBytes].dump(4) << std::endl;
         }
@@ -64,6 +64,7 @@ public:
         {
             if (binaryRepresentation[val] == true)
             {
+                
                 header_info.uap_list.push_back(CAT34_uap_order[val]);
             }
         }
@@ -82,6 +83,6 @@ private:
     nlohmann::json m_cat_definition{""};
     nlohmann::json mapping{""};
     std::vector<std::string> CAT34_uap_order{"010", "000", "030", "020", "041", "050", "060", "FX", "070", "100", "110", "120", "090", "RE", "SP", "FX"};
-    std::map<std::string, int> CAT34_map{{"000", 0}, {"010", 1} , {"020", 2}, {"030", 3}, {"041", 4}, {"050", 5}, {"060", 6},{"070", 7}, {"090", 8},{"100", 9}, {"110", 10}, {"120", 11}};
+    std::map<std::string, int> CAT34_items_order{{"000", 0}, {"010", 1} , {"020", 2}, {"030", 3}, {"041", 4}, {"050", 5}, {"060", 6},{"070", 7}, {"090", 8},{"100", 9}, {"110", 10}, {"120", 11}};
     Cat34Record cat34_message;
 };
