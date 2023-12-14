@@ -30,8 +30,8 @@ file(GLOB SRC_SOURCES
 file(GLOB CAT_MESSAGES
      "CATMessages/*.cpp"
      "CATMessages/*.h"
-     "CATMessages/034*.cpp"
-     "CATMessages/034*.h"
+     "CATMessages/034/*.cpp"
+     "CATMessages/034/*.h"
 )
 
 add_executable(pAsterix 
