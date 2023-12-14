@@ -26,9 +26,8 @@ using namespace nlohmann;
 
 //#define debug_ name_=="Last Measured Mode C Code"
 
-FixedBitsItemParser::FixedBitsItemParser(const nlohmann::json& item_definition, const std::string& long_name_prefix,
-                                         unsigned int byte_length)
-    : ItemParserBase(item_definition, long_name_prefix), byte_length_(byte_length)
+FixedBitsItemParser::FixedBitsItemParser(const nlohmann::json& item_definition,unsigned int byte_length)
+    : ItemParserBase(item_definition), byte_length_(byte_length)
 {
     assert(type_ == "fixed_bits");
 

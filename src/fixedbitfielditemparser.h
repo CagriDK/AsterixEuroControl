@@ -27,7 +27,7 @@
 class FixedBitFieldItemParser : public ItemParserBase
 {
   public:
-    FixedBitFieldItemParser(const nlohmann::json& item_definition, const std::string& long_name_prefix);
+    FixedBitFieldItemParser(const nlohmann::json& item_definition);
     virtual ~FixedBitFieldItemParser() {}
 
     virtual size_t parseItem(const char* data, size_t index, size_t size,

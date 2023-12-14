@@ -15,28 +15,27 @@
  * along with ATSDB.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef EXTENDABLEBITSITEMPARSER_H
-#define EXTENDABLEBITSITEMPARSER_H
+#ifndef COMPOUNDITEMPARSER_H
+#define COMPOUNDITEMPARSER_H
+
+#include <memory>
+#include <vector>
 
 #include "itemparserbase.h"
 
-// parses all bits per byte into array<bool>, the last of each byte signifying the extension into
-// next byte
-class ExtendableBitsItemParser : public ItemParserBase
+class CompoundItemParser : public ItemParserBase
 {
   public:
-    ExtendableBitsItemParser(const nlohmann::json& item_definition);
-    virtual ~ExtendableBitsItemParser() {}
+    CompoundItemParser(const nlohmann::json& item_definition);
+    virtual ~CompoundItemParser() {}
 
     virtual size_t parseItem(const char* data, size_t index, size_t size,
                              size_t current_parsed_bytes, nlohmann::json& target,
                              bool debug) override;
 
-  public:
-    std::vector<bool> bitfield;
-    std::string data_type_;
-    bool reverse_bits_{false};
-    bool reverse_order_{false};
+  protected:
+    std::unique_ptr<ItemParserBase> field_specification_;
+    std::vector<std::unique_ptr<ItemParserBase>> items_;
 };
 
-#endif  // EXTENDABLEBITSITEMPARSER_H
+#endif  // COMPOUNDITEMPARSER_H

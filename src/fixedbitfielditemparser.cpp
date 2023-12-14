@@ -21,9 +21,8 @@
 using namespace std;
 using namespace nlohmann;
 
-FixedBitFieldItemParser::FixedBitFieldItemParser(const nlohmann::json &item_definition,
-                                                 const std::string &long_name_prefix)
-    : ItemParserBase(item_definition, long_name_prefix)
+FixedBitFieldItemParser::FixedBitFieldItemParser(const nlohmann::json &item_definition)
+    : ItemParserBase(item_definition)
 {
     assert(type_ == "fixed_bitfield");
 
@@ -68,7 +67,7 @@ FixedBitFieldItemParser::FixedBitFieldItemParser(const nlohmann::json &item_defi
     for (const json &data_item_it : items)
     {
         item_name = data_item_it.at("name");
-        item = new FixedBitsItemParser(data_item_it, long_name_prefix_, length_); // leave out own name
+        item = new FixedBitsItemParser(data_item_it, length_); // leave out own name
         assert(item);
         items_.push_back(std::unique_ptr<ItemParserBase>{item});
     }

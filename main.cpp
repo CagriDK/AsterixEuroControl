@@ -11,12 +11,6 @@
 #include <cassert>
 #include <algorithm>
 
-
-#include "src/extendablebitsitemparser.h"
-#include "src/fixedbytesitemparser.h"
-#include "src/fixedbitfielditemparser.h"
-#include "src/fixedbitsitemparser.h"
-
 #include "CATMessages/034/cat34.h"
 
 int main(int, char **)

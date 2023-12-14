@@ -29,14 +29,14 @@
 #include <exception>
 #include <string>
 
+
 class ItemParserBase
 {
 public:
-    ItemParserBase(const nlohmann::json& item_definition, const std::string& long_name_prefix="");
+    ItemParserBase(const nlohmann::json& item_definition);
     virtual ~ItemParserBase() {}
 
-    static ItemParserBase* createItemParser(const nlohmann::json& item_definition,
-                                            const std::string& long_name_prefix);
+    static ItemParserBase* createItemParser(const nlohmann::json& item_definition);
 
     // always return number of parsed bytes
     virtual size_t parseItem(const char* data, size_t index, size_t size,
@@ -49,8 +49,6 @@ public:
 public:
     const nlohmann::json& item_definition_;
     std::string name_;
-    std::string long_name_prefix_;
-    std::string long_name_;
     std::string type_;
 };
 

@@ -21,8 +21,8 @@
 
 using namespace nlohmann;
 
-FixedBytesItemParser::FixedBytesItemParser(const nlohmann::json& item_definition, const std::string& long_name_prefix)
-    : ItemParserBase(item_definition, long_name_prefix)
+FixedBytesItemParser::FixedBytesItemParser(const nlohmann::json& item_definition)
+    : ItemParserBase(item_definition)
 {
     assert(type_ == "fixed_bytes");
 
