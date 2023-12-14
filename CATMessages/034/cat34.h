@@ -28,80 +28,9 @@ public:
 
         for (auto decodeBytes : header_info.uap_list)
         {
-            if (decodeBytes == "000")
-            {
-                ItemParser testParser(m_cat_definition["items"][0]);
-                parsedBytes += testParser.parseItem(m_data, parsedBytes, 0, 0, mapping, 0);
-                std::cout << mapping["000"].dump(4) << std::endl;
-                //std::cout << "000 Mapping Message Type value = " << toString(mapping[decodeBytes]["Message Type"]) << "\n";
-            }
-            else if (decodeBytes == "010")
-            {
-                ItemParser testParser(m_cat_definition["items"][1]);
-                parsedBytes += testParser.parseItem(m_data, parsedBytes, 0, 0, mapping, 0);
-                std::cout << mapping["010"].dump(4) << std::endl;
-            }
-            else if (decodeBytes == "020")
-            {
-                ItemParser testParser(m_cat_definition["items"][2]);
-                parsedBytes += testParser.parseItem(m_data, parsedBytes, 0, 0, mapping, 0);
-                std::cout << mapping["020"].dump(4) << std::endl;
-            }
-            else if (decodeBytes == "030")
-            {
-                ItemParser testParser(m_cat_definition["items"][3]);
-                parsedBytes += testParser.parseItem(m_data, parsedBytes, 0, 0, mapping, 0);
-                std::cout << mapping["030"].dump(4) << std::endl;
-            }
-            else if (decodeBytes == "041")
-            {
-                ItemParser testParser(m_cat_definition["items"][4]);
-                parsedBytes += testParser.parseItem(m_data, parsedBytes, 0, 0, mapping, 0);
-                std::cout << mapping["041"].dump(4) << std::endl;
-            }
-            else if (decodeBytes == "050")
-            {
-                ItemParser testParser(m_cat_definition["items"][5]);
-                parsedBytes += testParser.parseItem(m_data, parsedBytes, 0, 0, mapping, 0);
-                std::cout << mapping["050"].dump(4) << std::endl;
-            }
-            else if (decodeBytes == "060")
-            {
-                ItemParser testParser(m_cat_definition["items"][6]);
-                parsedBytes += testParser.parseItem(m_data, parsedBytes, 0, 0, mapping, 0);
-                std::cout << mapping["060"].dump(4) << std::endl;
-            }
-            else if (decodeBytes == "070")
-            {
-                ItemParser testParser(m_cat_definition["items"][7]);
-                parsedBytes += testParser.parseItem(m_data, parsedBytes, 0, 0, mapping, 0);
-                std::cout << mapping["070"].dump(4) << std::endl;
-            }
-            else if (decodeBytes == "090")
-            {
-                ItemParser testParser(m_cat_definition["items"][8]);
-                parsedBytes += testParser.parseItem(m_data, parsedBytes, 0, 0, mapping, 0);
-                std::cout << mapping["090"].dump(4) << std::endl;
-            }
-            else if (decodeBytes == "100")
-            {
-                ItemParser testParser(m_cat_definition["items"][9]);
-                parsedBytes += testParser.parseItem(m_data, parsedBytes, 0, 0, mapping, 0);
-                std::cout << mapping["100"].dump(4) << std::endl;
-            }
-            else if (decodeBytes == "110")
-            {
-                ItemParser testParser(m_cat_definition["items"][10]);
-                parsedBytes += testParser.parseItem(m_data, parsedBytes, 0, 0, mapping, 0);
-                std::cout << mapping["110"].dump(4) << std::endl;
-            }
-            else if (decodeBytes == "120")
-            {
-
-                ItemParser testParser(m_cat_definition["items"][11]);
-                parsedBytes += testParser.parseItem(m_data, parsedBytes, 0, 0, mapping, 0);
-                std::cout << mapping["120"].dump(4) << std::endl;
-            }
+            ItemParser testParser(m_cat_definition["items"][CAT34_map.at(decodeBytes)]);
+            parsedBytes += testParser.parseItem(m_data, parsedBytes, 0, 0, mapping, 0);
+            std::cout << mapping[decodeBytes].dump(4) << std::endl;
         }
 
         return true;
@@ -153,5 +82,6 @@ private:
     nlohmann::json m_cat_definition{""};
     nlohmann::json mapping{""};
     std::vector<std::string> CAT34_uap_order{"010", "000", "030", "020", "041", "050", "060", "FX", "070", "100", "110", "120", "090", "RE", "SP", "FX"};
+    std::map<std::string, int> CAT34_map{{"000", 0}, {"010", 1} , {"020", 2}, {"030", 3}, {"041", 4}, {"050", 5}, {"060", 6},{"070", 7}, {"090", 8},{"100", 9}, {"110", 10}, {"120", 11}};
     Cat34Record cat34_message;
 };
