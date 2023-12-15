@@ -5,13 +5,12 @@ CAT34::CAT34(nlohmann::json cat_def, nlohmann::json cat_map, const char *data)
 {
     m_cat_definition = cat_def;
     mapping = cat_map;
-
     m_data = data;
 };
 
 CAT34::~CAT34()
 {
-    delete[] m_header;
+
 };
 
 bool CAT34::decodeData()

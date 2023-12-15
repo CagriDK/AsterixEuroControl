@@ -1,7 +1,7 @@
 #pragma once
 
-#include<string>
-#include"../../lib/json.hpp"
+#include <string>
+#include "../../lib/json.hpp"
 #include <fstream>
 #include <vector>
 #include "../../src/string_conv.h"
@@ -16,17 +16,28 @@
 
 class CATMessageBase
 {
+
 public:
     CATMessageBase();
     virtual ~CATMessageBase();
 
-    //Decode Data Network(TCP/IP & UDP)
+    // Decode Data Network(TCP/IP & UDP)
     virtual bool decodeData() = 0;
 
 private:
-    //Decode First 4 Bytes (FSPEC)
+    // Decode First 4 Bytes (FSPEC)
     virtual size_t decodeHeader() = 0;
 
-private:
+protected:
 
+    struct MessageHeader
+    {
+        int cat_type;
+        int message_len;
+        std::vector<std::string> uap_list;
+    };
+
+    const char *m_data;
+    nlohmann::json m_cat_definition{""};
+    nlohmann::json mapping{""};
 };
