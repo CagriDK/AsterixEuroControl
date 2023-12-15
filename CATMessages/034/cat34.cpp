@@ -1,15 +1,13 @@
 #include "cat34.h"
 #include <iostream>
 
-CAT34::CAT34(nlohmann::json cat_def, nlohmann::json cat_map, const char *data)
+CAT34::CAT34(nlohmann::json cat_def, const char *data)
 {
     m_cat_definition = cat_def;
-    mapping = cat_map;
     m_data = data;
 };
 
-CAT34::~CAT34()
-{
+CAT34::~CAT34(){
 
 };
 
@@ -23,6 +21,8 @@ bool CAT34::decodeData()
         parsedBytes += testParser.parseItem(m_data, parsedBytes, 0, 0, mapping, 0);
         std::cout << mapping[decodeBytes].dump(4) << std::endl;
     }
+
+    to_json(mapping);
 
     return true;
 }
@@ -61,4 +61,41 @@ size_t CAT34::decodeHeader()
     }
     parsedBytes += byteIndex;
     return 0;
+}
+
+void CAT34::to_json(nlohmann::json &j)
+{
+
+    auto copy_Json_Item = [](nlohmann::json &j, nlohmann::json &cat_Map, std::string key)
+    {
+        if (j[key].empty())
+        {
+            std::cout << key << " : message is not exist!" << std::endl;
+        }
+        else
+        {
+            for (const auto &item : j.items())
+            {
+                cat_Map[item.key()] = item.value();
+            }
+        }
+    };
+
+    copy_Json_Item(j, cat34_json, "000");
+    copy_Json_Item(j, cat34_json, "010");
+    copy_Json_Item(j, cat34_json, "020");
+    copy_Json_Item(j, cat34_json, "030");
+    copy_Json_Item(j, cat34_json, "041");
+    copy_Json_Item(j, cat34_json, "050");
+    copy_Json_Item(j, cat34_json, "060");
+    copy_Json_Item(j, cat34_json, "070");
+    copy_Json_Item(j, cat34_json, "090");
+    copy_Json_Item(j, cat34_json, "100");
+    copy_Json_Item(j, cat34_json, "110");
+    copy_Json_Item(j, cat34_json, "120");
+}
+
+void CAT34::from_json(Cat34Record &cat_data)
+{
+
 }

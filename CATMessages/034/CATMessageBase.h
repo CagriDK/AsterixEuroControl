@@ -4,8 +4,8 @@
 #include "../../lib/json.hpp"
 #include <fstream>
 #include <vector>
+#include <functional>
 #include "../../src/string_conv.h"
-
 #include "../../src/itemparser.h"
 #include "../../src/extendablebitsitemparser.h"
 #include "../../src/compounditemparser.h"
@@ -23,6 +23,8 @@ public:
 
     // Decode Data Network(TCP/IP & UDP)
     virtual bool decodeData() = 0;
+    virtual void to_json(nlohmann::json &j) = 0;
+    // virtual void from_json() = 0;
 
 private:
     // Decode First 4 Bytes (FSPEC)
@@ -39,5 +41,5 @@ protected:
 
     const char *m_data;
     nlohmann::json m_cat_definition{""};
-    nlohmann::json mapping{""};
+    nlohmann::json mapping;
 };
