@@ -47,7 +47,7 @@ size_t CAT34::decodeHeader()
         }
 
         ++byteIndex;
-    } while (moreBytes && byteIndex < 4);
+    } while (moreBytes && byteIndex > 3);
 
     // UAP list ile karşılaştır, fspec alanını, octet dizilimi ters olduğu için reverse yaptım.
     std::reverse(binaryRepresentation.begin(), binaryRepresentation.end());
