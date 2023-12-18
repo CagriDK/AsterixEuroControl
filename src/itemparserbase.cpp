@@ -22,26 +22,22 @@
 #include <string>
 #include <algorithm>
 
-
+#include "itemparser.h"
 #include "extendablebitsitemparser.h"
 #include "compounditemparser.h"
 #include "fixedbitfielditemparser.h"
 #include "fixedbytesitemparser.h"
 #include "fixedbitsitemparser.h"
 #include "optionalitemparser.h"
-
-// #include "dynamicbytesitemparser.h"
-// #include "extendableitemparser.h"
-// #include "itemparser.h"
-// #include "logger.h"
-
-// #include "repetetiveitemparser.h"
-// #include "skipbytesitemparser.h"
+#include "dynamicbytesitemparser.h"
+#include "extendableitemparser.h"
+#include "repetetiveitemparser.h"
+#include "skipbytesitemparser.h"
 
 using namespace std;
 using namespace nlohmann;
 
-ItemParserBase::ItemParserBase(const nlohmann::json& item_definition)
+ItemParserBase::ItemParserBase(const nlohmann::json &item_definition)
     : item_definition_(item_definition)
 {
     if (!item_definition.contains("name"))
@@ -55,7 +51,7 @@ ItemParserBase::ItemParserBase(const nlohmann::json& item_definition)
     type_ = item_definition.at("type");
 }
 
-ItemParserBase* ItemParserBase::createItemParser(const nlohmann::json& item_definition)
+ItemParserBase *ItemParserBase::createItemParser(const nlohmann::json &item_definition)
 {
     if (!item_definition.contains("name"))
         throw runtime_error("item creation without JSON name definition");
@@ -67,53 +63,49 @@ ItemParserBase* ItemParserBase::createItemParser(const nlohmann::json& item_defi
 
     std::string type = item_definition.at("type");
 
-    // if (type == "item")
-    // {
-    //     return new ItemParser(item_definition, long_name_prefix);
-    // }
-
-    // else if (type == "skip_bytes")
-    // {
-    //     return new SkipBytesItemParser(item_definition, long_name_prefix);
-    // }
-    // else if (type == "dynamic_bytes")
-    // {
-    //     return new DynamicBytesItemParser(item_definition, long_name_prefix);
-    // }
-
-    // else if (type == "extendable_bits")
-    // {
-    //     return new ExtendableBitsItemParser(item_definition, long_name_prefix);
-    // }
-    // else if (type == "extendable")
-    // {
-    //     return new ExtendableItemParser(item_definition, long_name_prefix);
-    // }
-
-    // else if (type == "repetitive")
-    // {
-    //     return new RepetetiveItemParser(item_definition, long_name_prefix);
-    // }
-
+    if (type == "item")
+    {
+        return new ItemParser(item_definition);
+    }
+    else if (type == "skip_bytes")
+    {
+        return new SkipBytesItemParser(item_definition);
+    }
+    else if (type == "extendable_bits")
+    {
+        return new ExtendableBitsItemParser(item_definition);
+    }
+    else if (type == "extendable")
+    {
+        return new ExtendableItemParser(item_definition);
+    }
     if (type == "extendable_bits")
     {
         return new ExtendableBitsItemParser(item_definition);
     }
-        else if (type == "fixed_bytes")
+    else if (type == "fixed_bytes")
     {
         return new FixedBytesItemParser(item_definition);
     }
-        else if (type == "compound")
+    else if (type == "compound")
     {
         return new CompoundItemParser(item_definition);
     }
-        else if (type == "fixed_bitfield")
+    else if (type == "fixed_bitfield")
     {
         return new FixedBitFieldItemParser(item_definition);
     }
-        else if (type == "optional_item")
+    else if (type == "optional_item")
     {
         return new OptionalItemParser(item_definition);
+    }
+    else if (type == "dynamic_bytes")
+    {
+        return new DynamicBytesItemParser(item_definition);
+    }
+    else if (type == "repetitive")
+    {
+        return new RepetetiveItemParser(item_definition);
     }
     else
         throw runtime_error("item creation name '" + name + "' with unknown type '" + type + "'");
@@ -123,38 +115,38 @@ std::string ItemParserBase::name() const { return name_; }
 
 std::string ItemParserBase::type() const { return type_; }
 
-bool variableHasValue(const nlohmann::json& data,
-                      const std::vector<std::string>& variable_name_parts,
-                      const nlohmann::json& variable_value)
+bool variableHasValue(const nlohmann::json &data,
+                      const std::vector<std::string> &variable_name_parts,
+                      const nlohmann::json &variable_value)
 {
-    const nlohmann::json* val_ptr = &data;
+    const nlohmann::json *val_ptr = &data;
     // std::vector <std::string> sub_keys = split(variable_name, '.');
-    for (const std::string& sub_key : variable_name_parts)
+    for (const std::string &sub_key : variable_name_parts)
     {
         if (val_ptr->contains(sub_key))
         {
-            if (sub_key == variable_name_parts.back())  // last found
+            if (sub_key == variable_name_parts.back()) // last found
             {
                 val_ptr = &val_ptr->at(sub_key);
                 break;
             }
 
-            if (val_ptr->at(sub_key).is_object())  // not last, step in
+            if (val_ptr->at(sub_key).is_object()) // not last, step in
                 val_ptr = &val_ptr->at(sub_key);
-            else  // not last key, and not object
+            else // not last key, and not object
             {
                 val_ptr = nullptr;
                 break;
             }
         }
-        else  // not found
+        else // not found
         {
             val_ptr = nullptr;
             break;
         }
     }
 
-    if (val_ptr == nullptr || *val_ptr == nullptr)  // not found
+    if (val_ptr == nullptr || *val_ptr == nullptr) // not found
         return false;
     else
         return *val_ptr == variable_value;
