@@ -38,7 +38,7 @@ size_t CAT34::decodeHeader()
     bool moreBytes;
     do
     {
-        std::bitset<8> fspecBits(m_data[3]);
+        std::bitset<8> fspecBits(m_data[byteIndex]);
         moreBytes = fspecBits[0]; // En sağdaki bit, daha fazla FSPEC byte'ı olup olmadığını belirtir
 
         for (size_t bitIndex = 0; bitIndex < 8; ++bitIndex)
@@ -47,7 +47,7 @@ size_t CAT34::decodeHeader()
         }
 
         ++byteIndex;
-    } while (moreBytes && byteIndex > 3);
+    } while (moreBytes);
 
     // UAP list ile karşılaştır, fspec alanını, octet dizilimi ters olduğu için reverse yaptım.
     std::reverse(binaryRepresentation.begin(), binaryRepresentation.end());
