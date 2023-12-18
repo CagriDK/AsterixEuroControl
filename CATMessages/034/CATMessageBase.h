@@ -29,6 +29,7 @@ public:
 private:
     // Decode First 4 Bytes (FSPEC)
     virtual size_t decodeHeader() = 0;
+    virtual void copy_to_Json(nlohmann::json &j, nlohmann::json &cat_Map, std::string key) = 0;
 
 protected:
 
