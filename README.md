@@ -73,11 +73,11 @@ Use the `BLANK_README.md` to get started.
 - [x] Create a Test Environment
 - [x] Create a Manual Test Message Parser
 - [x] Add generic template model for message parsing
-- [ ] Add a json handler for data storage and json writer for logging
+- [x] Add a json handler for data storage and json writer for logging
 - [ ] Add CAT21 Message
 - [ ] Add CAT48 Message
 - [ ] Add CAT62 Message
-- [ ] Make the parser generic for all CAT Messages
+- [x] Make the parser generic for all CAT Messages
 
 See the [open issues](https://github.com/CagriDK/AsterixEuroControl/issues) for a full list of proposed features (and known issues).
 
