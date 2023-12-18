@@ -18,6 +18,8 @@
 *** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
 *** https://www.markdownguide.org/basic-syntax/#reference-style-links
 -->
+[![MIT License][license-shield]][license-url]
+[![LinkedIn][linkedin-shield]][linkedin-url]
 
 <!-- PROJECT LOGO -->
 <br />
@@ -58,9 +60,27 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+<pre>
+Empty Fields of CAT34 Message shown below:
+</pre>
+[![Product Name Screen Shot1][product-screenshot1]](https://example.com)
 
-Use the `BLANK_README.md` to get started.
+<pre>
+Using a binary message for test case :
+ASTERIX data block at pos 0: cat=34; len=20
+Data: 22 00 14 f6 00 02 02 41 6d ec 40 94 40 60 44 00 94 00 00 10
+</pre>
+
+<pre>
+After resolving data the outcome of json files shown below (Page 1):
+</pre>
+[![Product Name Screen Shot2][product-screenshot2]](https://example.com)
+
+<pre>
+After resolving data the outcome of json files shown below (Page 2):
+</pre>
+
+[![Product Name Screen Shot3][product-screenshot3]](https://example.com)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -115,7 +135,9 @@ Project Link: [https://github.com/CagriDK/AsterixEuroControl](https://github.com
 [license-url]: https://github.com/othneildrew/Best-README-Template/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/othneildrew
-[product-screenshot]: images/screenshot.png
+[product-screenshot1]: images/EmptyFields_34.PNG
+[product-screenshot2]: images/FilledField1_34.PNG
+[product-screenshot3]: images/FilledField2_34.PNG
 [Next.js]: https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
 [Next-url]: https://nextjs.org/
 [React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
