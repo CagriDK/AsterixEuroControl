@@ -94,7 +94,7 @@ After resolving data the outcome of json files shown below (Page 2):
 - [x] Create a Manual Test Message Parser
 - [x] Add generic template model for message parsing
 - [x] Add a json handler for data storage and json writer for logging
-- [ ] Add CAT21 Message
+- [x] Add CAT21 Message
 - [ ] Add CAT48 Message
 - [ ] Add CAT62 Message
 - [x] Make the parser generic for all CAT Messages
