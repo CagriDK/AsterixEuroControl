@@ -17,13 +17,41 @@ bool CAT34::decodeData()
 
     for (auto decodeBytes : header_info.uap_list)
     {
-        ItemParser testParser(m_cat_definition["items"][CAT34_items_order.at(decodeBytes)]);
-        parsedBytes += testParser.parseItem(m_data, parsedBytes, 0, 0, mapping, 0);
-        std::cout << mapping[decodeBytes].dump(4) << std::endl;
+        if (decodeBytes == "FX")
+        {
+            //"FX" (Field Extension Indicator)
+            std::cout << "FX" << std::endl;
+            continue;
+        }
+        else if (decodeBytes == "RE")
+        {
+            //"RE" (Reserved Expansion Field)
+            std::cout << "RE" << std::endl;
+            continue;
+        }
+        else if (decodeBytes == "SP")
+        {
+            //"SP" (Special Purpose Field)
+            std::cout << "SP" << std::endl;
+            continue;
+        }
+        else if (decodeBytes == "-")
+        {
+            //"-" (Empyt Line - Data Not Related With Radar)
+            std::cout << "-" << std::endl;
+            parsedBytes += 1;
+            continue;
+        }
+        else
+        {
+            ItemParser testParser(m_cat_definition["items"][CAT34_items_order.at(decodeBytes)]);
+            parsedBytes += testParser.parseItem(m_data, parsedBytes, 0, 0, mapping, 0);
+            std::cout << mapping[decodeBytes].dump(4) << std::endl;
+        }
     }
-
-    to_json(mapping);
-    from_json(cat34_message);
+    std::cout << mapping.dump(4) << std::endl;
+    // to_json(mapping);
+    // from_json(cat34_message);
 
     return true;
 }
@@ -42,7 +70,7 @@ size_t CAT34::decodeHeader()
         std::bitset<8> fspecBits(m_data[byteIndex]);
         moreBytes = fspecBits[0]; // En sağdaki bit, daha fazla FSPEC byte'ı olup olmadığını belirtir
 
-        for (size_t bitIndex = 0; bitIndex < 8; ++bitIndex)
+        for (int bitIndex = 7; bitIndex >= 0; --bitIndex)
         {
             binaryRepresentation.push_back(fspecBits[bitIndex]); // FSPEC'in geri kalan bitlerini oku
         }
@@ -51,7 +79,7 @@ size_t CAT34::decodeHeader()
     } while (moreBytes);
 
     // UAP list ile karşılaştır, fspec alanını, octet dizilimi ters olduğu için reverse yaptım.
-    std::reverse(binaryRepresentation.begin(), binaryRepresentation.end());
+
     for (auto val = 0; val < binaryRepresentation.size(); val++)
     {
         if (binaryRepresentation[val] == true)
@@ -129,13 +157,13 @@ void CAT34::from_json(Cat34Record &cat_data)
     copy_from_Json(cat34_json["060"]["MDS"], "CLU", cat_data.systemProcessingMode.mds.clu);
 
     int repetition_item = cat34_json["070"]["REP"].is_null() ? 0 : cat34_json["070"]["REP"].get<int>();
-    for(auto idx = 0; idx < repetition_item; idx++)
+    for (auto idx = 0; idx < repetition_item; idx++)
     {
         Cat34_070_MessageCountValues::CountValue tempValue;
         tempValue.type = cat34_json["070"]["plot_count_values"][idx]["TYP"];
         tempValue.type = cat34_json["070"]["plot_count_values"][idx]["COUNTER"];
         cat_data.messageCountValues.countValues.push_back(tempValue);
-    }    
+    }
 
     copy_from_Json(cat34_json["090"], "Range Error", cat_data.collimationError.rangeError);
     copy_from_Json(cat34_json["090"], "Azimuth Error", cat_data.collimationError.azimuthError);
@@ -176,6 +204,6 @@ void CAT34::copy_from_Json(const nlohmann::json &j, const std::string &key, T &v
     }
     else
     {
-        //std::cout << key << " : message is not exist!" << std::endl;
+        // std::cout << key << " : message is not exist!" << std::endl;
     }
 }
