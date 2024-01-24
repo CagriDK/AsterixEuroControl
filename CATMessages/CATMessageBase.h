@@ -5,14 +5,14 @@
 #include <fstream>
 #include <vector>
 #include <functional>
-#include "../src/string_conv.h"
-#include "../src/itemparser.h"
-#include "../src/extendablebitsitemparser.h"
-#include "../src/compounditemparser.h"
-#include "../src/fixedbitfielditemparser.h"
-#include "../src/fixedbytesitemparser.h"
-#include "../src/fixedbitsitemparser.h"
-#include "../src/optionalitemparser.h"
+#include "items/string_conv.h"
+#include "items/itemparser.h"
+#include "items/extendablebitsitemparser.h"
+#include "items/compounditemparser.h"
+#include "items/fixedbitfielditemparser.h"
+#include "items/fixedbytesitemparser.h"
+#include "items/fixedbitsitemparser.h"
+#include "items/optionalitemparser.h"
 
 class CATMessageBase
 {

@@ -21,7 +21,7 @@
 #include <string>
 #include <vector>
 
-#include "../lib/json.hpp"
+#include "../../lib/json.hpp"
 
 extern int char2int(char input);
 extern size_t hex2bin(const char* src, char* target);

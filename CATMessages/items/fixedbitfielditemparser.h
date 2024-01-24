@@ -22,7 +22,7 @@
 #include <vector>
 
 #include "itemparserbase.h"
-#include "../lib/json.hpp"
+#include "../../lib/json.hpp"
 
 class FixedBitFieldItemParser : public ItemParserBase
 {

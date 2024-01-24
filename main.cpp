@@ -11,14 +11,17 @@
 #include <cassert>
 #include <algorithm>
 
+#include "CATMessages/021/cat21.h"
 #include "CATMessages/034/cat34.h"
+#include "CATMessages/048/cat48.h"
+#include "CATMessages/062/cat62.h"
 
 int main(int, char **)
 {
     nlohmann::json definition, mapping;
+    //definition = nlohmann::json::parse(std::ifstream("../CATMessages/def/cat021_0.26.json"));
     //definition = nlohmann::json::parse(std::ifstream("../CATMessages/def/cat034_1.26.json"));
     //definition = nlohmann::json::parse(std::ifstream("../CATMessages/def/cat062_1.16.json"));
-    //definition = nlohmann::json::parse(std::ifstream("../CATMessages/def/cat021_0.26.json"));
     definition = nlohmann::json::parse(std::ifstream("../CATMessages/def/cat048_1.23.json"));
 
     const char *data = "\x30\x00\x30\xFD\xF7\x02\x19\xC9\x35\x6D\x4D\xA0\xC5\xAF\xF1\xE0\x02\x00\x05\x28\x3C\x66\x0C\x10\xC2\x36\xD4\x18\x20\x01\xC0\x78\x00\x31\xBC\x00\x00\x40\x0D\xEB\x07\xB9\x58\x2E\x41\x00\x20\xF5";
@@ -28,8 +31,11 @@ int main(int, char **)
 
     std::cout << "CAT CATEGORY = " << static_cast<int>(static_cast<unsigned char>(data[0])) << "\n";
 
-    CAT34 temp_Parser34(definition, data);
+    //CAT21 temp_Parser(definition, data);
+    //CAT34 temp_Parser(definition, data);
+    CAT48 temp_Parser(definition, data);
+    //CAT62 temp_Parser(definition, data);
 
-    CATMessageBase *temp_Parser = &temp_Parser34;
-    temp_Parser->decodeData();
+    CATMessageBase *temp_Parser_base = &temp_Parser;
+    temp_Parser_base->decodeData();
 }

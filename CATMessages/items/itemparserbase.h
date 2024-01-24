@@ -20,7 +20,7 @@
 
 #include "iteminfo.h"
 
-#include "../lib/json.hpp"
+#include "../../lib/json.hpp"
 
 #include <cstddef>
 #include <sstream>
