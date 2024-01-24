@@ -258,7 +258,7 @@ TEST_CASE("jASTERIX CAT034 1.26", "[jASTERIX CAT034]")
     jASTERIX::jASTERIX jasterix(definition_path, true, true, false);
 
     //    ; ASTERIX data block at pos 0: cat=34; len=20
-    //      220014f6000202416dec40944060440094000010
+    //      22 0014 f6 000202416dec40944060440094000010
 
     // echo -n 220014f6000202416dec40944060440094000010 | xxd -r -p > cat034ed1.26.bin
 

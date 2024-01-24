@@ -44,7 +44,7 @@ bool CAT34::decodeData()
         }
         else
         {
-            ItemParser testParser(m_cat_definition["items"][CAT34_items_order.at(decodeBytes)]);
+            ItemParser testParser(m_cat_definition["items"][CAT48_items_order.at(decodeBytes)]);
             parsedBytes += testParser.parseItem(m_data, parsedBytes, 0, 0, mapping, 0);
             std::cout << mapping[decodeBytes].dump(4) << std::endl;
         }
@@ -85,7 +85,7 @@ size_t CAT34::decodeHeader()
         if (binaryRepresentation[val] == true)
         {
 
-            header_info.uap_list.push_back(CAT34_uap_order[val]);
+            header_info.uap_list.push_back(CAT48_uap_order[val]);
         }
     }
     parsedBytes += byteIndex;
