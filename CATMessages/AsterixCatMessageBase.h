@@ -2,6 +2,7 @@
 
 #include <string>
 #include "../lib/json.hpp"
+#include <iostream>
 #include <fstream>
 #include <vector>
 #include <functional>
@@ -14,24 +15,22 @@
 #include "tools/include/parser/fixedbitsitemparser.h"
 #include "tools/include/parser/optionalitemparser.h"
 
-class CATMessageBase
+using nlohmann::json;
+
+class AsterixCatMessageBase
 {
 
 public:
-    CATMessageBase();
-    virtual ~CATMessageBase();
+    AsterixCatMessageBase();
+    virtual ~AsterixCatMessageBase();
 
     // Decode Data Network(TCP/IP & UDP)
-    virtual bool decodeData() = 0;
-    void to_json(nlohmann::json &j);
-    template <typename T>
-    void from_json(T& record);
+    bool baseDecodeData(const char* data, const json &cat_definition,const std::map<std::string,int> &cat_items_order,const std::vector<std::string> &uap_list, json &cat_data_return);
+
 
 private:
     // Decode First 4 Bytes (FSPEC)
-    virtual size_t decodeHeader() = 0;
-
-protected:
+    size_t decodeHeader();
 
     struct MessageHeader
     {
@@ -41,6 +40,9 @@ protected:
     };
 
     const char *m_data;
-    nlohmann::json m_cat_definition{""};
-    nlohmann::json mapping;
+    json m_cat_definition{""};
+    json mapping;
+    MessageHeader header_info;
+    size_t parsedBytes{0};
+    std::vector<std::string> m_uap_list;
 };

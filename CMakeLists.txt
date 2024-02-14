@@ -17,24 +17,25 @@ file(GLOB LIB_SOURCES
 
 # GLOB komutu ile 'inc' klasöründeki tüm .cpp ve .h dosyalarını bul
 file(GLOB INC_SOURCES
-     "inc/jasterix/*.cpp"
-     "inc/jasterix/*.h"
+     "include/*.h"
 )
 
 file(GLOB SRC_SOURCES
-     "CATMessages/tools/include/*.h"
-     "CATMessages/tools/src/*.cpp"
-     "CATMessages/tools/include/parser/*.h"
-     "CATMessages/tools/src/parser/*.cpp"
-     "CATMessages/categories-types/*.h"
+     "src/*.cpp"
 )
 
 # GLOB komutu ile 'lib' klasöründeki tüm .cpp ve .h dosyalarını bul
 file(GLOB CAT_MESSAGES
-     "CATMessages/*.cpp"
      "CATMessages/*.h"
      "CATMessages/include/*.h"
+     "CATMessages/categories-types/*.h"
+     "CATMessages/tools/include/*.h"
+     "CATMessages/tools/include/parser/*.h"
+
+     "CATMessages/*.cpp"
      "CATMessages/src/*.cpp"
+     "CATMessages/tools/src/*.cpp"
+     "CATMessages/tools/src/parser/*.cpp"
 )
 
 add_executable(pAsterix 

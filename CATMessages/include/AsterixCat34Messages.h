@@ -1,29 +1,20 @@
 #pragma once
 
-#include "../CATMessageBase.h"
+#include "../AsterixCatMessageBase.h"
 #include "../categories-types/cat34Message.h"
 
-class CAT34 : public CATMessageBase
+class AsterixCat34Messages : public AsterixCatMessageBase
 {
 public:
-    CAT34(nlohmann::json cat_def, const char *data);
-    virtual ~CAT34() override;
+    AsterixCat34Messages();
+    virtual ~AsterixCat34Messages() override;
     // Decode Data Network(TCP/IP & UDP)
-    virtual bool decodeData() override;
+    bool decodeData(const char *data, json &cat34_json_data);
 
-    virtual void to_json(nlohmann::json &j);
-    virtual void from_json(Cat34Record &);
-
-private:
-    virtual size_t decodeHeader() override;
-
-    CATMessageBase::MessageHeader header_info;
-    size_t parsedBytes{0};
+    void to_json(nlohmann::json &j);
+    void from_json(Cat34Record &);
 
 private:
-    std::vector<std::string> CAT34_uap_order{"010", "000", "030", "020", "041", "050", "060", "FX", "070", "100", "110", "120", "090", "RE", "SP", "FX"};
-    std::map<std::string, int> CAT34_items_order{{"000", 0}, {"010", 1}, {"020", 2}, {"030", 3}, {"041", 4}, {"050", 5}, {"060", 6}, {"070", 7}, {"090", 8}, {"100", 9}, {"110", 10}, {"120", 11}};
-
-    nlohmann::json cat34_json;
-    Cat34Record cat34_message;
+    std::vector<std::string> cat34_uap_order{"010", "000", "030", "020", "041", "050", "060", "FX", "070", "100", "110", "120", "090", "RE", "SP", "FX"};
+    std::map<std::string, int> cat34_items_order{{"000", 0}, {"010", 1}, {"020", 2}, {"030", 3}, {"041", 4}, {"050", 5}, {"060", 6}, {"070", 7}, {"090", 8}, {"100", 9}, {"110", 10}, {"120", 11}};
 };
