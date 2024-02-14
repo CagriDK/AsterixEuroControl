@@ -1,4 +1,4 @@
-#include "cat62.h"
+#include "../include/cat62.h"
 #include <iostream>
 
 CAT62::CAT62(nlohmann::json cat_def, const char *data)
@@ -100,32 +100,4 @@ void CAT62::to_json(nlohmann::json &j)
 void CAT62::from_json(Cat62Record &cat_data)
 {
 
-}
-
-void CAT62::copy_to_Json(nlohmann::json &j, nlohmann::json &cat_Map, std::string key)
-{
-    if (j[key].empty())
-    {
-        std::cout << key << " : message is not exist!" << std::endl;
-    }
-    else
-    {
-        for (const auto &item : j.items())
-        {
-            cat_Map[item.key()] = item.value();
-        }
-    }
-}
-
-template <typename T>
-void CAT62::copy_from_Json(const nlohmann::json &j, const std::string &key, T &value)
-{
-    if (j.contains(key) && !j[key].is_null())
-    {
-        value = j[key].get<T>();
-    }
-    else
-    {
-        // std::cout << key << " : message is not exist!" << std::endl;
-    }
 }

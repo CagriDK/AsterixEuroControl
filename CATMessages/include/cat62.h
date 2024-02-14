@@ -1,7 +1,7 @@
 #pragma once
 
 #include "../CATMessageBase.h"
-#include "cat62Message.h"
+#include "../categories-types/cat62Message.h"
 
 class CAT62 : public CATMessageBase
 {
@@ -16,10 +16,6 @@ public:
 
 private:
     virtual size_t decodeHeader() override;
-    virtual void copy_to_Json(nlohmann::json &j, nlohmann::json &cat_Map, std::string key);
-
-    template <typename T>
-    void copy_from_Json(const nlohmann::json &j, const std::string &key, T &value);
 
     CATMessageBase::MessageHeader header_info;
     size_t parsedBytes{0};

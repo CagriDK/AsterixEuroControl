@@ -24,20 +24,15 @@ file(GLOB INC_SOURCES
 file(GLOB SRC_SOURCES
      "CATMessages/items/*.cpp"
      "CATMessages/items/*.h"
+     "CATMessages/categories-types/*.h"
 )
 
 # GLOB komutu ile 'lib' klasöründeki tüm .cpp ve .h dosyalarını bul
 file(GLOB CAT_MESSAGES
      "CATMessages/*.cpp"
      "CATMessages/*.h"
-     "CATMessages/021/*.cpp"
-     "CATMessages/021/*.h"
-     "CATMessages/034/*.cpp"
-     "CATMessages/034/*.h"
-     "CATMessages/048/*.cpp"
-     "CATMessages/048/*.h"
-     "CATMessages/062/*.cpp"
-     "CATMessages/062/*.h"
+     "CATMessages/include/*.h"
+     "CATMessages/src/*.cpp"
 )
 
 add_executable(pAsterix 

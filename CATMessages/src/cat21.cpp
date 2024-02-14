@@ -1,4 +1,4 @@
-#include "cat21.h"
+#include "../include/cat21.h"
 #include <iostream>
 
 CAT21::CAT21(nlohmann::json cat_def, const char *data)
@@ -99,33 +99,5 @@ void CAT21::to_json(nlohmann::json &j)
 
 void CAT21::from_json(Cat21Record &cat_data)
 {
-
-}
-
-void CAT21::copy_to_Json(nlohmann::json &j, nlohmann::json &cat_Map, std::string key)
-{
-    if (j[key].empty())
-    {
-        std::cout << key << " : message is not exist!" << std::endl;
-    }
-    else
-    {
-        for (const auto &item : j.items())
-        {
-            cat_Map[item.key()] = item.value();
-        }
-    }
-}
-
-template <typename T>
-void CAT21::copy_from_Json(const nlohmann::json &j, const std::string &key, T &value)
-{
-    if (j.contains(key) && !j[key].is_null())
-    {
-        value = j[key].get<T>();
-    }
-    else
-    {
-        // std::cout << key << " : message is not exist!" << std::endl;
-    }
+    
 }

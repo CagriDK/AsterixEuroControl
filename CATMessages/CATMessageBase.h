@@ -23,13 +23,13 @@ public:
 
     // Decode Data Network(TCP/IP & UDP)
     virtual bool decodeData() = 0;
-    virtual void to_json(nlohmann::json &j) = 0;
-    // virtual void from_json() = 0;
+    void to_json(nlohmann::json &j);
+    template <typename T>
+    void from_json(T& record);
 
 private:
     // Decode First 4 Bytes (FSPEC)
     virtual size_t decodeHeader() = 0;
-    virtual void copy_to_Json(nlohmann::json &j, nlohmann::json &cat_Map, std::string key) = 0;
 
 protected:
 
