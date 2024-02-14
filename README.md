@@ -95,8 +95,8 @@ After resolving data the outcome of json files shown below (Page 2):
 - [x] Add generic template model for message parsing
 - [x] Add a json handler for data storage and json writer for logging
 - [x] Add CAT21 Message
-- [ ] Add CAT48 Message
-- [ ] Add CAT62 Message
+- [x] Add CAT48 Message
+- [x] Add CAT62 Message
 - [x] Make the parser generic for all CAT Messages
 
 See the [open issues](https://github.com/CagriDK/AsterixEuroControl/issues) for a full list of proposed features (and known issues).
