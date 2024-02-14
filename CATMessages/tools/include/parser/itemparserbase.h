@@ -18,9 +18,9 @@
 #ifndef ITEMPARSING_H
 #define ITEMPARSING_H
 
-#include "iteminfo.h"
+#include "../iteminfo.h"
 
-#include "../../lib/json.hpp"
+#include "../../../../lib/json.hpp"
 
 #include <cstddef>
 #include <sstream>

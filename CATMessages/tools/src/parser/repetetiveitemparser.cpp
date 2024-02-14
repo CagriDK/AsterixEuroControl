@@ -15,23 +15,40 @@
  * along with ATSDB.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "extendableitemparser.h"
+#include "../../include/parser/repetetiveitemparser.h"
 
 using namespace std;
 using namespace nlohmann;
 
-ExtendableItemParser::ExtendableItemParser(const nlohmann::json& item_definition)
+RepetetiveItemParser::RepetetiveItemParser(const nlohmann::json& item_definition)
     : ItemParserBase(item_definition)
 {
-    assert(type_ == "extendable");
+    assert(type_ == "repetitive");
+
+    if (!item_definition.contains("repetition_item"))
+        throw runtime_error("repetitive item '" + name_ +
+                            "' parsing without repetition item specification");
+
+    const json& repetition_item = item_definition.at("repetition_item");
+
+    if (!repetition_item.is_object())
+        throw runtime_error("parsing repetitive item '" + name_ +
+                            "' repetition item specification is not an object");
+
+    if (repetition_item.at("name") != "REP")
+        throw runtime_error("parsing repetitive item '" + name_ +
+                            "' repetition item specification has to be named 'REP'");
+
+    repetition_item_.reset(ItemParserBase::createItemParser(repetition_item));
+    assert(repetition_item_);
 
     if (!item_definition.contains("items"))
-        throw runtime_error("parsing extendable item '" + name_ + "' without items");
+        throw runtime_error("parsing repetitive item '" + name_ + "' without items");
 
     const json& items = item_definition.at("items");
 
     if (!items.is_array())
-        throw runtime_error("parsing extendable item '" + name_ +
+        throw runtime_error("parsing repetitive item '" + name_ +
                             "' items specification is not an array");
 
     std::string item_name;
@@ -40,42 +57,35 @@ ExtendableItemParser::ExtendableItemParser(const nlohmann::json& item_definition
     for (const json& data_item_it : items)
     {
         item_name = data_item_it.at("name");
-        item = ItemParserBase::createItemParser(data_item_it); // leave out own name
+        item = ItemParserBase::createItemParser(data_item_it);
         assert(item);
         items_.push_back(std::unique_ptr<ItemParserBase>{item});
     }
 }
 
-size_t ExtendableItemParser::parseItem(const char* data, size_t index, size_t size,
+size_t RepetetiveItemParser::parseItem(const char* data, size_t index, size_t size,
                                        size_t current_parsed_bytes, nlohmann::json& target,
                                        bool debug)
 {
     size_t parsed_bytes{0};
 
-    unsigned int extend = 1;
-    unsigned int cnt = 0;
+    parsed_bytes =
+        repetition_item_->parseItem(data, index + parsed_bytes, size, parsed_bytes, target, debug);
+
+    unsigned int rep = target.at("REP");
 
     assert(!target.contains(name_));
     target[name_] = json::array();
     json& j_data = target.at(name_);
 
-    while (extend)
+    for (unsigned int cnt = 0; cnt < rep; ++cnt)
     {
         for (auto& data_item_it : items_)
         {
             parsed_bytes += data_item_it->parseItem(data, index + parsed_bytes, size, parsed_bytes,
                                                     j_data[cnt], debug);
-
-            if (debug && !j_data.at(cnt).contains("extend"))
-                throw runtime_error("parsing extendable item '" + name_ +
-                                    "' without extend information");
-
-            extend = j_data.at(cnt).at("extend");
-
-            ++cnt;
         }
     }
 
     return parsed_bytes;
 }
-

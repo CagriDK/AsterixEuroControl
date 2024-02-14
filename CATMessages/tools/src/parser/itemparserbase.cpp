@@ -22,17 +22,17 @@
 #include <string>
 #include <algorithm>
 
-#include "itemparser.h"
-#include "extendablebitsitemparser.h"
-#include "compounditemparser.h"
-#include "fixedbitfielditemparser.h"
-#include "fixedbytesitemparser.h"
-#include "fixedbitsitemparser.h"
-#include "optionalitemparser.h"
-#include "dynamicbytesitemparser.h"
-#include "extendableitemparser.h"
-#include "repetetiveitemparser.h"
-#include "skipbytesitemparser.h"
+#include "../../include/parser/itemparser.h"
+#include "../../include/parser/extendablebitsitemparser.h"
+#include "../../include/parser/compounditemparser.h"
+#include "../../include/parser/fixedbitfielditemparser.h"
+#include "../../include/parser/fixedbytesitemparser.h"
+#include "../../include/parser/fixedbitsitemparser.h"
+#include "../../include/parser/optionalitemparser.h"
+#include "../../include/parser/dynamicbytesitemparser.h"
+#include "../../include/parser/extendableitemparser.h"
+#include "../../include/parser/repetetiveitemparser.h"
+#include "../../include/parser/skipbytesitemparser.h"
 
 using namespace std;
 using namespace nlohmann;

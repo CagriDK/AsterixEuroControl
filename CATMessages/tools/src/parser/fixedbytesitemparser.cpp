@@ -15,9 +15,9 @@
  * along with ATSDB.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "fixedbytesitemparser.h"
+#include "../../include/parser/fixedbytesitemparser.h"
 #include <iostream>
-#include "string_conv.h"
+#include "../../include/string_conv.h"
 
 using namespace nlohmann;
 

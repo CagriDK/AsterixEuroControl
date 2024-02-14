@@ -22,8 +22,10 @@ file(GLOB INC_SOURCES
 )
 
 file(GLOB SRC_SOURCES
-     "CATMessages/items/*.cpp"
-     "CATMessages/items/*.h"
+     "CATMessages/tools/include/*.h"
+     "CATMessages/tools/src/*.cpp"
+     "CATMessages/tools/include/parser/*.h"
+     "CATMessages/tools/src/parser/*.cpp"
      "CATMessages/categories-types/*.h"
 )
 

@@ -15,26 +15,25 @@
  * along with ATSDB.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "skipbytesitemparser.h"
+#ifndef STRING_CONV_H
+#define STRING_CONV_H
 
-using namespace std;
-using namespace nlohmann;
+#include <string>
+#include <vector>
 
-SkipBytesItemParser::SkipBytesItemParser(const nlohmann::json& item_definition)
-    : ItemParserBase(item_definition)
-{
-    assert(type_ == "skip_bytes");
+#include "../../../lib/json.hpp"
 
-    if (!item_definition.contains("length"))
-        throw runtime_error("fixed bytes item '" + name_ + "' parsing without length");
+extern int char2int(char input);
+extern size_t hex2bin(const char* src, char* target);
+extern char getIcaoChar(unsigned char c);
+extern std::string binary2hex(const unsigned char* src, unsigned int length);
 
-    length_ = item_definition.at("length");
-}
+extern std::vector<std::string>& split(const std::string& s, char delim,
+                                       std::vector<std::string>& elems);
+// extern std::vector<std::string> split(const std::string &s, char delim);
 
-size_t SkipBytesItemParser::parseItem(const char* data, size_t index, size_t size,
-                                      size_t current_parsed_bytes, nlohmann::json& target,
-                                      bool debug)
-{
-    return length_;
-}
+extern std::string toString(const nlohmann::json& j);
 
+extern bool isASCII(const std::string& s);
+
+#endif  // STRING_CONV_H

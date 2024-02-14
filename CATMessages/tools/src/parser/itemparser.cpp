@@ -15,7 +15,7 @@
  * along with ATSDB.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "itemparser.h"
+#include "../../include/parser/itemparser.h"
 
 using namespace std;
 using namespace nlohmann;

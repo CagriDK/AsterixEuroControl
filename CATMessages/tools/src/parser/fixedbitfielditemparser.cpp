@@ -15,8 +15,8 @@
  * along with ATSDB.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "fixedbitfielditemparser.h"
-#include "fixedbitsitemparser.h"
+#include "../../include/parser/fixedbitfielditemparser.h"
+#include "../../include/parser/fixedbitsitemparser.h"
 
 using namespace std;
 using namespace nlohmann;

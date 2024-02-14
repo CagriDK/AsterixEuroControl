@@ -15,7 +15,7 @@
  * along with ATSDB.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "dynamicbytesitemparser.h"
+#include "../../include/parser/dynamicbytesitemparser.h"
 
 using namespace std;
 using namespace nlohmann;

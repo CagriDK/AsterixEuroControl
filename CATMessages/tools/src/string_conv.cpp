@@ -15,7 +15,7 @@
  * along with ATSDB.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "string_conv.h"
+#include "../include/string_conv.h"
 
 #include <cassert>
 #include <cstring>

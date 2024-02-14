@@ -15,7 +15,7 @@
  * along with ATSDB.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "compounditemparser.h"
+#include "../../include/parser/compounditemparser.h"
 
 using namespace std;
 using namespace nlohmann;

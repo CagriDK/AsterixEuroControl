@@ -15,11 +15,11 @@
  * along with ATSDB.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "fixedbitsitemparser.h"
+#include "../../include/parser/fixedbitsitemparser.h"
 
 #include <algorithm>
 
-#include "string_conv.h"
+#include "../../include/string_conv.h"
 
 using namespace std;
 using namespace nlohmann;

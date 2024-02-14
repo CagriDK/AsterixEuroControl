@@ -15,7 +15,7 @@
  * along with ATSDB.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "extendablebitsitemparser.h"
+#include "../../include/parser/extendablebitsitemparser.h"
 
 #include <algorithm>
 
