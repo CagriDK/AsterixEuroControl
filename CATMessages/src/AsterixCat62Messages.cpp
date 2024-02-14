@@ -1,17 +1,17 @@
-#include "../include/cat21.h"
+#include "../include/AsterixCat62Messages.h"
 #include <iostream>
 
-CAT21::CAT21(nlohmann::json cat_def, const char *data)
+CAT62::CAT62(nlohmann::json cat_def, const char *data)
 {
     m_cat_definition = cat_def;
     m_data = data;
 };
 
-CAT21::~CAT21(){
+CAT62::~CAT62(){
 
 };
 
-bool CAT21::decodeData()
+bool CAT62::decodeData()
 {
     decodeHeader();
 
@@ -44,19 +44,19 @@ bool CAT21::decodeData()
         }
         else
         {
-            ItemParser testParser(m_cat_definition["items"][CAT21_items_order.at(decodeBytes)]);
+            ItemParser testParser(m_cat_definition["items"][CAT62_items_order.at(decodeBytes)]);
             parsedBytes += testParser.parseItem(m_data, parsedBytes, 0, 0, mapping, 0);
             std::cout << mapping[decodeBytes].dump(4) << std::endl;
         }
     }
     std::cout << mapping.dump(4) << std::endl;
     // to_json(mapping);
-    // from_json(cat21_message);
+    // from_json(cat62_message);
 
     return true;
 }
 
-size_t CAT21::decodeHeader()
+size_t CAT62::decodeHeader()
 {
     header_info.cat_type = static_cast<int>(static_cast<unsigned char>(m_data[0]));
     header_info.message_len = (static_cast<unsigned char>(m_data[1]) << 8) | static_cast<unsigned char>(m_data[2]);
@@ -85,19 +85,19 @@ size_t CAT21::decodeHeader()
         if (binaryRepresentation[val] == true)
         {
 
-            header_info.uap_list.push_back(CAT21_uap_order[val]);
+            header_info.uap_list.push_back(CAT62_uap_order[val]);
         }
     }
     parsedBytes += byteIndex;
     return 0;
 }
 
-void CAT21::to_json(nlohmann::json &j)
+void CAT62::to_json(nlohmann::json &j)
 {
 
 }
 
-void CAT21::from_json(Cat21Record &cat_data)
+void CAT62::from_json(Cat62Record &cat_data)
 {
-    
+
 }

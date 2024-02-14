@@ -1,4 +1,4 @@
-#include "../include/cat48.h"
+#include "../include/AsterixCat48Messages.h"
 #include <iostream>
 
 CAT48::CAT48(nlohmann::json cat_def, const char *data)

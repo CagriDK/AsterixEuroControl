@@ -1,4 +1,4 @@
-#include "../include/cat34.h"
+#include "../include/AsterixCat34Messages.h"
 #include <iostream>
 
 CAT34::CAT34(nlohmann::json cat_def, const char *data)

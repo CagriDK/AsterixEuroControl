@@ -1,5 +1,5 @@
 #pragma once
-#include "include/cat21.h"
-#include "include/cat34.h"
-#include "include/cat48.h"
-#include "include/cat62.h"
+#include "include/AsterixCat21Messages.h"
+#include "include/AsterixCat34Messages.h"
+#include "include/AsterixCat48Messages.h"
+#include "include/AsterixCat62Messages.h"
