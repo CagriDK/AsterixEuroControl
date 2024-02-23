@@ -31,11 +31,13 @@ file(GLOB CAT_MESSAGES
      "CATMessages/categories-types/*.h"
      "CATMessages/tools/include/*.h"
      "CATMessages/tools/include/parser/*.h"
+     "CATMessages/tools/include/serializer/*.h"
 
      "CATMessages/*.cpp"
      "CATMessages/src/*.cpp"
      "CATMessages/tools/src/*.cpp"
      "CATMessages/tools/src/parser/*.cpp"
+     "CATMessages/tools/src/serializer/*.cpp"
 )
 
 add_executable(pAsterix 
