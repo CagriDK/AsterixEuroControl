@@ -38,5 +38,82 @@ void FixedBytesItemSerializer::serializeItem(nlohmann::json &jData, size_t index
                                size_t current_parsed_bytes, std::vector<char> &target, 
                                bool debug) 
 {
+    json current_data = jData;
+    std::vector<unsigned char> temp_target;
 
+    if(data_type_ == "string")
+    {
+        std::string value = current_data[name_];
+        if(!isASCII(value))
+        {
+            throw std::runtime_error("fixed bytes item '" + name_ + "' parsing with non-ASCII string");
+        }
+        for(unsigned char c : value)
+        {
+            temp_target.push_back(c);
+        }
+    temp_target.push_back('\0');
+    }
+    else if(data_type_ == "uint")
+    {
+        unsigned int value;
+
+        if(has_lsb_)
+        {
+            float temp = current_data[name_];
+            temp = temp / lsb_;
+            value = static_cast<unsigned int>(std::round(temp));
+        }
+        else
+        {
+            value = static_cast<unsigned int>(current_data[name_]);
+        }
+        for(size_t i = 0; i < length_; i++)
+        {
+            if(reverse_bits_)
+            {
+                reverseBits(value);
+            }
+            temp_target.push_back((value >> (i * 8)) & 0xFF);
+        }
+
+        if(reverse_bytes_)
+        {
+            std::reverse(temp_target.begin(), temp_target.end());
+        }
+    }
+    else if(data_type_ == "int")
+    {
+        int value;
+
+        if(has_lsb_)
+        {
+            float temp = current_data[name_];
+            temp = temp / lsb_;
+            value = static_cast<int>(std::round(temp));
+        }
+        else
+        {
+            value = static_cast<int>(current_data[name_]);
+        }
+        for(size_t i = 0; i < length_; i++)
+        {
+            if(reverse_bits_)
+            {
+                reverseBits(value);
+            }
+            temp_target.push_back((value >> (i * 8)) & 0xFF);
+        }
+        if (reverse_bytes_)
+        {
+            std::reverse(temp_target.begin(), temp_target.end());
+        }
+    }
+    else if(data_type_ == "bin")
+    {
+
+    }
+
+    std::reverse(temp_target.begin(), temp_target.end());
+    std::copy(temp_target.begin(), temp_target.end(), std::back_inserter(target));
 }
