@@ -23,7 +23,7 @@ ExtendableItemSerializer::ExtendableItemSerializer(const nlohmann::json& item_de
     for (const json& data_item_it : items)
     {
         item_name = data_item_it.at("name");
-        item = ItemSerializerBase::createItemParser(data_item_it); // leave out own name
+        item = ItemSerializerBase::createItemSerializer(data_item_it); // leave out own name
         assert(item);
         items_.push_back(std::unique_ptr<ItemSerializerBase>{item});
     }
@@ -33,5 +33,10 @@ void ExtendableItemSerializer::serializeItem(nlohmann::json &jData, size_t index
                                size_t current_parsed_bytes, std::vector<char> &target, 
                                bool debug) 
 {
-
+    unsigned int extend = 1;
+    unsigned cnt = 0;
+    for(auto& df_item : items_)
+    {
+        df_item->serializeItem(jData, 0, 0, 0, target, debug);
+    }
 }
