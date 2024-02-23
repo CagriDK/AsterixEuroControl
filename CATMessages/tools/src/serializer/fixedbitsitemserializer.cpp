@@ -279,5 +279,54 @@ void FixedBitsItemSerializer::serializeItem(nlohmann::json &jData, size_t index,
                                size_t current_parsed_bytes, std::vector<char> &target, 
                                bool debug) 
 {
+    json current_data = jData;
 
+    if(data_type_ == "digits")
+    {
+        std::string serialized = "";
+
+        int number;
+        if(has_lsb_)
+        {
+            double temp = static_cast<double>(current_data[name_]) / lsb_;
+            number = static_cast<int>(temp);
+        }
+        else
+        {
+            number = static_cast<int>(current_data[name_]);
+        }
+
+        while(num_digits_)
+        {
+            int digit = number % 10;
+            number /= 10;
+
+            std::bitset<3> binaryDigit(digit);
+            for(size_t i = 0; i < digit_bit_length_; i++)
+            {
+                vecData.push_back(binaryDigit[i]);
+            }
+            num_digits_--;
+        }
+    }
+    else
+    {
+        if (has_lsb_)
+        {
+            double tempData = static_cast<double>(jData[name_]) / lsb_;
+            bit_value = static_cast<int>(tempData);
+        }
+        else
+        {
+            bit_value = static_cast<int>(current_data[name_]);
+        }
+
+        for(size_t i = 0; i < bit_length_; i++)
+        {
+            vecData.push_back(bit_value >> i & 1);
+        }
+    }
+
+    //En son bit ilk eklendiği için ters çevir.
+    std::reverse(vecData.begin(), vecData.end());
 }
