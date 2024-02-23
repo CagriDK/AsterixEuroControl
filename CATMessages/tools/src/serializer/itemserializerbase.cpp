@@ -34,7 +34,7 @@ ItemSerializerBase::ItemSerializerBase(const nlohmann::json &item_definition)
     type_ = item_definition.at("type");
 }
 
-ItemSerializerBase *ItemSerializerBase::createItemParser(const nlohmann::json &item_definition)
+ItemSerializerBase *ItemSerializerBase::createItemSerializer(const nlohmann::json &item_definition)
 {
     if (!item_definition.contains("name"))
         throw runtime_error("item creation without JSON name definition");
@@ -52,7 +52,7 @@ ItemSerializerBase *ItemSerializerBase::createItemParser(const nlohmann::json &i
     }
     else if (type == "skip_bytes")
     {
-        return new SkipBytesItemSerializer(item_definition);
+        // return new SkipBytesItemSerializer(item_definition);
     }
     else if (type == "extendable_bits")
     {
@@ -60,7 +60,7 @@ ItemSerializerBase *ItemSerializerBase::createItemParser(const nlohmann::json &i
     }
     else if (type == "extendable")
     {
-        return new ExtendableItemSerializer(item_definition);
+        // return new ExtendableItemSerializer(item_definition);
     }
     if (type == "extendable_bits")
     {
@@ -88,7 +88,7 @@ ItemSerializerBase *ItemSerializerBase::createItemParser(const nlohmann::json &i
     }
     else if (type == "repetitive")
     {
-        return new RepetetiveItemSerializer(item_definition);
+        // return new RepetetiveItemSerializer(item_definition);
     }
     else
         throw runtime_error("item creation name '" + name + "' with unknown type '" + type + "'");
@@ -98,7 +98,7 @@ std::string ItemSerializerBase::name() const { return name_; }
 
 std::string ItemSerializerBase::type() const { return type_; }
 
-bool variableHasValue(const nlohmann::json &data,
+bool ItemSerializerBase::variableHasValue(const nlohmann::json &data,
                       const std::vector<std::string> &variable_name_parts,
                       const nlohmann::json &variable_value)
 {
