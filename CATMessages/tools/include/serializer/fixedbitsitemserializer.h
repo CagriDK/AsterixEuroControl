@@ -12,15 +12,19 @@ class FixedBitsItemSerializer: public ItemSerializerBase
                                size_t current_parsed_bytes, std::vector<char> &target, 
                                bool debug) override;
 
+
+  unsigned int bit_value{0};
+  unsigned int byte_length_{0};
+  unsigned int start_bit_{0};
+  unsigned int bit_length_{0};
+  std::vector<bool> vecData;
+
   unsigned char parsedChar{0};
   int parsedInt{0};
   size_t parsedDigits{0};
   std::string parsedString{};
 
   protected:
-    unsigned int byte_length_{0};
-    unsigned int start_bit_{0};
-    unsigned int bit_length_{0};
     std::string data_type_{"uint"};
     //unsigned int negative_bit_pos_{0};
     bool has_lsb_{false};
