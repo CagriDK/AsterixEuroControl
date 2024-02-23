@@ -15,6 +15,8 @@
 #include "tools/include/parser/fixedbitsitemparser.h"
 #include "tools/include/parser/optionalitemparser.h"
 
+#include "tools/include/serializer/itemserializer.h"
+
 using nlohmann::json;
 
 class AsterixCatMessageBase
@@ -26,11 +28,12 @@ public:
 
     // Decode Data Network(TCP/IP & UDP)
     bool baseDecodeData(const char* data, const json &cat_definition,const std::map<std::string,int> &cat_items_order,const std::vector<std::string> &uap_list, json &cat_data_return);
-
+    bool baseEncodeData(json jData, const json &cat_definition, const std::map<std::string,int> &cat_items_orders, const std::vector<std::string> &uap_list, std::vector<char> &data_return);
 
 private:
     // Decode First 4 Bytes (FSPEC)
     size_t decodeHeader();
+    void encodeHeader(char cat, std::vector<char> &data);
 
     struct MessageHeader
     {
