@@ -40,7 +40,10 @@ void ItemSerializer::serializeItem(nlohmann::json &jData, size_t index, size_t s
                                size_t current_parsed_bytes, std::vector<char> &target, 
                                bool debug) 
 {
-
+    for(auto &df_item : data_fields_)
+    {
+        df_item->serializeItem(jData, 0, 0, 0, target, debug);
+    }
 }
 
 std::string ItemSerializer::number() const { return number_; }
