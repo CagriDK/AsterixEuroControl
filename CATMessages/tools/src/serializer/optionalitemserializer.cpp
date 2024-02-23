@@ -33,7 +33,7 @@ OptionalItemSerializer::OptionalItemSerializer(const nlohmann::json& item_defini
     for (const json& data_item_it : data_fields)
     {
         item_name = data_item_it.at("name");
-        item = ItemSerializerBase::createItemParser(data_item_it); // leave out own name
+        item = ItemSerializerBase::createItemSerializer(data_item_it); // leave out own name
         assert(item);
         data_fields_.push_back(std::unique_ptr<ItemSerializerBase>{item});
     }
@@ -43,5 +43,30 @@ void OptionalItemSerializer::serializeItem(nlohmann::json &jData, size_t index, 
                                size_t current_parsed_bytes, std::vector<char> &target, 
                                bool debug) 
 {
+    if(!jData.contains(bitfield_name_))
+    {
+        throw runtime_error("parsing optional item '" + name_ + "' without defined bitfield '" + bitfield_name_ + "'");
+    }
 
+    if(!jData[bitfield_name_].is_array())
+    {
+        throw runtime_error("parsing optional item '" + name_ + "' with non-array bitfield '" + bitfield_name_ + "' is not an array");
+    }
+
+    if(!jData[bitfield_name_][bitfield_index_].is_boolean())
+    {
+        throw runtime_error("parsing optional item '" + name_ + "' with non-boolean bitfield '" + bitfield_name_ + "' value");
+    }
+
+    bool item_exists = jData[bitfield_name_].at(bitfield_index_);
+
+    if(!item_exists)
+    {
+        return;
+    }
+
+    for(auto& df_item : data_fields_)
+    {
+        df_item->serializeItem(jData[name_], 0, 0, 0, target, debug);
+    }
 }
