@@ -61,4 +61,71 @@ void FixedBitFieldItemSerializer::serializeItem(nlohmann::json &jData, size_t in
                                bool debug) 
 {
 
+    if(optional_ && !variableHasValue(jData, optional_variable_name_parts_, optional_variable_value_))
+    {
+        return; //no parse
+    }
+
+    auto prev_current_bit = static_cast<FixedBitsItemSerializer *>(items_[0].get())->start_bit_;
+    unsigned int bit_diff{0};
+
+    for(auto idx = 0; idx < items_.size(); idx++)
+    {
+        items_[idx]->serializeItem(jData, 0, 0, 0, target, debug);
+
+        unsigned int start_bit, bit_length{0};
+
+        unsigned int byte_length = static_cast<FixedBitsItemSerializer *>(items_[idx].get())->byte_length_;
+        bit_length = static_cast<FixedBitsItemSerializer *>(items_[idx].get())->bit_length_;
+        start_bit = static_cast<FixedBitsItemSerializer *>(items_[idx].get())->start_bit_;
+
+        // ard arda gelen alanlar arasında başlangıç ve bit lengthleri arasındaki fark kaynaklandığında eklenecektir.
+        bit_diff = prev_current_bit - start_bit;
+        prev_current_bit = start_bit;
+
+        if (bit_diff != 0 && (bit_diff != bit_length))
+        {
+            for (size_t i = 0; i < static_cast<int>(bit_diff - bit_length); i++)
+            {
+                bitfield.push_back(false);
+            }
+        }
+
+        // Eğer ilk index doldurulmamış ise 0 ile doldur.
+        if(idx == 0 && (start_bit + bit_length != byte_length * 8))
+        {
+            unsigned int fill_Index = (byte_length * 8) - (start_bit + bit_length);
+            for(auto id = 0; id < fill_Index; id++)
+            {
+                bitfield.push_back(false);
+            }
+        }
+
+        std::copy(static_cast<FixedBitsItemSerializer *>(items_[idx].get())->vecData.begin(),
+                  static_cast<FixedBitsItemSerializer *>(items_[idx].get())->vecData.end(),
+                  std::back_inserter(bitfield));
+
+        // Eğer son indexde hala start_bit 0 değil ise 0'a gelene kadar 0 doldur.
+        if(idx == (items_.size() -1) && (start_bit != 0))
+        {
+            for(auto id = 0; id < start_bit; id++)
+            {
+                bitfield.push_back(false);
+            }
+        }
+
+    }
+
+    for(auto id = 0; id < bitfield.size() /8; ++id)
+    {
+        char convertedByte{0};
+        for(int i{id * 8}; i < (id + 1)* 8; i++)
+        {
+            if(bitfield[i])
+            {
+                convertedByte |= 1 << (7 + (id * 8) - i);
+            }
+        }
+        target.push_back(convertedByte);
+    }
 }
