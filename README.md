@@ -88,16 +88,20 @@ After resolving data the outcome of json files shown below (Page 2):
 <!-- ROADMAP -->
 ## Roadmap
 
-- [x] Add CAT34 Message
-- [x] Create a Test Message for CAT34
-- [x] Create a Test Environment
-- [x] Create a Manual Test Message Parser
-- [x] Add generic template model for message parsing
-- [x] Add a json handler for data storage and json writer for logging
-- [x] Add CAT21 Message
-- [x] Add CAT48 Message
-- [x] Add CAT62 Message
-- [x] Make the parser generic for all CAT Messages
+- [x] Test Message for CAT21,CAT34,CAT48,CAT62 created
+- [x] Test Environment created
+- [x] Asterix Messages CAT21,CAT34,CAT48,CAT62 added
+- [x] Generic template model for message parsing added
+- [x] Json Handler for message handling added
+- [x] Generic template model for message serialization added
+- [ ] RepetitiveFieldSerializer is missing for a serializer add one!
+- [ ] Add Logger
+- [ ] Add Config
+- [ ] Add Zipper
+- [ ] Add TCP/IP communication
+- [ ] Add UDP communication
+- [ ] Merge Branches with UDP Radar Simulator (Terminal Pcap simulator)
+- [ ] Merge Branches with RadarGuiControl (Imgui Interface)
 
 See the [open issues](https://github.com/CagriDK/AsterixEuroControl/issues) for a full list of proposed features (and known issues).
 
