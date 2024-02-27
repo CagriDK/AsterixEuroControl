@@ -1,7 +1,7 @@
 #include "../../include/serializer/fixedbitsitemserializer.h"
 
 #include <algorithm>
-
+#include <iostream>
 #include "../../include/string_conv.h"
 
 using namespace std;
@@ -309,7 +309,7 @@ void FixedBitsItemSerializer::serializeItem(nlohmann::json &jData, size_t index,
             num_digits_--;
         }
     }
-    else
+    else if(data_type_ == "int" || data_type_ == "uint")
     {
         if (has_lsb_)
         {
@@ -325,6 +325,20 @@ void FixedBitsItemSerializer::serializeItem(nlohmann::json &jData, size_t index,
         {
             vecData.push_back(bit_value >> i & 1);
         }
+    }
+    else if (data_type_ == "icao_characters" || data_type_ == "ascii_characters")
+    {
+        std::string str = current_data[name_];
+        std::vector<bool> characters_tmp;
+        if (data_type_ == "icao_characters")
+        {
+            characters_tmp = stringToIcaoBitsets(str, character_bit_length_ - 1);
+        }
+        else
+        {
+            characters_tmp = stringToAsciiBitsets(str, character_bit_length_ - 1);
+        }
+        std::copy(characters_tmp.rbegin(), characters_tmp.rend(), std::back_inserter(vecData));
     }
 
     //En son bit ilk eklendiği için ters çevir.

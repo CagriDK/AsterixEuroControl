@@ -72,6 +72,53 @@ char getIcaoChar(unsigned char c)
     return ch;
 }
 
+std::vector<bool> stringToIcaoBitsets(const std::string &input,size_t character_bit_length)
+{
+    std::vector<bool> bitVector;
+
+    for (char c : input)
+    {
+        unsigned int value = 0;
+
+        if ('A' <= c && c <= 'Z')
+        {
+            value = c - 'A' + 1;
+        }
+        else if (c == ' ')
+        {
+            value = 32; 
+        }
+        else if ('0' <= c && c <= '9')
+        {
+            value = c - '0' + 48;
+        }
+
+        for (int i = character_bit_length; i >= 0; --i)
+        {
+            bitVector.push_back((value >> i) & 1);
+        }
+
+    }
+
+    return bitVector;
+}
+
+std::vector<bool> stringToAsciiBitsets(const std::string &input,size_t character_bit_length)
+{
+    std::vector<bool> bitVector;
+    for(char c : input)
+    {
+        unsigned char value = static_cast<unsigned char>(c);
+
+        for(int i = character_bit_length; i >= 0; --i)
+        {
+            bitVector.push_back((value >> i) & 1);
+        }
+    }
+
+    return bitVector;
+}
+
 constexpr char hexmap[] = {'0', '1', '2', '3', '4', '5', '6', '7',
                            '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
 
