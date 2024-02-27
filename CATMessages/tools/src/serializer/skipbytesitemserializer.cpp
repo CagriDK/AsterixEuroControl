@@ -18,5 +18,12 @@ void SkipBytesItemSerializer::serializeItem(nlohmann::json &jData, size_t index,
                                size_t current_parsed_bytes, std::vector<char> &target, 
                                bool debug) 
 {
+    std::vector<unsigned char> temp_target;
 
+    for(auto idx =0; idx <length_; idx++)
+    {
+        temp_target.push_back('\xFF');
+    }
+
+    std::copy(temp_target.begin(), temp_target.end(), std::back_inserter(target));
 }
