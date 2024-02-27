@@ -133,6 +133,20 @@ std::string binary2hex(const unsigned char* data, unsigned int len)
     return s;
 }
 
+std::vector<char> hex2binary(const std::string &hex)
+{
+    std::vector<char> bytes;
+
+    for (size_t i = 0; i < hex.length(); i += 2)
+    {
+        std::string byteString = hex.substr(i, 2);
+        char byte = static_cast<char>(std::stoi(byteString, nullptr, 16));
+        bytes.push_back(byte);
+    }
+
+    return bytes;
+}
+
 // std::string binary2hex(const unsigned char* src, unsigned int length)
 //{
 //    std::stringstream ss;

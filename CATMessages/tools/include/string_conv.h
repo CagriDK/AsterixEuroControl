@@ -29,6 +29,7 @@ extern char getIcaoChar(unsigned char c);
 extern std::vector<bool> stringToIcaoBitsets(const std::string &input,size_t character_bit_length);
 extern std::vector<bool> stringToAsciiBitsets(const std::string &input,size_t character_bit_length);
 extern std::string binary2hex(const unsigned char* src, unsigned int length);
+extern std::vector<char> hex2binary(const std::string &hex);
 
 extern std::vector<std::string>& split(const std::string& s, char delim,
                                        std::vector<std::string>& elems);

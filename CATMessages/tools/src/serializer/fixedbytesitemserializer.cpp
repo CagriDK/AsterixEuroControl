@@ -111,7 +111,10 @@ void FixedBytesItemSerializer::serializeItem(nlohmann::json &jData, size_t index
     }
     else if(data_type_ == "bin")
     {
+        std::string value = current_data[name_];
+        std::vector<char> bytes = hex2binary(value);
 
+        std::copy(bytes.rbegin(), bytes.rend(), std::back_inserter(temp_target));
     }
 
     std::reverse(temp_target.begin(), temp_target.end());
