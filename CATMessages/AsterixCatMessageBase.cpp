@@ -62,7 +62,7 @@ bool AsterixCatMessageBase::baseDecodeData(const char* data, const json &cat_def
     std::vector<char> a;
 
     baseEncodeData(cat_data_return,cat_definition,cat_items_order,uap_list,a);
-    encodeHeader(0x22,a); 
+    encodeHeader(0x30,a); 
     char * ret = reinterpret_cast<char*>(&a[0]);
 
     for(auto t : a)

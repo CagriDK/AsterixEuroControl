@@ -22,8 +22,8 @@ int main(int, char **)
     // const char *data = "\x15\x00\x24\xfb\x81\x13\x80\x00\x05\x40\x30\x1c\x29\x3e\x00\x6e\x4c\xc9\xff\xe6\x06\xd6\x49\x6c\x2e\x00\x08\x08\x18\xdc\x31\xca\x08\x20\x00\x15";
 
     //Veriler bize bu sekilde gelecegi icin düzeltilmistir.
-    
-    const char *data = "22000bf099000256b9c688"; 
+    //22000bf099000256b9c688
+    const char *data = "300030FDF70219C9356D4DA0C5AFF1E0020005283C660C10C236D4182001C0780031BC0000400DEB07B9582E410020F5"; 
     std::vector<char> vec(data, data + strlen(data));
     RadarClientMessageHandler radarMsgHandler;
     radarMsgHandler.asterixMessageParser(vec);
