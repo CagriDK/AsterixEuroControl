@@ -88,7 +88,7 @@ ItemSerializerBase *ItemSerializerBase::createItemSerializer(const nlohmann::jso
     }
     else if (type == "repetitive")
     {
-        // return new RepetetiveItemSerializer(item_definition);
+        return new RepetetiveItemSerializer(item_definition);
     }
     else
         throw runtime_error("item creation name '" + name + "' with unknown type '" + type + "'");

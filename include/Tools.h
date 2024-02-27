@@ -63,7 +63,7 @@ class Tools
 
     static bool WriteToFile(const std::string &filePath, const std::string &data);
 
-}
+};
 
 
 
