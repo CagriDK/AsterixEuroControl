@@ -94,7 +94,6 @@ After resolving data the outcome of json files shown below (Page 2):
 - [x] Generic template model for message parsing added
 - [x] Json Handler for message handling added
 - [x] Generic template model for message serialization added
-- [ ] RepetitiveFieldSerializer is missing for a serializer add one!
 - [ ] Add Logger
 - [ ] Add Config
 - [ ] Add Zipper
