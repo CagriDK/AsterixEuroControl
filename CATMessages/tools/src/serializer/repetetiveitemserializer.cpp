@@ -3,7 +3,7 @@
 using namespace std;
 using namespace nlohmann;
 
-RepetetiveItemSerializer::RepetetiveItemSerializer(const nlohmann::json& item_definition)
+RepetetiveItemSerializer::RepetetiveItemSerializer(const nlohmann::json &item_definition)
     : ItemSerializerBase(item_definition)
 {
     assert(type_ == "repetitive");
@@ -12,7 +12,7 @@ RepetetiveItemSerializer::RepetetiveItemSerializer(const nlohmann::json& item_de
         throw runtime_error("repetitive item '" + name_ +
                             "' parsing without repetition item specification");
 
-    const json& repetition_item = item_definition.at("repetition_item");
+    const json &repetition_item = item_definition.at("repetition_item");
 
     if (!repetition_item.is_object())
         throw runtime_error("parsing repetitive item '" + name_ +
@@ -28,16 +28,16 @@ RepetetiveItemSerializer::RepetetiveItemSerializer(const nlohmann::json& item_de
     if (!item_definition.contains("items"))
         throw runtime_error("parsing repetitive item '" + name_ + "' without items");
 
-    const json& items = item_definition.at("items");
+    const json &items = item_definition.at("items");
 
     if (!items.is_array())
         throw runtime_error("parsing repetitive item '" + name_ +
                             "' items specification is not an array");
 
     std::string item_name;
-    ItemSerializerBase* item{nullptr};
+    ItemSerializerBase *item{nullptr};
 
-    for (const json& data_item_it : items)
+    for (const json &data_item_it : items)
     {
         item_name = data_item_it.at("name");
         item = ItemSerializerBase::createItemSerializer(data_item_it);
@@ -47,13 +47,15 @@ RepetetiveItemSerializer::RepetetiveItemSerializer(const nlohmann::json& item_de
 }
 
 void RepetetiveItemSerializer::serializeItem(nlohmann::json &jData, size_t index, size_t size,
-                               size_t current_parsed_bytes, std::vector<char> &target, 
-                               bool debug) 
+                                             size_t current_parsed_bytes, std::vector<char> &target,
+                                             bool debug)
 {
 
     repetition_item_->serializeItem(jData, index, size, current_parsed_bytes, target, debug);
 
     unsigned int rep = jData.at("REP");
+
+    assert(!jData.contains(name_));
 
     for (unsigned int cnt = 0; cnt < rep; ++cnt)
     {
@@ -62,5 +64,4 @@ void RepetetiveItemSerializer::serializeItem(nlohmann::json &jData, size_t index
             data_item_it->serializeItem(jData[name_][cnt], index, size, current_parsed_bytes, target, debug);
         }
     }
-
 }

@@ -36,6 +36,8 @@ void ExtendableItemSerializer::serializeItem(nlohmann::json &jData, size_t index
     unsigned int extend = 1;
     unsigned cnt = 0;
 
+    assert(!jData.contains(name_));
+
     while (extend)
     {
         for (auto& df_item : items_)
