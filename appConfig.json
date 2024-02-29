@@ -1,0 +1,17 @@
+{
+  "ServerPort": 55000,
+  "RadarUDPAdresses": [{"ip": "127.0.0.1","port": 12000},{"ip": "127.0.0.1","port": 24000},{"ip": "127.0.0.1","port": 36000},{"ip": "127.0.0.1","port": 48000}],
+  "RadarControlGuiPort": 44000,
+  "EnableInitGlobalParametersDefault": 0,
+  "FileSplitMaxCount": 100,
+  "AlgorithmCallPeriod": 200.0,
+  "LogFormat": 4,
+  "MaxLogFileSizeInMB": 200,
+  "IsLogEnabled": 1,
+  "MaxZipFileInMB": 100,
+  "MaxZipFileCount": 1000,
+  "MaxRadarTrackNumber": 2000,
+  "MaxMeasurementNumber": 2000,
+  "MaxInputSystemTrackNumber": 2000,
+  "MaxManualTracksNumber": 2000
+}

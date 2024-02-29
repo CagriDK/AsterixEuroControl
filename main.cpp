@@ -1,18 +1,7 @@
 #include <iostream>
 
-#include <chrono>
-#include <cstdlib>
-#include <thread>
-#include <memory>
-#include <fstream>
-#include <stdexcept>
-#include <string>
-#include <vector>
-#include <cassert>
-#include <algorithm>
-
-#include "CATMessages/AsterixMessages.h"
 #include "include/RadarClientMessageHandler.h"
+#include "include/AppConfig.h"
 
 int main(int, char **)
 {
@@ -27,4 +16,7 @@ int main(int, char **)
     std::vector<char> vec(data, data + strlen(data));
     RadarClientMessageHandler radarMsgHandler;
     radarMsgHandler.asterixMessageParser(vec);
+
+    Config::getInstance();
+    std::cout<<std::dec<<"Config::Server Port = "<<Config::getInstance().getServerPort()<<std::endl;
 }
