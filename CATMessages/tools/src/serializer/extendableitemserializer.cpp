@@ -35,8 +35,21 @@ void ExtendableItemSerializer::serializeItem(nlohmann::json &jData, size_t index
 {
     unsigned int extend = 1;
     unsigned cnt = 0;
-    for(auto& df_item : items_)
+
+    while (extend)
     {
-        df_item->serializeItem(jData, 0, 0, 0, target, debug);
+        for (auto& df_item : items_)
+        {
+            df_item->serializeItem(jData, 0, 0, 0, target, debug);
+
+            if (debug && !jData.at(cnt).contains("extend"))
+                throw runtime_error("parsing extendable item '" + name_ +
+                                    "' without extend information");
+
+            extend = jData.at(cnt).at("extend");
+
+            ++cnt;
+        }
     }
+
 }
