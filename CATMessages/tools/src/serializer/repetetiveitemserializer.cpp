@@ -51,4 +51,16 @@ void RepetetiveItemSerializer::serializeItem(nlohmann::json &jData, size_t index
                                bool debug) 
 {
 
+    repetition_item_->serializeItem(jData, index, size, current_parsed_bytes, target, debug);
+
+    unsigned int rep = jData.at("REP");
+
+    for (unsigned int cnt = 0; cnt < rep; ++cnt)
+    {
+        for (auto &data_item_it : items_)
+        {
+            data_item_it->serializeItem(jData[name_][cnt], index, size, current_parsed_bytes, target, debug);
+        }
+    }
+
 }
