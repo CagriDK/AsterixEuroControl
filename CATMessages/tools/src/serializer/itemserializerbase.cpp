@@ -52,7 +52,7 @@ ItemSerializerBase *ItemSerializerBase::createItemSerializer(const nlohmann::jso
     }
     else if (type == "skip_bytes")
     {
-        // return new SkipBytesItemSerializer(item_definition);
+        return new SkipBytesItemSerializer(item_definition);
     }
     else if (type == "extendable_bits")
     {
@@ -84,7 +84,7 @@ ItemSerializerBase *ItemSerializerBase::createItemSerializer(const nlohmann::jso
     }
     else if (type == "dynamic_bytes")
     {
-        return new DynamicBytesItemSerializer(item_definition);
+        //return new DynamicBytesItemSerializer(item_definition);
     }
     else if (type == "repetitive")
     {
