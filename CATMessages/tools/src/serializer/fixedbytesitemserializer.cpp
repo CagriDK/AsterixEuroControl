@@ -39,7 +39,7 @@ void FixedBytesItemSerializer::serializeItem(nlohmann::json &jData, size_t index
                                bool debug) 
 {
     json current_data = jData;
-    std::vector<unsigned char> temp_target;
+    std::vector<char> temp_target;
 
     if(data_type_ == "string")
     {
