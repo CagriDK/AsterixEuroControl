@@ -9,24 +9,24 @@ CompoundItemSerializer::CompoundItemSerializer(const nlohmann::json& item_defini
     assert(type_ == "compound");
 
     if (!item_definition.contains("field_specification"))
-        throw runtime_error("compound item '" + name_ + "' parsing without field specification");
+        throw runtime_error("compound item '" + name_ + "' serializing without field specification");
 
     const json& field_specification = item_definition.at("field_specification");
 
     if (!field_specification.is_object())
-        throw runtime_error("parsing compound item '" + name_ +
+        throw runtime_error("serializing compound item '" + name_ +
                             "' field specification is not an object");
 
     field_specification_.reset(ItemSerializerBase::createItemSerializer(field_specification));
     assert(field_specification_);
 
     if (!item_definition.contains("items"))
-        throw runtime_error("parsing compound item '" + name_ + "' without items");
+        throw runtime_error("serializing compound item '" + name_ + "' without items");
 
     const json& items = item_definition.at("items");
 
     if (!items.is_array())
-        throw runtime_error("parsing compound item '" + name_ +
+        throw runtime_error("serializing compound item '" + name_ +
                             "' field specification is not an array");
 
     std::string item_name;

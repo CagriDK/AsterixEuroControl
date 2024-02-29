@@ -11,7 +11,7 @@ ExtendableBitsItemSerializer::ExtendableBitsItemSerializer(const nlohmann::json&
     assert(type_ == "extendable_bits");
 
     if (!item_definition.contains("data_type"))
-        throw runtime_error("extendable bits item '" + name_ + "' parsing without data type");
+        throw runtime_error("extendable bits item '" + name_ + "' serializing without data type");
 
     data_type_ = item_definition.at("data_type");
 
@@ -83,6 +83,6 @@ void ExtendableBitsItemSerializer::serializeItem(nlohmann::json &jData, size_t i
     }
     else
     {
-        throw runtime_error("extendable bits item '" + name_ + "' parsing without data type '" + data_type_ + "'");
+        throw runtime_error("extendable bits item '" + name_ + "' serializing without data type '" + data_type_ + "'");
     }
 }

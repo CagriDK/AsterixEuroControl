@@ -8,14 +8,14 @@ ItemSerializer::ItemSerializer(const nlohmann::json& item_definition) : ItemSeri
     assert(type_ == "item");
 
     if (!item_definition.contains("number"))
-        throw runtime_error("parsing item '" + name_ + "' without number");
+        throw runtime_error("serializing item '" + name_ + "' without number");
 
     number_ = item_definition.at("number");
 
     const json& data_fields = item_definition.at("data_fields");
 
     if (!data_fields.is_array())
-        throw runtime_error("parsing item '" + name_ + "' data fields container is not an array");
+        throw runtime_error("serializing item '" + name_ + "' data fields container is not an array");
 
     std::string item_name;
     std::string item_number;

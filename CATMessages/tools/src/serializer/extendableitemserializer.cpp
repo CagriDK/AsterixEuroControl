@@ -9,12 +9,12 @@ ExtendableItemSerializer::ExtendableItemSerializer(const nlohmann::json& item_de
     assert(type_ == "extendable");
 
     if (!item_definition.contains("items"))
-        throw runtime_error("parsing extendable item '" + name_ + "' without items");
+        throw runtime_error("serializing extendable item '" + name_ + "' without items");
 
     const json& items = item_definition.at("items");
 
     if (!items.is_array())
-        throw runtime_error("parsing extendable item '" + name_ +
+        throw runtime_error("serializing extendable item '" + name_ +
                             "' items specification is not an array");
 
     std::string item_name;
@@ -45,7 +45,7 @@ void ExtendableItemSerializer::serializeItem(nlohmann::json &jData, size_t index
             df_item->serializeItem(jData, 0, 0, 0, target, debug);
 
             if (debug && !jData.at(cnt).contains("extend"))
-                throw runtime_error("parsing extendable item '" + name_ +
+                throw runtime_error("serializing extendable item '" + name_ +
                                     "' without extend information");
 
             extend = jData.at(cnt).at("extend");

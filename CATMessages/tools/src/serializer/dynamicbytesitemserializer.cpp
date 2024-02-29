@@ -9,7 +9,7 @@ DynamicBytesItemSerializer::DynamicBytesItemSerializer(const nlohmann::json& ite
     assert(type_ == "dynamic_bytes");
 
     if (!item_definition.contains("length_variable"))
-        throw runtime_error("dynamic bytes item '" + name_ + "' parsing without length variable");
+        throw runtime_error("dynamic bytes item '" + name_ + "' serializing without length variable");
 
     length_variable_name_ = item_definition.at("length_variable");
 

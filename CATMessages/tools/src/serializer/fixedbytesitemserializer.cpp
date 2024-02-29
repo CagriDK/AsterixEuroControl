@@ -10,12 +10,12 @@ FixedBytesItemSerializer::FixedBytesItemSerializer(const nlohmann::json& item_de
     assert(type_ == "fixed_bytes");
 
     if (!item_definition.contains("length"))
-        std::cerr<<"fixed bytes item '" + name_ + "' parsing without length\n";
+        std::cerr<<"fixed bytes item '" + name_ + "' serializing without length\n";
 
     length_ = item_definition.at("length");
 
     if (!item_definition.contains("data_type"))
-        std::cerr<<"fixed bytes item '" + name_ + "' parsing without data type\n";
+        std::cerr<<"fixed bytes item '" + name_ + "' serializing without data type\n";
 
     data_type_ = item_definition.at("data_type");
 
@@ -46,7 +46,7 @@ void FixedBytesItemSerializer::serializeItem(nlohmann::json &jData, size_t index
         std::string value = current_data[name_];
         if(!isASCII(value))
         {
-            throw std::runtime_error("fixed bytes item '" + name_ + "' parsing with non-ASCII string");
+            throw std::runtime_error("fixed bytes item '" + name_ + "' serializing with non-ASCII string");
         }
         for(unsigned char c : value)
         {

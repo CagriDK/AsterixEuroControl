@@ -60,7 +60,7 @@ ItemSerializerBase *ItemSerializerBase::createItemSerializer(const nlohmann::jso
     }
     else if (type == "extendable")
     {
-        // return new ExtendableItemSerializer(item_definition);
+        return new ExtendableItemSerializer(item_definition);
     }
     if (type == "extendable_bits")
     {

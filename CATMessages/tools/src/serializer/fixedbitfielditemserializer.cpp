@@ -14,34 +14,34 @@ FixedBitFieldItemSerializer::FixedBitFieldItemSerializer(const nlohmann::json &i
     if (optional_)
     {
         if (!item_definition.contains("optional_variable_name"))
-            throw runtime_error("parsing fixed bitfield item '" + name_ +
+            throw runtime_error("serializing fixed bitfield item '" + name_ +
                                 "' optional but no variable given");
 
         optional_variable_name_ = item_definition.at("optional_variable_name");
         optional_variable_name_parts_ = split(optional_variable_name_, '.');
 
         if (!item_definition.contains("optional_variable_value"))
-            throw runtime_error("parsing fixed bitfield item '" + name_ +
+            throw runtime_error("serializing fixed bitfield item '" + name_ +
                                 "' optional but no variable value given");
 
         optional_variable_value_ = item_definition.at("optional_variable_value");
     }
 
     if (!item_definition.contains("length"))
-        throw runtime_error("parsing fixed bitfield item '" + name_ + "' without length");
+        throw runtime_error("serializing fixed bitfield item '" + name_ + "' without length");
 
     length_ = item_definition.at("length");
 
     if (length_ > 8)
-        throw runtime_error("parsing fixed bitfield item '" + name_ + "' with too big length");
+        throw runtime_error("serializing fixed bitfield item '" + name_ + "' with too big length");
 
     if (!item_definition.contains("items"))
-        throw runtime_error("parsing fixed bitfield item '" + name_ + "' without sub-items");
+        throw runtime_error("serializing fixed bitfield item '" + name_ + "' without sub-items");
 
     const json &items = item_definition.at("items");
 
     if (!items.is_array())
-        throw runtime_error("parsing fixed bitfield item '" + name_ +
+        throw runtime_error("serializing fixed bitfield item '" + name_ +
                             "' sub-items specification is not an array");
 
     std::string item_name;

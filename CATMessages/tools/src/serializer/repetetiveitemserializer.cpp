@@ -10,28 +10,28 @@ RepetetiveItemSerializer::RepetetiveItemSerializer(const nlohmann::json &item_de
 
     if (!item_definition.contains("repetition_item"))
         throw runtime_error("repetitive item '" + name_ +
-                            "' parsing without repetition item specification");
+                            "' serializing without repetition item specification");
 
     const json &repetition_item = item_definition.at("repetition_item");
 
     if (!repetition_item.is_object())
-        throw runtime_error("parsing repetitive item '" + name_ +
+        throw runtime_error("serializing repetitive item '" + name_ +
                             "' repetition item specification is not an object");
 
     if (repetition_item.at("name") != "REP")
-        throw runtime_error("parsing repetitive item '" + name_ +
+        throw runtime_error("serializing repetitive item '" + name_ +
                             "' repetition item specification has to be named 'REP'");
 
     repetition_item_.reset(ItemSerializerBase::createItemSerializer(repetition_item));
     assert(repetition_item_);
 
     if (!item_definition.contains("items"))
-        throw runtime_error("parsing repetitive item '" + name_ + "' without items");
+        throw runtime_error("serializing repetitive item '" + name_ + "' without items");
 
     const json &items = item_definition.at("items");
 
     if (!items.is_array())
-        throw runtime_error("parsing repetitive item '" + name_ +
+        throw runtime_error("serializing repetitive item '" + name_ +
                             "' items specification is not an array");
 
     std::string item_name;

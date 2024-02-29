@@ -9,22 +9,22 @@ OptionalItemSerializer::OptionalItemSerializer(const nlohmann::json& item_defini
     assert(type_ == "optional_item");
 
     if (!item_definition.contains("optional_bitfield_name"))
-        throw runtime_error("optional item '" + name_ + "' parsing without bitfield name");
+        throw runtime_error("optional item '" + name_ + "' serializing without bitfield name");
 
     bitfield_name_ = item_definition.at("optional_bitfield_name");
 
     if (!item_definition.contains("optional_bitfield_index"))
-        throw runtime_error("optional item '" + name_ + "' parsing without bitfield index");
+        throw runtime_error("optional item '" + name_ + "' serializing without bitfield index");
 
     bitfield_index_ = item_definition.at("optional_bitfield_index");
 
     if (!item_definition.contains("data_fields"))
-        throw runtime_error("parsing optional item '" + name_ + "' without sub-items");
+        throw runtime_error("serializing optional item '" + name_ + "' without sub-items");
 
     const json& data_fields = item_definition.at("data_fields");
 
     if (!data_fields.is_array())
-        throw runtime_error("parsing optional item '" + name_ +
+        throw runtime_error("serializing optional item '" + name_ +
                             "' data fields container is not an array");
 
     std::string item_name;
@@ -45,17 +45,17 @@ void OptionalItemSerializer::serializeItem(nlohmann::json &jData, size_t index, 
 {
     if(!jData.contains(bitfield_name_))
     {
-        throw runtime_error("parsing optional item '" + name_ + "' without defined bitfield '" + bitfield_name_ + "'");
+        throw runtime_error("serializing optional item '" + name_ + "' without defined bitfield '" + bitfield_name_ + "'");
     }
 
     if(!jData[bitfield_name_].is_array())
     {
-        throw runtime_error("parsing optional item '" + name_ + "' with non-array bitfield '" + bitfield_name_ + "' is not an array");
+        throw runtime_error("serializing optional item '" + name_ + "' with non-array bitfield '" + bitfield_name_ + "' is not an array");
     }
 
     if(!jData[bitfield_name_][bitfield_index_].is_boolean())
     {
-        throw runtime_error("parsing optional item '" + name_ + "' with non-boolean bitfield '" + bitfield_name_ + "' value");
+        throw runtime_error("serializing optional item '" + name_ + "' with non-boolean bitfield '" + bitfield_name_ + "' value");
     }
 
     bool item_exists = jData[bitfield_name_].at(bitfield_index_);

@@ -9,7 +9,7 @@ SkipBytesItemSerializer::SkipBytesItemSerializer(const nlohmann::json& item_defi
     assert(type_ == "skip_bytes");
 
     if (!item_definition.contains("length"))
-        throw runtime_error("fixed bytes item '" + name_ + "' parsing without length");
+        throw runtime_error("fixed bytes item '" + name_ + "' serializing without length");
 
     length_ = item_definition.at("length");
 }
