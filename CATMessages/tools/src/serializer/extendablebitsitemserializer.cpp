@@ -31,7 +31,6 @@ void ExtendableBitsItemSerializer::serializeItem(nlohmann::json &jData, size_t i
 
     if(data_type_ == "bitfield")
     {
-        bool value = true;
         std::vector<bool> available = current_data[name_];
         unsigned int parsed_bytes = 1;
 
@@ -39,15 +38,17 @@ void ExtendableBitsItemSerializer::serializeItem(nlohmann::json &jData, size_t i
         {
             std::reverse(available.begin(), available.end());
         }
-
-        while(value != false)
+        
+        size_t length = available.size()/8;
+        //bool value = true;
+        while((parsed_bytes - 1) < length) //value != false
         {
             unsigned char convertedByte = 0;
             std::vector<bool> tempVec;
 
             for(size_t cnt{0}; cnt < 8; ++cnt)
             {
-                tempVec.push_back(available[cnt] * parsed_bytes);
+                tempVec.push_back(available[cnt + (8 * (parsed_bytes - 1))]);
             }
 
             if(reverse_bits_)
@@ -67,13 +68,13 @@ void ExtendableBitsItemSerializer::serializeItem(nlohmann::json &jData, size_t i
                 }
             }
 
-            if(reverse_order_)
-            {
-                value = tempVec[(parsed_bytes -1) * 8];
-            }
-            else{ 
-                value = tempVec[(8 * parsed_bytes) - 1];
-            }
+            // if(reverse_order_)
+            // {
+            //     value = tempVec[(parsed_bytes -1) * 8];
+            // }
+            // else{ 
+            //     value = tempVec[(8 * parsed_bytes) - 1];
+            // }
         
             ++parsed_bytes;
             target.push_back(convertedByte);

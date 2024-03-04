@@ -49,6 +49,9 @@ void CompoundItemSerializer::serializeItem(nlohmann::json &jData, size_t index, 
 
     for(auto& df_item : items_)
     {
-        df_item->serializeItem(jData, 0, 0, 0, target, debug);
+        if(jData.contains(df_item->name_))
+        {
+            df_item->serializeItem(jData, 0, 0, 0, target, debug);
+        }  
     }
 }
