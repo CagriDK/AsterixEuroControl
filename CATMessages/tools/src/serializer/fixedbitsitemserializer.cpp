@@ -344,7 +344,7 @@ void FixedBitsItemSerializer::serializeItem(nlohmann::json &jData, size_t index,
         {
             characters_tmp = stringToAsciiBitsets(str, character_bit_length_ - 1);
         }
-        std::reverse(characters_tmp.begin(), characters_tmp.end());
-        std::copy(characters_tmp.rbegin(), characters_tmp.rend(), std::back_inserter(vecData));
+        //std::reverse(characters_tmp.begin(), characters_tmp.end());
+        std::copy(characters_tmp.begin(), characters_tmp.end(), std::back_inserter(vecData));
     }
 }
