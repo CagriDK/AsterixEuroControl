@@ -58,11 +58,11 @@ bool AsterixCatMessageBase::baseDecodeData(const char* data, const json &cat_def
     }
     std::cout << cat_data_return.dump(4) << std::endl;
 
-
+    json cat34Sample = nlohmann::json::parse(std::ifstream("../CATMessages/categories-definitions/sampleCat34.json"));
     std::vector<char> a;
 
     baseEncodeData(cat_data_return,cat_definition,cat_items_order,uap_list,a);
-    encodeHeader(0x30,a); 
+    encodeHeader(0x22,a); 
     char * ret = reinterpret_cast<char*>(&a[0]);
 
     for(auto t : a)
