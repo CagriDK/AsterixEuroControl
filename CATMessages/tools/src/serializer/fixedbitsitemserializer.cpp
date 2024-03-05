@@ -280,9 +280,10 @@ void FixedBitsItemSerializer::serializeItem(nlohmann::json &jData, size_t index,
                                bool debug) 
 {
     json current_data = jData;
-
+    vecData.clear();
     if(data_type_ == "digits")
     {
+        std::vector<bool> tempVecData;
         std::string serialized = "";
 
         int number;
@@ -304,13 +305,16 @@ void FixedBitsItemSerializer::serializeItem(nlohmann::json &jData, size_t index,
             std::bitset<3> binaryDigit(digit);
             for(size_t i = 0; i < digit_bit_length_; i++)
             {
-                vecData.push_back(binaryDigit[i]);
+                tempVecData.push_back(binaryDigit[i]);
             }
             num_digits_--;
         }
+        //std::reverse(tempVecData.begin(), tempVecData.end());
+        std::copy(tempVecData.rbegin(), tempVecData.rend(), std::back_inserter(vecData));
     }
     else if(data_type_ == "int" || data_type_ == "uint")
     {
+        std::vector<bool> tempVecData;
         if (has_lsb_)
         {
             double tempData = static_cast<double>(jData[name_]) / lsb_;
@@ -323,8 +327,10 @@ void FixedBitsItemSerializer::serializeItem(nlohmann::json &jData, size_t index,
 
         for(size_t i = 0; i < bit_length_; i++)
         {
-            vecData.push_back(bit_value >> i & 1);
+            tempVecData.push_back(bit_value >> i & 1);
         }
+        //std::reverse(tempVecData.begin(), tempVecData.end());
+        std::copy(tempVecData.rbegin(), tempVecData.rend(), std::back_inserter(vecData));
     }
     else if (data_type_ == "icao_characters" || data_type_ == "ascii_characters")
     {
@@ -338,9 +344,7 @@ void FixedBitsItemSerializer::serializeItem(nlohmann::json &jData, size_t index,
         {
             characters_tmp = stringToAsciiBitsets(str, character_bit_length_ - 1);
         }
+        std::reverse(characters_tmp.begin(), characters_tmp.end());
         std::copy(characters_tmp.rbegin(), characters_tmp.rend(), std::back_inserter(vecData));
     }
-
-    //En son bit ilk eklendiği için ters çevir.
-    std::reverse(vecData.begin(), vecData.end());
 }

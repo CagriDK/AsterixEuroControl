@@ -60,7 +60,7 @@ void FixedBitFieldItemSerializer::serializeItem(nlohmann::json &jData, size_t in
                                size_t current_parsed_bytes, std::vector<char> &target, 
                                bool debug) 
 {
-
+    bitfield.clear();
     if(optional_ && !variableHasValue(jData, optional_variable_name_parts_, optional_variable_value_))
     {
         return; //no parse
@@ -73,7 +73,7 @@ void FixedBitFieldItemSerializer::serializeItem(nlohmann::json &jData, size_t in
     {
         items_[idx]->serializeItem(jData, 0, 0, 0, target, debug);
 
-        unsigned int start_bit, bit_length{0};
+        unsigned int start_bit{0}, bit_length{0};
 
         unsigned int byte_length = static_cast<FixedBitsItemSerializer *>(items_[idx].get())->byte_length_;
         bit_length = static_cast<FixedBitsItemSerializer *>(items_[idx].get())->bit_length_;
