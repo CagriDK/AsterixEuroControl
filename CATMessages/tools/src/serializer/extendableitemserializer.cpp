@@ -42,13 +42,13 @@ void ExtendableItemSerializer::serializeItem(nlohmann::json &jData, size_t index
     {
         for (auto& df_item : items_)
         {
-            df_item->serializeItem(jData, 0, 0, 0, target, debug);
+            df_item->serializeItem(jData[name_][cnt], 0, 0, 0, target, debug);
 
             if (debug && !jData.at(cnt).contains("extend"))
                 throw runtime_error("serializing extendable item '" + name_ +
                                     "' without extend information");
 
-            extend = jData.at(cnt).at("extend");
+            extend = jData[name_].at(cnt).at("extend");
 
             ++cnt;
         }
