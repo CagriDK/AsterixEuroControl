@@ -22,12 +22,13 @@ int main(int, char **)
     //const char *data = "3e0029975da40102378dc0f8c72bf99b39003f02c3009421011003a40624001301010158f403440176";
     //const char *data = "3e0029975da40102378dc0fb7c4f05a1ac01c5fde20ee1210110639f061d001101010158f403600119";
     
-    //const char *fullSampleData34= "22002ffff8000202416dec40320094406044009400001002200450146400c800471c8e390400c88e38e48e38e400c7";
-
+    //const char *fullSampleData34 = "22002ffff8000202416dec40320094406044009400001002200450146400c800471c8e390400c88e38e48e38e400c7";
+    //const char *fullSampleData48 = "300068fffffff80002356d4da0c5aff1e002000528fee46464e46400c70003e810c236d4182001c0780031bc00004000643200320007b9582e41000000c77205020064014a00640028c080640200640064006400c800c800c820f5c0780031bc00000803e8640064";
+    
     std::vector<char> vec(data, data + strlen(data));
     RadarClientMessageHandler radarMsgHandler;
     radarMsgHandler.asterixMessageParser(vec);
-
+    
     Config::getInstance();
     std::cout<<std::dec<<"Config::Server Port = "<<Config::getInstance().getServerPort()<<std::endl;
 }
