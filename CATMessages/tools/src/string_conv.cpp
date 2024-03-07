@@ -17,6 +17,7 @@
 
 #include "../include/string_conv.h"
 
+#include <iostream>
 #include <cassert>
 #include <cstring>
 #include <iomanip>
@@ -79,7 +80,7 @@ std::vector<bool> stringToIcaoBitsets(const std::string &input,size_t character_
     for (char c : input)
     {
         unsigned int value = 0;
-
+        c = putchar(toupper(c));
         if ('A' <= c && c <= 'Z')
         {
             value = c - 'A' + 1;
@@ -99,6 +100,8 @@ std::vector<bool> stringToIcaoBitsets(const std::string &input,size_t character_
         }
 
     }
+
+    std::cout<<"\n";
 
     return bitVector;
 }
