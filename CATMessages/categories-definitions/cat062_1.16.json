@@ -597,7 +597,7 @@
                                             "name":"X",
                                             "comment":"X-pulse from Mode 5 Data reply or Report.\n0 X-pulse set to zero or no authenticated Data reply or Report received.\n1 X-pulse set to one.",
                                             "type":"fixed_bits",
-                                            "start_bit":1,
+                                            "start_bit":0,
                                             "bit_length":1
                                         }
                                     ]
