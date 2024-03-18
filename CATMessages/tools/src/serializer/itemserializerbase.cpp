@@ -133,4 +133,5 @@ bool ItemSerializerBase::variableHasValue(const nlohmann::json &data,
         return false;
     else
         return *val_ptr == variable_value;
+    return false;
 }
