@@ -9,7 +9,7 @@ public:
     AsterixCat48Messages();
     virtual ~AsterixCat48Messages() override;
     // Decode Data Network(TCP/IP & UDP)
-    bool decodeData(const char *data, json &cat48_json_data);
+    bool decodeData(const char *data, json &cat48_json_data, json &cat48_definition);
 
     void to_json(nlohmann::json &j);
     void from_json(Cat48Record &);

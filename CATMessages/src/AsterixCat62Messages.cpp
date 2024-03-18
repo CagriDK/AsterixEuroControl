@@ -9,9 +9,8 @@ AsterixCat62Messages::~AsterixCat62Messages(){
 
 };
 
-bool AsterixCat62Messages::decodeData(const char *data, json &cat62_json_data)
+bool AsterixCat62Messages::decodeData(const char *data, json &cat62_json_data, json &cat62_definition)
 {
-    json cat62_definition = nlohmann::json::parse(std::ifstream("../CATMessages/categories-definitions/cat062_1.16.json"));
     AsterixCatMessageBase::baseDecodeData(data, cat62_definition, cat62_items_order, cat62_uap_order, cat62_json_data);
     return true;
 }

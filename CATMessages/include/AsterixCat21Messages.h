@@ -9,7 +9,7 @@ public:
     AsterixCat21Messages();
     virtual ~AsterixCat21Messages() override;
     // Decode Data Network(TCP/IP & UDP)
-    bool decodeData(const char *data, json &cat21_json_data);
+    bool decodeData(const char *data, json &cat21_json_data, json &cat21_definition);
 
     void to_json(nlohmann::json &j);
     void from_json(Cat21Record &);

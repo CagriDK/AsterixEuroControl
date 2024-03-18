@@ -9,9 +9,8 @@ AsterixCat34Messages::~AsterixCat34Messages(){
 
 };
 
-bool AsterixCat34Messages::decodeData(const char *data, json &cat34_json_data)
+bool AsterixCat34Messages::decodeData(const char *data, json &cat34_json_data, json &cat34_definition)
 {
-    json cat34_definition = nlohmann::json::parse(std::ifstream("../CATMessages/categories-definitions/cat034_1.26.json"));
     AsterixCatMessageBase::baseDecodeData(data, cat34_definition, cat34_items_order, cat34_uap_order, cat34_json_data);
     return true;
 }
