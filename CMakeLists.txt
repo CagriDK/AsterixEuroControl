@@ -40,6 +40,8 @@ file(GLOB CAT_MESSAGES
      "CATMessages/tools/src/serializer/*.cpp"
 )
 
+add_subdirectory(GTest)
+
 add_executable(pAsterix 
 main.cpp
 ${LIB_SOURCES}
