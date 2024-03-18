@@ -16,23 +16,29 @@ void RadarClientMessageHandler::asterixMessageParser(const std::vector<char> &da
 
     int catType = static_cast<int>(static_cast<unsigned char>(data_bytes[0]));
     json jData;
+
+    json cat21_definition = nlohmann::json::parse(std::ifstream("../CATMessages/categories-definitions/cat021_0.26.json"));
+    json cat34_definition = nlohmann::json::parse(std::ifstream("../CATMessages/categories-definitions/cat034_1.26.json"));
+    json cat48_definition = nlohmann::json::parse(std::ifstream("../CATMessages/categories-definitions/cat048_1.23.json"));
+    json cat62_definition = nlohmann::json::parse(std::ifstream("../CATMessages/categories-definitions/cat062_1.16.json"));
+
     switch (catType)
     {
     case 21:
         std::cout << "CAT CATEGORY: " << catType << "\n";
-        m_cat21.decodeData(data_bytes, jData);
+        m_cat21.decodeData(data_bytes, jData, cat21_definition);
         break;
     case 34:
         std::cout << "CAT CATEGORY: " << catType << "\n";
-        m_cat34.decodeData(data_bytes, jData);
+        m_cat34.decodeData(data_bytes, jData, cat34_definition);
         break;
     case 48:
         std::cout << "CAT CATEGORY: " << catType << "\n";
-        m_cat48.decodeData(data_bytes, jData);
+        m_cat48.decodeData(data_bytes, jData, cat48_definition);
         break;
     case 62:
         std::cout << "CAT CATEGORY: " << catType << "\n";
-        m_cat62.decodeData(data_bytes, jData);
+        m_cat62.decodeData(data_bytes, jData, cat62_definition);
         break;
     default:
         break;

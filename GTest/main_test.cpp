@@ -1,4 +1,4 @@
-#include "ExampleTest.h"
+#include "CAT62Test.h"
 
 int main(int argc, char** argv)
 {

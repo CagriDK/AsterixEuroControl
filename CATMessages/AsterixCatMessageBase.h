@@ -2,6 +2,7 @@
 
 #include <string>
 #include "../lib/json.hpp"
+#include <sstream>
 #include <iostream>
 #include <fstream>
 #include <vector>

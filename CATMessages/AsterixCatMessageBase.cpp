@@ -58,28 +58,38 @@ bool AsterixCatMessageBase::baseDecodeData(const char* data, const json &cat_def
     }
     std::cout << cat_data_return.dump(4) << std::endl;
 
-    json cat34Sample = nlohmann::json::parse(std::ifstream("../CATMessages/categories-definitions/sampleCat34.json"));
-    json cat48Sample = nlohmann::json::parse(std::ifstream("../CATMessages/categories-definitions/sampleCat48.json"));
-    json cat62Sample = nlohmann::json::parse(std::ifstream("../CATMessages/categories-definitions/sampleCat62.json"));
+    //json cat34Sample = nlohmann::json::parse(std::ifstream("../CATMessages/categories-definitions/sampleCat34.json"));
+    //json cat48Sample = nlohmann::json::parse(std::ifstream("../CATMessages/categories-definitions/sampleCat48.json"));
+    //json cat62Sample = nlohmann::json::parse(std::ifstream("../CATMessages/categories-definitions/sampleCat62.json"));
 
     std::vector<char> a;
 
     baseEncodeData(cat_data_return,cat_definition,cat_items_order,uap_list,a);
-    encodeHeader(0x3e,a); 
+    encodeHeader(0x3e,a);
     char * ret = reinterpret_cast<char*>(&a[0]);
 
+    std::stringstream ss;
     for(auto t : a)
-    {  
-        if(static_cast<int>(static_cast<unsigned char>(t)) < 16)
-        {
-            std::cout<<"0";
-        };
-        std::cout << std::hex << static_cast<int>(static_cast<unsigned char>(t));// << " ";
+    {
+        // if(static_cast<int>(static_cast<unsigned char>(t)) < 16)
+        // {
+        //     std::cout<<"0";
+        // };
+        // std::cout << std::hex << static_cast<int>(static_cast<unsigned char>(t));// << " ";
+
+        ss << std::hex << std::setw(2) << std::setfill('0') << static_cast<int>(static_cast<unsigned char>(t));
     }
+
+    std::string EncodedHexData = ss.str();
+    std::cout << EncodedHexData << std::endl;
+
+    cat_data_return.emplace("encodedHexData", EncodedHexData);
+
+    //cat_data_return["encodedHexData"].emplace(EncodedHexData);
     //std::cout<<"\n";
 
     //baseDecodeData(ret,cat_definition,cat_items_order,uap_list,cat_data_return);
-    
+
 
     return true;
 }
