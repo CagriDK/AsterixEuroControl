@@ -57,7 +57,8 @@ size_t FixedBytesItemParser::parseItem(const char* data, size_t index, size_t si
 {
 
     unsigned char tmp{0};
-
+    data_uint = 0;
+    
     const char* current_data = &data[index];
 
     if (data_type_ == "string")
