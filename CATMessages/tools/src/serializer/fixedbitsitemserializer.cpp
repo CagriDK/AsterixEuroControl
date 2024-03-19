@@ -285,6 +285,13 @@ void FixedBitsItemSerializer::serializeItem(nlohmann::json &jData, size_t index,
     {
         std::vector<bool> tempVecData;
         std::string serialized = "";
+        int num = current_data[name_];
+        std::string temp_string = std::to_string(num);
+
+        if(temp_string.size() > num_digits_)
+        {
+            std::cout<<"Serializing a non proper length for : " + name_ + " required length = " << num_digits_ << "\n";
+        }
 
         int number;
         if(has_lsb_)
@@ -344,6 +351,14 @@ void FixedBitsItemSerializer::serializeItem(nlohmann::json &jData, size_t index,
         {
             characters_tmp = stringToAsciiBitsets(str, character_bit_length_ - 1);
         }
+
+        std::string temp_string = current_data[name_];
+
+        if(temp_string.size() > num_characters_)
+        {
+            std::cout<<"Serializing a non proper length for : " + name_ + " required length = " << num_characters_ << "\n";
+        }
+        
         //std::reverse(characters_tmp.begin(), characters_tmp.end());
         std::copy(characters_tmp.begin(), characters_tmp.end(), std::back_inserter(vecData));
     }

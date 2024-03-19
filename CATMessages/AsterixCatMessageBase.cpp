@@ -60,7 +60,7 @@ bool AsterixCatMessageBase::baseDecodeData(const char* data, const json &cat_def
 
     //json cat34Sample = nlohmann::json::parse(std::ifstream("../CATMessages/categories-definitions/sampleCat34.json"));
     //json cat48Sample = nlohmann::json::parse(std::ifstream("../CATMessages/categories-definitions/sampleCat48.json"));
-    //json cat62Sample = nlohmann::json::parse(std::ifstream("../CATMessages/categories-definitions/sampleCat62.json"));
+    json cat62Sample = nlohmann::json::parse(std::ifstream("../CATMessages/categories-definitions/sampleCat62.json"));
 
     std::vector<char> a;
 
@@ -81,7 +81,7 @@ bool AsterixCatMessageBase::baseDecodeData(const char* data, const json &cat_def
     }
 
     std::string EncodedHexData = ss.str();
-    std::cout << EncodedHexData << std::endl;
+    std::cout <<"HEX = "<< EncodedHexData << std::endl;
 
     cat_data_return.emplace("encodedHexData", EncodedHexData);
 
@@ -140,10 +140,13 @@ bool AsterixCatMessageBase::baseEncodeData(json jData, const json &cat_definitio
     {
         if(jData.contains(uap))
         {
+            std::cout<<uap<<"\n";
             ItemSerializer itemSerializer(cat_definition["items"][cat_items_orders.at(uap)]);
             itemSerializer.serializeItem(jData[uap], 0, 0, 0, data, 0);
             fspec[uap_list.size() - count - 1] = 1;
+            std::cout<<uap<<"\n";
         }
+        
         count ++;
     }
 

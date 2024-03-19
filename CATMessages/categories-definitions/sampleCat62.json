@@ -1,5 +1,5 @@
 {
-    "comment" : "Hex Data = 3e00f8bffffffe010264378dc0011c71c8011c71c803b718039e000087fffe90900e0080049483244d7621011040e2012c01de01010158ffe09090909001909090909090f0ffffffffe090909090909090909090909090649090909090909090909090909090909090004000100004005ffffff0010234324142464646400026ac40414231324141424132424142346464640190646401080c2d20474147414741405441524441313254415244413133100054415244413134c947c864fe7e00000101471c72238e3940640064000e0064640191640190ff8000c800c800c871c871c810909090909010fe01026400471c000493d8a2008c",
+    "comment" : "Hex Data = 3e00f8bffffffe010264378dc0011c71c8011c71c803b718039e000087fffe78880e0080049483244d7621011040e2012c01de01010158ffe0c8c8c8c800c8c8c8c8c8c8f0ffffffffe0c8c8c8c8c8c8c8c8c8c8c8c8c832c8c8c8c8c8c8c8c8c8c8c8c8c8c8c8c8c8004000100004005ffffff0010234324142464646400026ac40414231324141424132424142346464640190646401080c2d20474147414741405441524441313254415244413133128054415244413134c947c864fe7e00000101471c72238e39406400645a0e0064640191640190ff8000c800c800c891a3da7410b4c8b4c8b410fe01026400471c000493d8a2008c",
     "010": {
         "SAC": 1,
         "SIC": 2
@@ -83,7 +83,7 @@
             "Extended Mode 1 Code":100
         },
         "TOS": {
-            "TOS":100
+            "TOS":0.7
         },
         "XP": {
             "X5":0,
@@ -126,9 +126,9 @@
         "TRANS": 3,
         "VERT": 0
     },
-    "210": {
-        "Ax": 100,
-        "Ay": 100
+    "210": { 
+        "Ax": 30, 
+        "Ay": -30
     },
     "220": {
         "Rate of Climb/Descent": 593.75
@@ -147,34 +147,34 @@
     },
     "290": {
         "TRK": {
-            "Age":100
+            "Age":50
         },
         "PSR": {
-            "Age":100
+            "Age":50
         },
         "SSR": {
-            "Age":100
+            "Age":50
         },
         "MDS": {
-            "Age":100
+            "Age":50
         },
         "ADS": {
-            "Age":100
+            "Age":50
         },
         "ES": {
-            "Age":100
+            "Age":50
         },
         "VDL": {
-            "Age":100
+            "Age":50
         },
         "UAT": {
-            "Age":100
+            "Age":50
         },
         "LOP": {
-            "Age":100
+            "Age":50
         },
         "MLT": {
-            "Age":100
+            "Age":50
         },
         "available": [
             true,
@@ -197,97 +197,97 @@
     },
     "295": {
         "MFL": {
-            "Age":100
+            "Age":50
         },
         "MD1": {
-            "Age":100
+            "Age":50
         },
         "MD2": {
-            "Age":100
+            "Age":50
         },
         "MDA": {
-            "Age":100
+            "Age":50
         },
         "MD4": {
-            "Age":100
+            "Age":50
         },
         "MD5": {
-            "Age":100
+            "Age":50
         },
         "MHG": {
-            "Age":100
+            "Age":50
         },
         "IAS": {
-            "Age":100
+            "Age":50
         },
         "TAS": {
-            "Age":100
+            "Age":50
         },
         "SAL": {
-            "Age":100
+            "Age":50
         },
         "FSS": {
-            "Age":100
+            "Age":50
         },
         "TID": {
-            "Age":100
+            "Age":50
         },
         "COM": {
-            "Age":100
+            "Age":50
         },
         "SAB": {
-            "Age":100
+            "Age":50
         },
         "ACS": {
-            "Age":100
+            "Age":50
         },
         "BVR": {
-            "Age":100
+            "Age":50
         },
         "GVR": {
-            "Age":100
+            "Age":50
         },
         "RAN": {
-            "Age":100
+            "Age":50
         },
         "TAR": {
-            "Age":100
+            "Age":50
         },
         "TAN": {
-            "Age":100
+            "Age":50
         },
         "GSP": {
-            "Age":100
+            "Age":50
         },
         "VUN": {
-            "Age":100
+            "Age":50
         },
         "MET": {
-            "Age":100
+            "Age":50
         },
         "EMC": {
-            "Age":100
+            "Age":50
         },
         "POS": {
-            "Age":100
+            "Age":50
         },
         "GAL": {
-            "Age":100
+            "Age":50
         },
         "PUN": {
-            "Age":100
+            "Age":50
         },
         "MB": {
-            "Age":100
+            "Age":50
         },
         "IAR": {
-            "Age":100
+            "Age":50
         },
         "MAC": {
-            "Age":100
+            "Age":50
         },
         "BPS": {
-            "Age":100
+            "Age":50
         },
         "available": [
             true,
@@ -480,7 +480,7 @@
         },
         "PEM": {
             "VA": 1,
-            "Mode-3/A reply": 120000
+            "Mode-3/A reply": 1200
         },
         "PEC": {
             "Pre-Emergency Callsign": "TARDA14"
@@ -521,22 +521,22 @@
             "COV (XY Covariance Component)": 100.0
         },
         "APW": {
-            "APW (Latitude Component)": 100.0,
-            "APW (Longitude Component)": 100.0
+            "APW (Latitude Component)": 0.2,
+            "APW (Longitude Component)": 0.3
         },
         "AGA": {
             "AGA": 100.0
         },
         "ABA": {
-            "ABA": 100.0
+            "ABA": 45.0
         },
         "ATV": {
-            "ATV (X-Component)": 100.0,
-            "ATV (Y-Component)": 100.0
+            "ATV (X-Component)": 50.0,
+            "ATV (Y-Component)": 45.0
         },
         "AA": {
-            "AA (X-Component)": 100.0,
-            "AA (Y-Component)": 100.0
+            "AA (X-Component)": 50.0,
+            "AA (Y-Component)": 45.0
         },
         "ARC": {
             "ARC": 100.0
