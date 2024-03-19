@@ -1,5 +1,5 @@
 {
-    "comment" : "Hex Data = 22002ffff8000202416dec40320094406044009400001002200450146400c800471c8e390400c88e38e48e38e400c7",
+    "comment" : "Hex Data = 22002ffff8000202416dec40320094406044009400001002200450146400c800471c8e390400c88e38e48e38e4c064",
     "000": {
         "Message Type": 2
     },
@@ -92,8 +92,8 @@
         "REP": 2
     },
     "090": {
-        "RANGE ERROR": 100,
-        "AZIMUTH ERROR": 100
+        "RANGE ERROR": -0.5,
+        "AZIMUTH ERROR": 2.2
     },
     "100": {
         "RHO-START" : 100,
