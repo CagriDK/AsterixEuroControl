@@ -49,4 +49,21 @@ private:
     MessageHeader header_info;
     size_t parsedBytes{0};
     std::vector<std::string> m_uap_list;
+    
+public:
+    static void hexStringToBytes(const std::vector<char> &hex_vector, char *bytes, size_t max_length)
+    {
+        std::string hex(hex_vector.begin(), hex_vector.end());
+        size_t length = hex.length();
+        for (size_t i = 0; i < length; i += 2)
+        {
+            if (i / 2 >= max_length)
+            {
+                return;
+            }
+            std::string byteString = hex.substr(i, 2);
+            unsigned char byte = static_cast<unsigned char>(std::stoul(byteString, nullptr, 16));
+            bytes[i / 2] = byte;
+        }
+    }
 };
