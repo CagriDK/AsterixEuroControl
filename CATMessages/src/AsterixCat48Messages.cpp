@@ -9,9 +9,9 @@ AsterixCat48Messages::~AsterixCat48Messages(){
 
 };
 
-bool AsterixCat48Messages::decodeData(const char *data, json &cat48_json_data, json &cat48_definition)
+bool AsterixCat48Messages::decodeData(const char *data, json &cat48_json_data, json &cat48_definition, bool use_sample, json &cat48_sample)
 {
-    AsterixCatMessageBase::baseDecodeData(data, cat48_definition, cat48_items_order, cat48_uap_order, cat48_json_data);
+    AsterixCatMessageBase::baseDecodeData(data, cat48_definition, cat48_items_order, cat48_uap_order, cat48_json_data, use_sample, cat48_sample);
     return true;
 }
 

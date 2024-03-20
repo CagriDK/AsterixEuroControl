@@ -9,7 +9,7 @@ public:
     RadarClientMessageHandler();
     ~RadarClientMessageHandler();
 
-    void asterixMessageParser(const std::vector<char> &data);
+    void asterixMessageParser(const std::vector<char> &data, bool TEST_SAMPLE_CASE);
 
 private:
     void hexStringToBytes(const std::vector<char> &hex_vector, char *bytes, size_t max_length);

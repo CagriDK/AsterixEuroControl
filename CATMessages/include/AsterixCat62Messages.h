@@ -8,8 +8,8 @@ class AsterixCat62Messages : public AsterixCatMessageBase
 public:
     AsterixCat62Messages();
     virtual ~AsterixCat62Messages() override;
-    // Decode Data Network(TCP/IP & UDP)
-    bool decodeData(const char *data, json &cat62_json_data, json &cat62_definition);
+    // Decode Data Network(TCP/IP & UDP)s
+    bool decodeData(const char *data, json &cat62_json_data, json &cat62_definition, bool use_sample, json &cat62_sample);
 
     void to_json(nlohmann::json &j);
     void from_json(Cat62Record &);

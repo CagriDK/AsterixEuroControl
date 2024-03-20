@@ -28,7 +28,7 @@ public:
     virtual ~AsterixCatMessageBase();
 
     // Decode Data Network(TCP/IP & UDP)
-    bool baseDecodeData(const char* data, const json &cat_definition,const std::map<std::string,int> &cat_items_order,const std::vector<std::string> &uap_list, json &cat_data_return);
+    bool baseDecodeData(const char* data, const json &cat_definition,const std::map<std::string,int> &cat_items_order,const std::vector<std::string> &uap_list, json &cat_data_return, bool TEST_SAMPLE_CASE, json &cat_sample);
     bool baseEncodeData(json jData, const json &cat_definition, const std::map<std::string,int> &cat_items_orders, const std::vector<std::string> &uap_list, std::vector<char> &data_return);
 
 private:

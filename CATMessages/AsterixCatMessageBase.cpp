@@ -9,74 +9,72 @@ AsterixCatMessageBase::~AsterixCatMessageBase()
 
 }
 
-bool AsterixCatMessageBase::baseDecodeData(const char* data, const json &cat_definition,const std::map<std::string,int> &cat_items_order,const std::vector<std::string> &uap_list, json &cat_data_return)
+bool AsterixCatMessageBase::baseDecodeData(const char* data, const json &cat_definition,const std::map<std::string,int> &cat_items_order,const std::vector<std::string> &uap_list, json &cat_data_return, bool TEST_SAMPLE_CASE, json &cat_sample)
 {
-    m_data = "";
-    parsedBytes = 0;
-    header_info.uap_list.clear();
-    header_info.message_len = 0;
-    header_info.cat_type = 0;
-    m_data = data;
-    m_uap_list = uap_list;
-    cat_data_return.clear();
+    std::vector<char> Data_Pack;
 
-    decodeHeader();
-
-    for (auto decodeBytes : header_info.uap_list)
+    if(TEST_SAMPLE_CASE)
     {
-        if (decodeBytes == "FX")
-        {
-            //"FX" (Field Extension Indicator)
-            std::cout << "FX" << std::endl;
-            continue;
-        }
-        else if (decodeBytes == "RE")
-        {
-            //"RE" (Reserved Expansion Field)
-            std::cout << "RE" << std::endl;
-            continue;
-        }
-        else if (decodeBytes == "SP")
-        {
-            //"SP" (Special Purpose Field)
-            std::cout << "SP" << std::endl;
-            continue;
-        }
-        else if (decodeBytes == "-")
-        {
-            //"-" (Empyt Line - Data Not Related With Radar)
-            std::cout << "-" << std::endl;
-            parsedBytes += 1;
-            continue;
-        }
-        else
-        {
-            ItemParser itemParser(cat_definition["items"][cat_items_order.at(decodeBytes)]);
-            parsedBytes += itemParser.parseItem(m_data, parsedBytes, 0, 0, cat_data_return, 0);
-            //std::cout << cat_data_return[decodeBytes].dump(4) << std::endl;
-        }
+        baseEncodeData(cat_sample,cat_definition,cat_items_order,uap_list,Data_Pack);
     }
-    std::cout << cat_data_return.dump(4) << std::endl;
+    else
+    {
+        m_data = "";
+        parsedBytes = 0;
+        header_info.uap_list.clear();
+        header_info.message_len = 0;
+        header_info.cat_type = 0;
+        m_data = data;
+        m_uap_list = uap_list;
+        cat_data_return.clear();
 
-    json cat34Sample = nlohmann::json::parse(std::ifstream("../CATMessages/categories-definitions/sampleCat34.json"));
-    json cat48Sample = nlohmann::json::parse(std::ifstream("../CATMessages/categories-definitions/sampleCat48.json"));
-    json cat62Sample = nlohmann::json::parse(std::ifstream("../CATMessages/categories-definitions/sampleCat62.json"));
+        decodeHeader();
 
-    std::vector<char> a;
+        for (auto decodeBytes : header_info.uap_list)
+        {
+            if (decodeBytes == "FX")
+            {
+                //"FX" (Field Extension Indicator)
+                std::cout << "FX" << std::endl;
+                continue;
+            }
+            else if (decodeBytes == "RE")
+            {
+                //"RE" (Reserved Expansion Field)
+                std::cout << "RE" << std::endl;
+                continue;
+            }
+            else if (decodeBytes == "SP")
+            {
+                //"SP" (Special Purpose Field)
+                std::cout << "SP" << std::endl;
+                continue;
+            }
+            else if (decodeBytes == "-")
+            {
+                //"-" (Empyt Line - Data Not Related With Radar)
+                std::cout << "-" << std::endl;
+                parsedBytes += 1;
+                continue;
+            }
+            else
+            {
+                ItemParser itemParser(cat_definition["items"][cat_items_order.at(decodeBytes)]);
+                parsedBytes += itemParser.parseItem(m_data, parsedBytes, 0, 0, cat_data_return, 0);
+            }
+        }
+        std::cout << cat_data_return.dump(4) << std::endl;
 
-    baseEncodeData(cat_data_return,cat_definition,cat_items_order,uap_list,a);
-    encodeHeader(0x30,a);
-    char * ret = reinterpret_cast<char*>(&a[0]);
+        baseEncodeData(cat_data_return,cat_definition,cat_items_order,uap_list,Data_Pack);
+    }
+
+    encodeHeader(static_cast<int>(static_cast<unsigned char>(data[0])),Data_Pack);
+    
+    char * ret = reinterpret_cast<char*>(&Data_Pack[0]);
 
     std::stringstream ss;
-    for(auto t : a)
+    for(auto t : Data_Pack)
     {
-        // if(static_cast<int>(static_cast<unsigned char>(t)) < 16)
-        // {
-        //     std::cout<<"0";
-        // };
-        // std::cout << std::hex << static_cast<int>(static_cast<unsigned char>(t));// << " ";
-
         ss << std::hex << std::setw(2) << std::setfill('0') << static_cast<int>(static_cast<unsigned char>(t));
     }
 
@@ -84,12 +82,6 @@ bool AsterixCatMessageBase::baseDecodeData(const char* data, const json &cat_def
     std::cout <<"HEX = "<< EncodedHexData << std::endl;
 
     cat_data_return.emplace("encodedHexData", EncodedHexData);
-
-    //cat_data_return["encodedHexData"].emplace(EncodedHexData);
-    //std::cout<<"\n";
-
-    //baseDecodeData(ret,cat_definition,cat_items_order,uap_list,cat_data_return);
-
 
     return true;
 }
@@ -135,7 +127,9 @@ bool AsterixCatMessageBase::baseEncodeData(json jData, const json &cat_definitio
     std::vector<char> data;
 
     std::vector<bool> fspec(uap_list.size(), 0);
-    size_t count = 0;
+    size_t count = 0;   
+
+    std::cout<<"Package Include Messages: \n";
     for(auto uap : uap_list)
     {
         if(jData.contains(uap))
@@ -144,7 +138,6 @@ bool AsterixCatMessageBase::baseEncodeData(json jData, const json &cat_definitio
             ItemSerializer itemSerializer(cat_definition["items"][cat_items_orders.at(uap)]);
             itemSerializer.serializeItem(jData[uap], 0, 0, 0, data, 0);
             fspec[uap_list.size() - count - 1] = 1;
-            std::cout<<uap<<"\n";
         }
         
         count ++;
