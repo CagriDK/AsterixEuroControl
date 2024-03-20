@@ -332,6 +332,21 @@ void FixedBitsItemSerializer::serializeItem(nlohmann::json &jData, size_t index,
             bit_value = static_cast<int>(current_data[name_]);
         }
 
+        if(data_type_ == "uint")
+        {
+            if (bit_value < 0 || bit_value > (std::pow(2,bit_length_)))
+            {
+                std::cout<<"Serializing a non proper value for : "+ name_ +" min value = 0 , " + "max value = " + std::to_string(std::pow(2,bit_length_) * lsb_) <<"\n";
+            }
+        }
+        else if(data_type_ == "int")
+        {
+            if (bit_value < -std::pow(std::abs(2),bit_length_)/2 || bit_value > (std::pow(2,bit_length_)/2))
+            {
+                std::cout<<"Serializing a non proper value for : "+ name_ + " min value = " + std::to_string(-std::pow(std::abs(2),bit_length_)/2 * lsb_)  + " max value = " + std::to_string(std::pow(2,bit_length_)/2 * lsb_)<<"\n";
+            }
+        }
+
         for(size_t i = 0; i < bit_length_; i++)
         {
             tempVecData.push_back(bit_value >> i & 1);
