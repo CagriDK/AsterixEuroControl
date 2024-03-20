@@ -1,5 +1,5 @@
 {
-    "comment" : "Hex Data = 22002ffff8000202416dec40320094406044009400001002200450146400c800471c8e390400c88e38e48e38e4c064",
+    "comment" : "Hex Data = 22002ffff8000202416dec40320094406044009400001002200450146400c800471c8e390400c83c71c8b8e38ec064",
     "000": {
         "Message Type": 2
     },
@@ -106,8 +106,8 @@
     },
     "120": {
         "Height of Data Source" : 200,
-        "Latitude" : 200,
-        "Longitude" : 200
+        "Latitude" : 85,
+        "Longitude" : -100
     }
 }
 
