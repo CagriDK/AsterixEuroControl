@@ -47,6 +47,14 @@ bool Config::parseFile(json jData)
     checkVal &= checkControlAndSet(m_serverPort, jData, "ServerPort",false);
     checkVal &= checkControlAndSet(m_GuiPort, jData, "RadarControlGuiPort",false);
     checkVal &= checkControlAndSetArray(m_udp_addres, jData, "RadarUDPAdresses", "ip", "port");
+    checkVal &= checkControlAndSet(cat_21_definition, jData, "CAT21_def", false);
+    checkVal &= checkControlAndSet(cat_34_definition, jData, "CAT34_def", false);
+    checkVal &= checkControlAndSet(cat_48_definition, jData, "CAT48_def", false);
+    checkVal &= checkControlAndSet(cat_62_definition, jData, "CAT62_def", false);
+    checkVal &= checkControlAndSet(cat_21_json_sample, jData, "CAT21_sample", false);
+    checkVal &= checkControlAndSet(cat_34_json_sample, jData, "CAT34_sample", false);
+    checkVal &= checkControlAndSet(cat_48_json_sample, jData, "CAT48_sample", false);
+    checkVal &= checkControlAndSet(cat_62_json_sample, jData, "CAT62_sample", false);
     return checkVal;
 }
 

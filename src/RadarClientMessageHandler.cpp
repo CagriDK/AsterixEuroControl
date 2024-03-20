@@ -1,4 +1,5 @@
 #include "../include/RadarClientMessageHandler.h"
+#include "../include/AppConfig.h"
 
 RadarClientMessageHandler::RadarClientMessageHandler()
 {
@@ -10,6 +11,9 @@ RadarClientMessageHandler::~RadarClientMessageHandler()
 
 void RadarClientMessageHandler::asterixMessageParser(const std::vector<char> &data, bool TEST_SAMPLE_CASE)
 {
+    Config::getInstance();
+    //std::cout<<std::dec<<"Config::Server Port = "<<Config::getInstance().getServerPort()<<std::endl;
+
     size_t byte_array_size = data.size() / 2;
     char data_bytes[byte_array_size];
     hexStringToBytes(data, data_bytes, byte_array_size);
@@ -17,15 +21,16 @@ void RadarClientMessageHandler::asterixMessageParser(const std::vector<char> &da
     int catType = static_cast<int>(static_cast<unsigned char>(data_bytes[0]));
     json jData;
 
-    json cat21_definition = nlohmann::json::parse(std::ifstream("../CATMessages/categories-definitions/cat021_0.26.json"));
-    json cat34_definition = nlohmann::json::parse(std::ifstream("../CATMessages/categories-definitions/cat034_1.26.json"));
-    json cat48_definition = nlohmann::json::parse(std::ifstream("../CATMessages/categories-definitions/cat048_1.23.json"));
-    json cat62_definition = nlohmann::json::parse(std::ifstream("../CATMessages/categories-definitions/cat062_1.16.json"));
+    
+    json cat21_definition = nlohmann::json::parse(std::ifstream(Config::getInstance().getCAT21Definition()));
+    json cat34_definition = nlohmann::json::parse(std::ifstream(Config::getInstance().getCAT34Definition()));
+    json cat48_definition = nlohmann::json::parse(std::ifstream(Config::getInstance().getCAT48Definition()));
+    json cat62_definition = nlohmann::json::parse(std::ifstream(Config::getInstance().getCAT62Definition()));
 
-    json cat21_sample;
-    json cat34_sample = nlohmann::json::parse(std::ifstream("../CATMessages/categories-definitions/sampleCat34.json"));
-    json cat48_sample = nlohmann::json::parse(std::ifstream("../CATMessages/categories-definitions/sampleCat48.json"));
-    json cat62_sample = nlohmann::json::parse(std::ifstream("../CATMessages/categories-definitions/sampleCat62.json"));
+    json cat21_sample = nlohmann::json::parse(std::ifstream(Config::getInstance().getCAT21JsonSample()));
+    json cat34_sample = nlohmann::json::parse(std::ifstream(Config::getInstance().getCAT34JsonSample()));
+    json cat48_sample = nlohmann::json::parse(std::ifstream(Config::getInstance().getCAT48JsonSample()));
+    json cat62_sample = nlohmann::json::parse(std::ifstream(Config::getInstance().getCAT62JsonSample()));
 
     switch (catType)
     {

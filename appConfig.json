@@ -13,5 +13,13 @@
   "MaxRadarTrackNumber": 2000,
   "MaxMeasurementNumber": 2000,
   "MaxInputSystemTrackNumber": 2000,
-  "MaxManualTracksNumber": 2000
+  "MaxManualTracksNumber": 2000,
+  "CAT21_def": "C:/Users/cagri/OneDrive/Documents/GitProject/AsterixEuroControl/CATMessages/categories-definitions/cat021_0.26.json",
+  "CAT34_def": "C:/Users/cagri/OneDrive/Documents/GitProject/AsterixEuroControl/CATMessages/categories-definitions/cat034_1.26.json",
+  "CAT48_def": "C:/Users/cagri/OneDrive/Documents/GitProject/AsterixEuroControl/CATMessages/categories-definitions/cat048_1.23.json",
+  "CAT62_def": "C:/Users/cagri/OneDrive/Documents/GitProject/AsterixEuroControl/CATMessages/categories-definitions/cat062_1.16.json",
+  "CAT21_sample":"C:/Users/cagri/OneDrive/Documents/GitProject/AsterixEuroControl/CATMessages/categories-definitions/sampleCat21.json",
+  "CAT34_sample":"C:/Users/cagri/OneDrive/Documents/GitProject/AsterixEuroControl/CATMessages/categories-definitions/sampleCat34.json",
+  "CAT48_sample":"C:/Users/cagri/OneDrive/Documents/GitProject/AsterixEuroControl/CATMessages/categories-definitions/sampleCat48.json",
+  "CAT62_sample":"C:/Users/cagri/OneDrive/Documents/GitProject/AsterixEuroControl/CATMessages/categories-definitions/sampleCat62.json"
 }
