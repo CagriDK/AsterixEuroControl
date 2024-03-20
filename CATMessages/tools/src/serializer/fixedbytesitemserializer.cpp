@@ -103,9 +103,9 @@ void FixedBytesItemSerializer::serializeItem(nlohmann::json &jData, size_t index
             value = static_cast<int>(current_data[name_]);
         }
 
-        if (value < -std::pow(std::abs(UINT8_MAX),length_) || value > (std::pow(UINT8_MAX,length_)))
+        if (value < -std::pow(std::abs(UINT8_MAX),length_)/2 || value > (std::pow(UINT8_MAX,length_)/2))
         {
-            std::cout<<"Serializing a non proper value for : "+ name_ + " min value = " + std::to_string(std::pow(INT8_MIN,length_) * lsb_)  + " max value = " + std::to_string(std::pow(INT8_MAX,length_) * lsb_)<<"\n";
+            std::cout<<"Serializing a non proper value for : "+ name_ + " min value = " + std::to_string(-std::pow(std::abs(UINT8_MAX),length_)/2 * lsb_)  + " max value = " + std::to_string(std::pow(UINT8_MAX,length_)/2 * lsb_)<<"\n";
         }
 
         for(size_t i = 0; i < length_; i++)
