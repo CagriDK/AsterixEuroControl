@@ -80,7 +80,12 @@ std::vector<bool> stringToIcaoBitsets(const std::string &input,size_t character_
     for (char c : input)
     {
         unsigned int value = 0;
-        c = putchar(toupper(c));
+        if(islower(c))
+        {
+            std::cout<<"Serializing a non proper value for string! Value should be UPPERCASE ";
+            return std::vector<bool>(input.size(),32);
+        }
+        //c = putchar(toupper(c));
         if ('A' <= c && c <= 'Z')
         {
             value = c - 'A' + 1;
@@ -100,8 +105,6 @@ std::vector<bool> stringToIcaoBitsets(const std::string &input,size_t character_
         }
 
     }
-
-    std::cout<<"\n";
 
     return bitVector;
 }
