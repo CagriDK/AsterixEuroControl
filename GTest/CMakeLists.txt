@@ -25,9 +25,17 @@ file(GLOB CAT_MESSAGES
      "${CMAKE_CURRENT_SOURCE_DIR}/../CATMessages/tools/src/serializer/*.cpp"
 )
 
+#GLOB komutu ile "config" klasörünü bul
+# GLOB komutu ile 'lib' klasöründeki tüm .cpp ve .h dosyalarını bul
+file(GLOB CONFIG
+     "${CMAKE_CURRENT_SOURCE_DIR}/../include/*.h"
+     "${CMAKE_CURRENT_SOURCE_DIR}/../src/*.cpp"
+)
+
 add_executable(AsterixTest 
 main_test.cpp
 ${CAT_MESSAGES}
+${CONFIG}
 )
 
 add_custom_target(
