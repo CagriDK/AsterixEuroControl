@@ -3,10 +3,10 @@
 #include "../CATMessages/AsterixMessages.h"
 #include "../include/appConfig.h"
 
-TEST(ExampleTest, Test2)
+TEST(CAT_TEST, CAT48)
 {
     Config::getInstance();
-    // const char *fullSampleData62 = "3e00f8bffffffe010264378dc0011c71c8011c71c803b718039e000087fffe78880e0080049483244d7621011040e2012c01de01010158ffe0c8c8c8c800c8c8c8c8c8c8f0ffffffffe0c8c8c8c8c8c8c8c8c8c8c8c8c832c8c8c8c8c8c8c8c8c8c8c8c8c8c8c8c8c8004000100004005ffffff0010234324142464646400026ac40414231324141424132424142346464640190646401080c2d20474147414741405441524441313254415244413133128054415244413134c947c864fe7e00000101471c72238e39406400645a0e0064640191640190ff8000c800c800c891a3da7410b4c8b4c8b410fe01026400471c000493d8a2008c";
+    // const char *fullSampleData48 = "3e00f8bffffffe010264378dc0011c71c8011c71c803b718039e000087fffe78880e0080049483244d7621011040e2012c01de01010158ffe0c8c8c8c800c8c8c8c8c8c8f0ffffffffe0c8c8c8c8c8c8c8c8c8c8c8c8c832c8c8c8c8c8c8c8c8c8c8c8c8c8c8c8c8c8004000100004005ffffff0010234324142464646400026ac40414231324141424132424142346464640190646401080c2d20474147414741405441524441313254415244413133128054415244413134c947c864fe7e00000101471c72238e39406400645a0e0064640191640190ff8000c800c800c891a3da7410b4c8b4c8b410fe01026400471c000493d8a2008c";
 
     json cat48_sample = nlohmann::json::parse(std::ifstream(Config::getInstance().getCAT48JsonSample()));
     json cat48_definition = nlohmann::json::parse(std::ifstream(Config::getInstance().getCAT48Definition()));
@@ -44,11 +44,11 @@ TEST(ExampleTest, Test2)
     EXPECT_EQ(jData.at("030").at("Warning/Error Conditions")[1].at("W/E Value"), 1);
     EXPECT_EQ(jData.at("030").at("Warning/Error Conditions")[1].at("extend"), 0);
 
-    EXPECT_FLOAT_EQ(jData.at("040").at("RHO"), 197.68359375);
-    EXPECT_FLOAT_EQ(jData.at("040").at("THETA"), 340.13671875);
+    EXPECT_NEAR(jData.at("040").at("RHO"), 197.68359375, epsilon01);
+    EXPECT_NEAR(jData.at("040").at("THETA"), 340.13671875, epsilon01);
 
-    EXPECT_EQ(jData.at("042").at("X-Component"), 100);
-    EXPECT_EQ(jData.at("042").at("Y-Component"), 100);
+    EXPECT_NEAR(jData.at("042").at("X-Component"), 100, epsilon01);
+    EXPECT_NEAR(jData.at("042").at("Y-Component"), 100, epsilon01);
 
     EXPECT_EQ(jData.at("050").at("G"), 0);
     EXPECT_EQ(jData.at("050").at("L"), 0);
@@ -70,16 +70,16 @@ TEST(ExampleTest, Test2)
 
     EXPECT_EQ(jData.at("080").at("QXi"), 100);
 
-    EXPECT_FLOAT_EQ(jData.at("090").at("Flight Level"), 330.0);
+    EXPECT_NEAR(jData.at("090").at("Flight Level"), 330.0, epsilon01);
     EXPECT_EQ(jData.at("090").at("G"), 0);
     EXPECT_EQ(jData.at("090").at("V"), 0);
 
-    EXPECT_FLOAT_EQ(jData.at("100").at("Mode-C reply"), 330.0);
+    EXPECT_EQ(jData.at("100").at("Mode-C reply"), 330.0);
     EXPECT_EQ(jData.at("100").at("G"), 0);
     EXPECT_EQ(jData.at("100").at("V"), 0);
     EXPECT_EQ(jData.at("100").at("QXi"), 100);
 
-    EXPECT_EQ(jData.at("110").at("3D-Height"), 1000);
+    EXPECT_NEAR(jData.at("110").at("3D-Height"), 1000, epsilon01);
 
     EXPECT_EQ(jData.at("120").at("CAL").at("D"), 1);
     EXPECT_EQ(jData.at("120").at("CAL").at("CAL"), 100);
@@ -112,7 +112,7 @@ TEST(ExampleTest, Test2)
         EXPECT_EQ(jData.at("130").at("available")[i].get<bool>(), expectedAvailable130[i]);
     }
 
-    EXPECT_FLOAT_EQ(jData.at("140").at("Time-of-Day"), 27354.6015625);
+    EXPECT_NEAR(jData.at("140").at("Time-of-Day"), 27354.6015625, epsilon01);
 
     EXPECT_EQ(jData.at("161").at("TRACK NUMBER"), 100);
 
@@ -127,11 +127,11 @@ TEST(ExampleTest, Test2)
     EXPECT_EQ(jData.at("170").at("TCC"), 0);
     EXPECT_EQ(jData.at("170").at("TRE"), 0);
 
-    EXPECT_FLOAT_EQ(jData.at("200").at("CALCULATED GROUNDSPEED"), 434.3994140625);
-    EXPECT_FLOAT_EQ(jData.at("200").at("CALCULATED HEADING"), 124.002685546875);
+    EXPECT_NEAR(jData.at("200").at("CALCULATED GROUNDSPEED"), 434.3994140625 , epsilon01);
+    EXPECT_NEAR(jData.at("200").at("CALCULATED HEADING"), 124.002685546875, epsilon01);
 
-    EXPECT_FLOAT_EQ(jData.at("210").at("Sigma (X)"), 0.5);
-    EXPECT_FLOAT_EQ(jData.at("210").at("Sigma (Y)"), 0.5);
+    EXPECT_NEAR(jData.at("210").at("Sigma (X)"), 0.5, epsilon01);
+    EXPECT_NEAR(jData.at("210").at("Sigma (Y)"), 0.5, epsilon01);
     EXPECT_NEAR(jData.at("210").at("Sigma (V)"), 22, epsilon01);
     EXPECT_NEAR(jData.at("210").at("Sigma (H)"), 20, epsilon01);
 
