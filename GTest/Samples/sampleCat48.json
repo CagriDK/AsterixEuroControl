@@ -1,0 +1,197 @@
+{
+    "Hex Data" : "300068fffffff80002356d4da0c5aff1e002000528fee464648964333b0003e810c236d4182001c0780031bc00004000643200320007b9582e4100404064e405020064014a00640028c080640200640064006400320032003220f5c0780031bc00001003e8640064",
+    "010": {                
+        "SAC": 0,
+        "SIC": 2
+    },
+    "020": {
+        "FX": 0,
+        "RAB": 0,
+        "RDP": 0,
+        "SIM": 0,
+        "SPI": 0,
+        "TYP": 5
+    },
+    "030" : {
+        "Warning/Error Conditions" : [
+            {
+                "W/E Value": 2,
+                "extend" : 1
+            },
+            {
+                "W/E Value": 1,
+                "extend" : 0
+            }
+        ]
+    },
+    "040": {
+        "RHO" : 197.68359375,
+        "THETA" : 340.13671875
+    },
+    "042": {
+        "X-Component" : 100,
+        "Y-Component" : 100
+    },
+    "050": {
+        "G": 0,
+        "L": 0,
+        "Mode-2 code": 1000,
+        "V": 0
+    },
+    "055": {
+        "G": 0,
+        "L": 0,
+        "Mode-1 code": 16,
+        "V": 0
+    },
+    "060": {
+        "QXi" : 100
+    },
+    "065": {
+        "QXi" : 100
+    },
+    "070": {
+        "G": 0,
+        "L": 0,
+        "Mode-3/A reply": 1000,
+        "V": 0
+    },
+    "080": {
+        "QXi" : 100
+    },
+    "090": {
+        "Flight Level": 330.0,
+        "G": 0,
+        "V": 0
+    },
+    "100": {
+        "Mode-C reply": 330.0,
+        "G": 0,
+        "V": 0,
+        "QXi": 100
+    },
+    "110": {
+        "3D-Height": 1000
+    },
+    "120": {
+        "CAL": {
+            "D": 1,
+            "CAL": 100
+        },
+        "RDS": {
+            "Raw Doppler Speed": [
+                {
+                    "DOP": 100,
+                    "AMB": 100,
+                    "FRQ": 100
+                },
+                {
+                    "DOP": 50,
+                    "AMB": 50,
+                    "FRQ": 50
+                }
+            ],
+            "REP": 2
+        },
+        "available": [
+            true,
+            true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
+        ]
+    },
+    "130": {
+        "SRL": {
+            "value":10
+        },
+        "SRR": {
+            "value":100
+        },
+        "SAM": {
+            "value":100
+        },
+        "PRL": {
+            "value":6
+        },
+        "PAM": {
+            "value":100
+        },
+        "RPD": {
+            "value":0.2
+        },
+        "APD": {
+            "value":1.3
+        },
+        "available": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            false
+        ]
+    },
+    "140": {
+        "Time-of-Day": 27354.6015625
+    },
+    "161": {
+        "TRACK NUMBER": 100
+    },
+    "170": {
+        "CDM": 0,
+        "CNF": 0,
+        "DOU": 0,
+        "FX": 1,
+        "GHO": 0,
+        "MAH": 0,
+        "RAD": 2,
+        "SUP": 0,
+        "TCC": 0,
+        "TRE": 0
+    },
+    "200": {
+        "CALCULATED GROUNDSPEED": 434.3994140625,
+        "CALCULATED HEADING": 124.002685546875
+    },
+    "210": {
+        "Sigma (X)": 0.5,
+        "Sigma (Y)": 0.5,
+        "Sigma (V)": 22.0,
+        "Sigma (H)": 20.0
+    },
+    "220": {
+        "AIRCRAFT ADDRESS": 1000
+    },
+    "230": {
+        "AIC": 1,
+        "ARC": 1,
+        "B1A": 1,
+        "B1B": 5,
+        "COM": 1,
+        "MSSC": 1,
+        "SI": 0,
+        "STAT": 0
+    },
+    "240": {
+        "Aircraft Identification": "DLH65A  "
+    },
+    "250": {
+        "Mode S MB Data": [
+            {
+                "BDS1": 4,
+                "BDS2": 0,
+                "MB Data": "c0780031bc0000"
+            }
+        ],
+        "REP": 1
+    },
+    "260": {
+        "MB DATA": "c0780031bc0000"
+    }
+}
