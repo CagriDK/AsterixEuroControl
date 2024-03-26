@@ -3422,7 +3422,7 @@
                             "optional_bitfield_index":0,
                             "data_fields":[
                                 {
-                                    "name":"APC [X-Component]",
+                                    "name":"APC (X-Component)",
                                     "comment":"Estimated accuracy (i.e. standard deviation) of the calculated position of a target expressed in Cartesian co-ordinates.",
                                     "type":"fixed_bytes",
                                     "length":2,
@@ -3430,7 +3430,7 @@
                                     "lsb":0.5
                                 },
                                 {
-                                    "name":"APC [Y-Component]",
+                                    "name":"APC (Y-Component)",
                                     "comment":"Estimated accuracy (i.e. standard deviation) of the calculated position of a target expressed in Cartesian co-ordinates.",
                                     "type":"fixed_bytes",
                                     "length":2,
@@ -3447,7 +3447,7 @@
                             "optional_bitfield_index":1,
                             "data_fields":[
                                 {
-                                    "name":"COV [XY Covariance Component]",
+                                    "name":"COV (XY Covariance Component)",
                                     "comment":"XY Covariance Component in two’s complement form",
                                     "type":"fixed_bytes",
                                     "length":2,
@@ -3464,7 +3464,7 @@
                             "optional_bitfield_index":2,
                             "data_fields":[
                                 {
-                                    "name":"APW [Latitude Component]",
+                                    "name":"APW (Latitude Component)",
                                     "comment":"Estimated accuracy (i.e. standard deviation) of the calculated position of a target expressed in WGS-84.",
                                     "type":"fixed_bytes",
                                     "length":2,
@@ -3472,7 +3472,7 @@
                                     "lsb":5.36441802978515625E-6
                                 },
                                 {
-                                    "name":"APW [Longitude Component]",
+                                    "name":"APW (Longitude Component)",
                                     "comment":"Estimated accuracy (i.e. standard deviation) of the calculated position of a target expressed in WGS-84.",
                                     "type":"fixed_bytes",
                                     "length":2,
@@ -3523,7 +3523,7 @@
                             "optional_bitfield_index":5,
                             "data_fields":[
                                 {
-                                    "name":"ATV [X-Component]",
+                                    "name":"ATV (X-Component)",
                                     "comment":"Estimated accuracy (i.e. standard deviation) of the calculated track velocity in Cartesian co-ordinates.",
                                     "type":"fixed_bytes",
                                     "length":1,
@@ -3531,7 +3531,7 @@
                                     "lsb":0.25
                                 },
                                 {
-                                    "name":"ATV [Y-Component]",
+                                    "name":"ATV (Y-Component)",
                                     "comment":"Estimated accuracy (i.e. standard deviation) of the calculated track velocity in Cartesian co-ordinates.",
                                     "type":"fixed_bytes",
                                     "length":1,
@@ -3548,7 +3548,7 @@
                             "optional_bitfield_index":6,
                             "data_fields":[
                                 {
-                                    "name":"AA [X-Component]",
+                                    "name":"AA (X-Component)",
                                     "comment":"Estimated accuracy (i.e. standard deviation) of the calculated acceleration in Cartesian co-ordinates.",
                                     "type":"fixed_bytes",
                                     "length":1,
@@ -3556,7 +3556,7 @@
                                     "lsb":0.25
                                 },
                                 {
-                                    "name":"AA [Y-Component]",
+                                    "name":"AA (Y-Component)",
                                     "comment":"Estimated accuracy (i.e. standard deviation) of the calculated acceleration in Cartesian co-ordinates.",
                                     "type":"fixed_bytes",
                                     "length":1,

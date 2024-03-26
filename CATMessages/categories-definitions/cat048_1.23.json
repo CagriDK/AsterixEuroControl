@@ -909,7 +909,7 @@
             "type":"item",
             "data_fields":[
                 {
-                    "name":"Sigma [X]",
+                    "name":"Sigma (X)",
                     "comment":"Standard Deviation on the horizontal axis of the local grid system\n0<= Sigma(X)<2 NM",
                     "type":"fixed_bytes",
                     "length":1,
@@ -917,7 +917,7 @@
                     "lsb":0.0078125
                 },
                 {
-                    "name":"Sigma [Y]",
+                    "name":"Sigma (Y)",
                     "comment":"Standard Deviation on the vertical axis of the local grid system\n0<= Sigma(Y)<2 NM",
                     "type":"fixed_bytes",
                     "length":1,
@@ -925,7 +925,7 @@
                     "lsb":0.0078125
                 },
                 {
-                    "name":"Sigma [V]",
+                    "name":"Sigma (V)",
                     "comment":"Standard Deviation on the groundspeed within the local grid system\n0<=Sigma (V)<56.25 Kt",
                     "type":"fixed_bytes",
                     "length":1,
@@ -933,7 +933,7 @@
                     "lsb":0.2197265625
                 },
                 {
-                    "name":"Sigma [H]",
+                    "name":"Sigma (H)",
                     "comment":"Standard Deviation on the heading within the local grid system\n0 <= sigma(H) < 22.5 degrees",
                     "type":"fixed_bytes",
                     "length":1,

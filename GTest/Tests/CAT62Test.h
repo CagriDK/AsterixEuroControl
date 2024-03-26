@@ -276,17 +276,17 @@ TEST(CAT_TEST, CAT62)
         EXPECT_EQ(jData.at("390").at("available")[i].get<bool>(), expectedAvailable390[i]);
     }
 
-    EXPECT_NEAR(jData.at("500").at("APC").at("APC [X-Component]"), 100.0, epsilon01);
-    EXPECT_NEAR(jData.at("500").at("APC").at("APC [Y-Component]"), 100.0, epsilon01);
-    EXPECT_NEAR(jData.at("500").at("COV").at("COV [XY Covariance Component]"), 100.0, epsilon01);
-    EXPECT_NEAR(jData.at("500").at("APW").at("APW [Latitude Component]"), 0.2, epsilon01);  
-    EXPECT_NEAR(jData.at("500").at("APW").at("APW [Longitude Component]"), 0.3, epsilon01); 
+    EXPECT_NEAR(jData.at("500").at("APC").at("APC (X-Component)"), 100.0, epsilon01);
+    EXPECT_NEAR(jData.at("500").at("APC").at("APC (Y-Component)"), 100.0, epsilon01);
+    EXPECT_NEAR(jData.at("500").at("COV").at("COV (XY Covariance Component)"), 100.0, epsilon01);
+    EXPECT_NEAR(jData.at("500").at("APW").at("APW (Latitude Component)"), 0.2, epsilon01);  
+    EXPECT_NEAR(jData.at("500").at("APW").at("APW (Longitude Component)"), 0.3, epsilon01); 
     EXPECT_NEAR(jData.at("500").at("AGA").at("AGA"), 100.0, epsilon01);
     EXPECT_NEAR(jData.at("500").at("ABA").at("ABA"), 45.0, epsilon01);               
-    EXPECT_NEAR(jData.at("500").at("ATV").at("ATV [X-Component]"), 50.0, epsilon01); 
-    EXPECT_NEAR(jData.at("500").at("ATV").at("ATV [Y-Component]"), 45.0, epsilon01); 
-    EXPECT_NEAR(jData.at("500").at("AA").at("AA [X-Component]"), 50.0, epsilon01);   
-    EXPECT_NEAR(jData.at("500").at("AA").at("AA [Y-Component]"), 45.0, epsilon01);   
+    EXPECT_NEAR(jData.at("500").at("ATV").at("ATV (X-Component)"), 50.0, epsilon01); 
+    EXPECT_NEAR(jData.at("500").at("ATV").at("ATV (Y-Component)"), 45.0, epsilon01); 
+    EXPECT_NEAR(jData.at("500").at("AA").at("AA (X-Component)"), 50.0, epsilon01);   
+    EXPECT_NEAR(jData.at("500").at("AA").at("AA (Y-Component)"), 45.0, epsilon01);   
     EXPECT_NEAR(jData.at("500").at("ARC").at("ARC"), 100.0, epsilon01);
 
     std::vector<bool> expectedAvailable500 = {

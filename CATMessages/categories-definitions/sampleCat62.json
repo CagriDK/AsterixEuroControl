@@ -514,15 +514,15 @@
     },
     "500": {
         "APC": {
-            "APC [X-Component]": 100.0,
-            "APC [Y-Component]": 100.0
+            "APC (X-Component)": 100.0,
+            "APC (Y-Component)": 100.0
         },
         "COV": {
-            "COV [XY Covariance Component]": 100.0
+            "COV (XY Covariance Component)": 100.0
         },
         "APW": {
-            "APW [Latitude Component]": 0.2,
-            "APW [Longitude Component]": 0.3
+            "APW (Latitude Component)": 0.2,
+            "APW (Longitude Component)": 0.3
         },
         "AGA": {
             "AGA": 100.0
@@ -531,12 +531,12 @@
             "ABA": 45.0
         },
         "ATV": {
-            "ATV [X-Component]": 50.0,
-            "ATV [Y-Component]": 45.0
+            "ATV (X-Component)": 50.0,
+            "ATV (Y-Component)": 45.0
         },
         "AA": {
-            "AA [X-Component]": 50.0,
-            "AA [Y-Component]": 45.0
+            "AA (X-Component)": 50.0,
+            "AA (Y-Component)": 45.0
         },
         "ARC": {
             "ARC": 100.0
