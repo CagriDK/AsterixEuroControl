@@ -1,0 +1,64 @@
+{
+    "Hex Data" : "30002ab5c10c0002a0c5aff1e005280003e810c236d418200028c0806402006400640064003200320032",
+    "010": {                
+        "SAC": 0,
+        "SIC": 2
+    },
+    "020": {
+        "FX": 0,
+        "RAB": 0,
+        "RDP": 0,
+        "SIM": 0,
+        "SPI": 0,
+        "TYP": 5
+    },
+    "040": {
+        "RHO" : 197.68359375,
+        "THETA" : 340.13671875
+    },
+    "090": {
+        "Flight Level": 330.0,
+        "G": 0,
+        "V": 0
+    },
+    "110": {
+        "3D-Height": 1000
+    },
+    "120": {
+        "CAL": {
+            "D": 1,
+            "CAL": 100
+        },
+        "RDS": {
+            "Raw Doppler Speed": [
+                {
+                    "DOP": 100,
+                    "AMB": 100,
+                    "FRQ": 100
+                },
+                {
+                    "DOP": 50,
+                    "AMB": 50,
+                    "FRQ": 50
+                }
+            ],
+            "REP": 2
+        },
+        "available": [
+            true,
+            true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
+        ]
+    },
+    "220": {
+        "AIRCRAFT ADDRESS": 1000
+    },
+    "240": {
+        "Aircraft Identification": "DLH65A  "
+    }
+}

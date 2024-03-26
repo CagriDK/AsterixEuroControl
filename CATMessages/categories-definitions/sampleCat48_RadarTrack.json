@@ -1,0 +1,43 @@
+{
+    "Hex Data" : "300023f5d5080002356d4da0c5aff1e005280003e810c236d41820006407b9582e0028",
+    "010": {                
+        "SAC": 0,
+        "SIC": 2
+    },
+    "020": {
+        "FX": 0,
+        "RAB": 0,
+        "RDP": 0,
+        "SIM": 0,
+        "SPI": 0,
+        "TYP": 5
+    },
+    "040": {
+        "RHO" : 197.68359375,
+        "THETA" : 340.13671875
+    },
+    "090": {
+        "Flight Level": 330.0,
+        "G": 0,
+        "V": 0
+    },
+    "110": {
+        "3D-Height": 1000
+    },
+    "140": {
+        "Time-of-Day": 27354.6015625
+    },
+    "161": {
+        "TRACK NUMBER": 100
+    },
+    "200": {
+        "CALCULATED GROUNDSPEED": 434.3994140625,
+        "CALCULATED HEADING": 124.002685546875
+    },
+    "220": {
+        "AIRCRAFT ADDRESS": 1000
+	},
+    "240": {
+        "Aircraft Identification": "DLH65A  "
+    }
+}
