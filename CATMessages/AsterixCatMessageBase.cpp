@@ -13,6 +13,8 @@ bool AsterixCatMessageBase::baseDecodeData(const char* data, const json &cat_def
 {
     std::vector<char> Data_Pack;
 
+    std::string sample = cat_sample["Hex Data"];
+
     if(TEST_SAMPLE_CASE)
     {
         baseEncodeData(cat_sample,cat_definition,cat_items_order,uap_list,Data_Pack);
@@ -82,6 +84,18 @@ bool AsterixCatMessageBase::baseDecodeData(const char* data, const json &cat_def
     std::cout <<"HEX = "<< EncodedHexData << std::endl;
 
     cat_data_return.emplace("encodedHexData", EncodedHexData);
+
+    if(!TEST_SAMPLE_CASE)
+    {
+        if(sample == cat_data_return.at("encodedHexData"))
+        {
+            std::cout<<"(PASSED) Sample Data and Decoded Data are equal, Serialization/Parsing finished correctly!\n";
+        }
+        else
+        {
+            std::cout<<"(FAILED) Sample Data and Decoded Data are not equal, Serialization/Parsing Error!\n";
+        }
+    }
 
     return true;
 }
