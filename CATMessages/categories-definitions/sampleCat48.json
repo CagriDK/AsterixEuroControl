@@ -160,10 +160,10 @@
         "CALCULATED HEADING": 124.002685546875
     },
     "210": {
-        "Sigma (X)": 0.5,
-        "Sigma (Y)": 0.5,
-        "Sigma (V)": 22.0,
-        "Sigma (H)": 20.0
+        "Sigma [X]": 0.5,
+        "Sigma [Y]": 0.5,
+        "Sigma [V]": 22.0,
+        "Sigma [H]": 20.0
     },
     "220": {
         "AIRCRAFT ADDRESS": 1000

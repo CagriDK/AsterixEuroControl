@@ -130,10 +130,10 @@ TEST(CAT_TEST, CAT48)
     EXPECT_NEAR(jData.at("200").at("CALCULATED GROUNDSPEED"), 434.3994140625 , epsilon01);
     EXPECT_NEAR(jData.at("200").at("CALCULATED HEADING"), 124.002685546875, epsilon01);
 
-    EXPECT_NEAR(jData.at("210").at("Sigma (X)"), 0.5, epsilon01);
-    EXPECT_NEAR(jData.at("210").at("Sigma (Y)"), 0.5, epsilon01);
-    EXPECT_NEAR(jData.at("210").at("Sigma (V)"), 22, epsilon01);
-    EXPECT_NEAR(jData.at("210").at("Sigma (H)"), 20, epsilon01);
+    EXPECT_NEAR(jData.at("210").at("Sigma [X]"), 0.5, epsilon01);
+    EXPECT_NEAR(jData.at("210").at("Sigma [Y]"), 0.5, epsilon01);
+    EXPECT_NEAR(jData.at("210").at("Sigma [V]"), 22, epsilon01);
+    EXPECT_NEAR(jData.at("210").at("Sigma [H]"), 20, epsilon01);
 
     EXPECT_EQ(jData.at("220").at("AIRCRAFT ADDRESS"), 1000);
 
