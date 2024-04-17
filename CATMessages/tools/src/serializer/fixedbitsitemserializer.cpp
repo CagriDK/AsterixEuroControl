@@ -334,16 +334,16 @@ void FixedBitsItemSerializer::serializeItem(nlohmann::json &jData, size_t index,
 
         if(data_type_ == "uint")
         {
-            if (bit_value < 0 || bit_value > (std::pow(2,bit_length_)))
+            if (bit_value < 0 || bit_value > (std::pow(2,bit_length_)-1))
             {
-                std::cout<<"Serializing a non proper value for : "+ name_ +" min value = 0 , " + "max value = " + std::to_string(std::pow(2,bit_length_) * lsb_) <<"\n";
+                std::cout<<"Serializing a non proper value for : "+ name_ +" min value = 0 , " + "max value = " + std::to_string((std::pow(2,bit_length_)-1) * lsb_) <<"\n";
             }
         }
         else if(data_type_ == "int")
         {
             if (bit_value < -std::pow(std::abs(2),bit_length_)/2 || bit_value > (std::pow(2,bit_length_)/2))
             {
-                std::cout<<"Serializing a non proper value for : "+ name_ + " min value = " + std::to_string(-std::pow(std::abs(2),bit_length_)/2 * lsb_)  + " max value = " + std::to_string(std::pow(2,bit_length_)/2 * lsb_)<<"\n";
+                std::cout<<"Serializing a non proper value for : "+ name_ + " min value = " + std::to_string(-(std::pow(std::abs(2),bit_length_)-1)/2 * lsb_)  + " max value = " + std::to_string((std::pow(2,bit_length_)-1)/2 * lsb_)<<"\n";
             }
         }
 
